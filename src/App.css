@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colours */
+  --softBG: rgb(52,58,64);
+  --hardBG: rgb(30,30,30);
+  --highlight: rgb(64,192,87);
+  --softHighlight: rgb(178,242,187);
+  --iconBG: rgb(233,236,239);
+  overflow: hidden;
+}

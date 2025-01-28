@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap');
+
+html {
+    background-color: var(--hardBG);
+}
+#text {
+    user-select: none;
+    font-family: "Cabin Sketch", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+h1 {
+    font-family: "Cabin Sketch", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+button {
+    font-family: "Cabin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+p {
+    font-family: "Cabin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+li {
+    font-family: "Cabin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#linkedIn, #projects, #website, #cv {
+    color: ivory;
+    text-decoration: underline;
+}
+#linkedIn:hover, #projects:hover, #website:hover, #cv:hover {
+    cursor: pointer;
+}
+::-webkit-scrollbar {
+    width: 0.01rem;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 1px;
+}
