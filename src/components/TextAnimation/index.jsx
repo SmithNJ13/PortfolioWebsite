@@ -13,7 +13,7 @@ const TextAnimation = ({ onComplete }) => {
     useEffect(() => {
         const controls = animate(count, baseText.length, {
             type: "tween",
-            duration: 4.5,
+            duration: 3.5,
             ease: "easeInOut",
             onComplete: () => {
                 setComplete(true)

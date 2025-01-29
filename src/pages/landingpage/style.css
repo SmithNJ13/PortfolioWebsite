@@ -40,6 +40,7 @@ li {
 }
 ::-webkit-scrollbar {
     width: 0.01rem;
+    display: none;
 }
 ::-webkit-scrollbar-track {
     background-color: transparent;
@@ -47,4 +48,7 @@ li {
 ::-webkit-scrollbar-thumb {
     background: transparent;
     border-radius: 1px;
+}
+#content {
+    scrollbar-width: none;
 }

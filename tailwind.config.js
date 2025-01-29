@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        "slate": "#1e1e1e",
         "lightemerald": "#10b981",
         "sherwood": "#114232",
         "stalelime": "#F7F6BB",
