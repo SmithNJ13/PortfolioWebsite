@@ -1,6 +1,8 @@
 import React from 'react'
-import PredictionIMG1 from "../assets/PredictionLive.png"
+import img1 from "../assets/SzndChefL.jpg"
+import img2 from "../assets/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
+import { G1, D1, O1} from '../yapfile.js'
 
 const SzndChef = ({returnState}) => {
   const string = "🡼"
@@ -15,21 +17,17 @@ const SzndChef = ({returnState}) => {
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Goal:</h2>
-            <p className="mx-[1rem]">The objective of this project was to build a full-stack web application that is deployed and accessible by anyone. The users that sign up will be able to login and
-              browse through a variety of recipes, both default and user-created. They would also be able to comment their thoughts on each recipe, as well as favourite ones that they
-              like. The core theme and selling point of this web application is the "seasonal" focus, being able to filter recipes by their ideal season.
-              <br/>I.e. for winter, roasts and warm, hearty meals are recommended.
-            </p>
+            <p className="mx-[1rem]">{G1} <br/> I.e. for winter, roasts and warm, hearty meals are recommended.</p>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Development:</h2>
-            <p className="mx-[1rem]">Initially the team was uncertain of what product we want to produce</p>
-            <img src={PredictionIMG1} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
+            <p className="mx-[1rem]">{D1}</p>
+            <img src={img1} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Outcome:</h2>
-            <p>insert description of some kind... Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quisquam odit nemo, neque repellendus exercitationem asperiores, laboriosam iure facilis aliquam ex quidem quod tempore sed! Facere totam temporibus quia sed.</p>
-            <img src={PredictionIMG1} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
+            <p>{O1}</p>
+            <img src={img2} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>
