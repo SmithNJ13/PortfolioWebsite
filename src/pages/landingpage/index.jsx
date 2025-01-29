@@ -69,7 +69,7 @@ const LandingPage = () => {
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[1rem]">
           <h1 className="relative text-4xl">◆ TECHNICAL SKILLS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
           <div  className="flex flex-col self-start">
-            <ul className="text-2xl underline">Languages</ul>
+            <ul className="text-2xl underline mt-[1rem]">Languages</ul>
             <div className="text-ivory ml-[1rem]">
               <li className="self-start text-xl">JavaScript</li>
               <li className="self-start text-xl">Python</li>
@@ -77,7 +77,7 @@ const LandingPage = () => {
               <li className="self-start text-xl">CSS</li>
               <li className="self-start text-xl">C#</li>
             </div>
-            <ul className="text-2xl underline">Libraries</ul>
+            <ul className="text-2xl underline mt-[1rem]">Libraries</ul>
             <div className="text-ivory ml-[1rem]">
               <li className="self-start text-xl">React</li>
               <li className="self-start text-xl">Redux</li>
@@ -86,7 +86,7 @@ const LandingPage = () => {
               <li className="self-start text-xl">pandas</li>
               <li className="self-start text-xl">numpy</li>
             </div>
-            <ul className="text-2xl underline">Frameworks</ul>
+            <ul className="text-2xl underline mt-[1rem]">Frameworks</ul>
             <div className="text-ivory ml-[1rem]">
               <li className="self-start text-xl">Vite</li>
               <li className="self-start text-xl">Docker</li>
@@ -98,19 +98,21 @@ const LandingPage = () => {
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[1rem]">
           <h1 className="relative text-4xl">◆ PROJECTS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
           <div className="flex flex-col self-start items-start">
-            <ul className="hover:text-white hover:cursor-pointer text-2xl underline" onClick={() => {loadProject1(true), setLoadMain(false)}}>SzndChef</ul>
+            <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={() => {loadProject1(true), setLoadMain(false)}}>SzndChef</ul>
             <li className="text-xl text-ivory w-[35rem] ml-[1rem]">A full-stack recipe application, in which users can create an account, login and browse user created recipes as well as submit their own</li>
-            <ul className="hover:text-white hover:cursor-pointer text-2xl underline" onClick={() => {loadProject2(true), setLoadMain(false)}}>Premier League Predictions - PLP</ul>
+            <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={() => {loadProject2(true), setLoadMain(false)}}>Premier League Predictions - PLP</ul>
             <li className="text-xl text-ivory w-[35rem] ml-[1rem]">A full-stack prediction application, where users can sign up, login and create predictions on various football matches, view their prediction history as well as relevant team information</li>
-            <ul className="hover:text-white hover:cursor-pointer text-2xl underline" onClick={() => {loadProject3(true), setLoadMain(false)}}>Data Analysis</ul>
+            <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={() => {loadProject3(true), setLoadMain(false)}}>Data Analysis</ul>
             <li className="text-xl text-ivory w-[35rem] ml-[1rem]">Data analysis of... ...something</li>
           </div>
           </section>
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[1rem] mb-[2rem]">
           <h1 className="relative text-4xl">◆ CONTACT ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
-          <div className="mt-[1rem] text-xl text-center">
+          <div className="mt-[1rem] text-xl text-center flex flex-row gap-[1rem]">
             <p className="hover:text-white"> Email </p>
+            <p>●</p>
             <p className="hover:text-white"><Link to="https://www.linkedin.com/in/nsmith96/"> LinkedIn </Link></p>
+            <p>●</p>
             <p className="hover:text-white"><Link to="https://github.com/SmithNJ13"> GitHub </Link></p>
           </div>
           </section>
