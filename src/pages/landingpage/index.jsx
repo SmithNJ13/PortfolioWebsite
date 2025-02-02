@@ -6,6 +6,7 @@ import Star from "../../components/Star/index"
 import WavesAnimation from "../../components/WavesAnimation"
 import { SzndChef, PLP, DA } from "../../projects/exports";
 import { Link } from "react-router-dom";
+import favicon from "../../assets/favicon.png"
 
 const LandingPage = () => {
   const [complete, setComplete] = useState(false)
@@ -35,7 +36,8 @@ const LandingPage = () => {
   return (
     <>
     {visible && (
-    <main className="mx-auto flex flex-col justify-center items-center h-screen">
+      <main className="mx-auto flex flex-col justify-center items-center h-screen">
+        <img src={favicon} className="relative w-[150px] h-[150px] border-chalkboard border-[4px] rounded-[20rem] hover:border-white" style={{top: "-5%"}}></img>
       <section id="text" className="font-bold flex flex-row text-4xl">
         <TextAnimation onComplete={() => setComplete(true)}/>
       </section>

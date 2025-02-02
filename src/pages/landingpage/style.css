@@ -15,6 +15,11 @@ h1 {
     font-style: normal;
     font-weight: 400;
 }
+h2 {
+    font-family: "Cabin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
 button {
     font-family: "Cabin", sans-serif;
     font-style: normal;

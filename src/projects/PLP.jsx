@@ -15,6 +15,7 @@ import be1 from "../assets/ProjectTwo/BE1.png"
 import be2 from "../assets/ProjectTwo/BE2.png"
 import be3 from "../assets/ProjectTwo/BE3.png"
 import be4 from "../assets/ProjectTwo/BE4.png"
+import cardZoom from "../assets/ProjectTwo/CardZoom.png"
 
 import { Link } from 'react-router-dom'
 import { G2, D2, D2_1, O2} from '../yapfile.js'
@@ -94,27 +95,52 @@ const PLP = ({returnState}) => {
               </>
             )}
             {implementation == 2 && (
-              <><div>
-                <img src={img4}></img>
-                <img src={img5}></img>
-                <img src={be1}></img>
-                <img src={be2}></img>
+              <>
+              <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
+              <div className="flex flex-col items-center">
+                <p className="mx-[2rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
+                <img src={img4} className="w-[80%] h-auto rounded border-stalelime border-[2px] my-[1rem]"></img>
+                <p className="mx-[7rem] my-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
+                  'net xG' rating, which is a metric one can use to assess how accurate their predictions are.
+                </p>
+                <img src={img5} className="w-[80%] h-auto rounded border-stalelime border-[2px] my-[1rem]"></img>
               </div>
+              <h2 className="m-[1rem] text-2xl font-bold">Backend:</h2>
+              <div className="flex flex-row gap-[1rem] justify-around m-[1rem]">
+                <img src={be1} className="w-[35rem] h-[17rem]"></img>
+                <img src={be2} className="w-[35rem] h-[17rem]"></img>
+              </div>
+              <p className="text-center mx-[6rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
+                up the prediction class for when the user makes a prediction.
+              </p>
               </>
             )}
             {implementation == 3 && (
-              <><div>
-                <img src={img6}></img>
-                <img src={img7}></img>
-                <img src={be3}></img>
-                <img src={be4}></img>
+              <>
+              <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
+              <div className="flex flex-col items-center">
+                <p className="mx-[2rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
+                <img src={img6} className="w-[80%] h-auto rounded border-stalelime border-[2px] my-[1rem]"></img>
+                <p className="mx-[7rem] my-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
+                  'net xG' rating, which is a metric one can use to assess how accurate their predictions are.
+                </p>
+                <img src={img7} className="w-[80%] h-auto rounded border-stalelime border-[2px] my-[1rem]"></img>
               </div>
+              <h2 className="m-[1rem] text-2xl font-bold">Backend:</h2>
+              <div className="flex flex-row gap-[1rem] justify-around m-[1rem]">
+                <img src={be3} className="w-[35rem] h-[17rem]"></img>
+                <img src={be4} className="w-[35rem] h-[17rem]"></img>
+              </div>
+              <p className="text-center mx-[6rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
+                up the prediction class for when the user makes a prediction.
+              </p>
               </>
             )}
             {implementation == 4 && (
               <><div>
                 <img src={img8}></img>
                 <img src={img9}></img>
+                <img src={cardZoom}></img>
                 <img src={img10}></img>
                 <img src={img11}></img>
                 <img src={img12}></img>
