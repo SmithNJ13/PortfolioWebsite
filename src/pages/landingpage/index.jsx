@@ -120,7 +120,7 @@ const LandingPage = () => {
             <li className="text-xl text-ivory w-[44rem] ml-[1rem]">A full-stack prediction application, where users can sign up, login and create predictions on various football matches, view their prediction history as well as relevant team information</li>
             <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={() => {loadProject3(true), setLoadMain(false)}}>Data Analysis</ul>
             <li className="text-xl text-ivory w-[44rem] ml-[1rem]">Data analysis of... ...something</li>
-            <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={""}>Final Year Project - C#</ul>
+            <ul className="hover:text-white hover:cursor-pointer text-2xl underline mt-[1rem]" onClick={() => console.log("Not implemented yet.")}>Final Year Project - C#</ul>
             <li className="text-xl text-ivory w-[44rem] ml-[1rem]">Information on my final year project</li>
           </div>
           </section>
