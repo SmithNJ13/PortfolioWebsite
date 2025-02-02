@@ -1,6 +1,6 @@
 import React from 'react'
-import img1 from "../assets/SzndChefL.jpg"
-import img2 from "../assets/SzndChefS.jpg"
+import img1 from "../assets/ProjectOne/SzndChefL.jpg"
+import img2 from "../assets/ProjectOne/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
 import { G1, D1, O1} from '../yapfile.js'
 

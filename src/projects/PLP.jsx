@@ -1,12 +1,16 @@
-import React from 'react'
-import img1 from "../assets/PredictionLive.png"
-import img2 from "../assets/PredictionTable.png"
+import React, { useState } from 'react'
+import img1 from "../assets/ProjectTwo/Image1.png"
+import img2 from "../assets/ProjectTwo/Image2.png"
 import { Link } from 'react-router-dom'
 import { G2, D2, D2_1, O2} from '../yapfile.js'
+import StickyNote from '../components/StickyNote/index.jsx'
+import Test from '../components/Test/test.jsx'
 
 const PLP = ({returnState}) => {
   const string = "🡼"
   const string2 = "[ P.L.P ]"
+  const [implementation, setImplementation] = useState(0)
+
  return (
     <div>
       <main id="mainBody" className="mx-auto text-stalelime flex flex-col justify-center items-center h-screen overflow-hidden py-[1rem]">
@@ -21,16 +25,53 @@ const PLP = ({returnState}) => {
             <h2 className="font-bold underline text-2xl">Goal:</h2>
             <p className="mx-[1rem]">{G2}</p>
           </section>
-          <section className="flex flex-col m-[1rem]">
+          <section className="flex flex-col m-[1rem] my-[4rem]">
             <h2 className="font-bold underline text-2xl">Development:</h2>
-            <p className="mx-[1rem]">{D2}</p>
-            <li className="ml-[2rem]">Display live Arsenal matches</li>
-            <li className="ml-[2rem]">Allow users to predict on xG</li>
-            <li className="ml-[2rem]">Allow users to sign up and login</li>
-            <li className="ml-[2rem]">Display a history of the users previous predictions</li>
-            <img src={img1} className="w-[65%] self-start border-stalelime border-[1px] rounded-[1rem] m-[1rem] ml-[3rem]"></img>
-            <p className="my-[2rem] mx-[1rem]">{D2_1}</p>
-            <img src={img2} className="w-[65%] self-end border-stalelime border-[1px] rounded-[1rem] m-[1rem] mr-[3rem]"></img>
+            <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory underline font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
+            {implementation == 0 && (
+              <div id="notes" className="flex flex-wrap my-[4rem] mx-[2.5rem] gap-[4rem] justify-evenly">
+                <StickyNote title={"Implementation #1"} 
+                bulletOne={"card functionality"} rotation="-10deg" 
+                bulletTwo={"rudimentary routes (home/profile/login)"} 
+                bulletThree={"basic graphical design"}
+                onClick={() => setImplementation(1)}/>
+
+                <StickyNote title={"Implementation #2"} 
+                bulletOne={"basic card UI elements"} rotation="10deg" posY="-1rem"
+                bulletTwo={"backend functionality with cards"}
+                bulletThree={"minor webpage layout changes & addition of NavBar"}
+                onClick={() => setImplementation(2)}/>
+
+                <StickyNote title={"Implementation #3"} 
+                bulletOne={"overhaul of colour scheme and layout"} rotation="-10deg"
+                bulletTwo={"expanded matches to include more teams"}
+                bulletThree={"added a table to the profile page"}
+                onClick={() => setImplementation(3)}/>
+
+                <StickyNote title={"Implementation #4"} 
+                bulletOne={"changed NavBar layout"} rotation="-10deg"
+                bulletTwo={"revamped the colour scheme of the website and added 'teams' page"}
+                bulletThree={"added login and signup functionality"}
+                onClick={() => setImplementation(4)}/>
+
+                <StickyNote title={"Current Implementation"} 
+                bulletOne={"massive UI changes"} rotation="10deg"
+                bulletTwo={"teams page displays elements"}
+                bulletThree={"more predictions and revamp of backend data structure"}
+                onClick={() => setImplementation(5)}/>
+              </div>
+            )}
+            {implementation == 1 && (
+              <><div className="mx-[1rem] my-[2rem]">
+                <p>{D2} <br />Here is an image of what the first implementation of the cards looked like:</p>
+              </div>
+              <div className="flex flex-row mx-[4rem] gap-[1rem]">
+                <img src={img1} className="w-[16rem] h-[22rem] rounded border-stalelime border-[2px]"></img>
+                <p className="mt-[6rem]">Yapping yap yap!</p>
+              </div>
+              </>
+            )}
+            <Test onClick={() => setImplementation(0)}/>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Outcome:</h2>

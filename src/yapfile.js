@@ -16,10 +16,9 @@ const O1 = `Outcome of some kind`
 const G2 = `The objective of this website was to create a platform which would provide users with live games of current premier league matches and allow them to make predictions
             on the outcome of the match, the scope of this project initially started with limiting it to predicting xG (expected goals) of Arsenal matches, but I have since expanded
             it into something more. Allowing the user to predict on more statistics, as well as expanding the pool to all premier league teams.`
-const D2 = `Initial development of the website started with the following focus:`
-const D2_1 = `After working on the project for some time and achieving these outcomes, I wasn't fully satisfied with the layout or the functionality I had limited the project to,
-            I worked on overhauling the UI, navigation bar and colour scheme. Green is one of my favourite colours and since this is a personal passion project, I thought to 
-            incorporate it into the project.`
+const D2 = `Given that the 'cards' are a core concept of the web application, I decided to create a component for them first and ensure it was functional,
+            I gave the card a very basic UI design just for the purposes of testing.`
+const D2_1 = ``
 const O2 = `Outcome of some kind`
 
 /* Project: Data Analysis, data exploration, cleaning and visualisation project
