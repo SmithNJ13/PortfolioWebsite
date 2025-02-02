@@ -2,14 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import img1 from "../assets/catvdog.jpg"
 import img2 from "../assets/catvdog.jpg"
+import Main from '../components/Main'
 
-const DA = ({returnState}) => {
-  const string = "🡼"
+const DA = () => {
   return (
     <div>
-      <main id="mainBody" className="mx-auto text-stalelime flex flex-col justify-center items-center h-[95vh] overflow-hidden py-[4rem]">
-        <div id="content" className="overflow-y-scroll bg-sherwood rounded-2xl border-[1px] border-stalelime w-[65vw] my-[1rem] py-[2rem] z-[99]">
-          <h2 className="text-4xl text-stalelime hover:text-ivory hover:cursor-pointer hover:bg-zinc-800 rounded-[10rem] bg-slate w-min h-min p-[3px] mx-[0.5rem] mt-[-1.5rem] text-center justify-center align-center self-center" onClick={returnState}>{string}</h2>
+      <Main>
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="border-b-[1px] border-ivory rounded">Data Analysis</h1>
             <h1 className="text-2xl text-center"></h1>
@@ -45,8 +43,7 @@ const DA = ({returnState}) => {
             <h2 className="font-bold underline text-2xl">Conclusion:</h2>
             <p>In summary this is a conclusion Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum debitis laboriosam quia, impedit, placeat expedita sit doloribus obcaecati quo enim accusantium eveniet ab laudantium unde possimus. Quaerat numquam consectetur atque.</p>
           </section>
-        </div>
-      </main>
+      </Main>
     </div>
   )
 }

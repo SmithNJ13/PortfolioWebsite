@@ -3,14 +3,12 @@ import img1 from "../assets/ProjectOne/SzndChefL.jpg"
 import img2 from "../assets/ProjectOne/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
 import { G1, D1, O1} from '../yapfile.js'
+import Main from '../components/Main/index.jsx'
 
-const SzndChef = ({returnState}) => {
-  const string = "🡼"
+const SzndChef = () => {
   return (
     <div>
-      <main id="mainBody" className="mx-auto text-stalelime flex flex-col justify-center items-center h-[95vh] overflow-hidden py-[4rem]">
-        <div id="content" className="overflow-y-scroll bg-sherwood rounded-2xl border-[1px] border-stalelime w-[65vw] my-[1rem] py-[2rem] z-[99]">
-          <h2 className="text-4xl text-stalelime hover:text-ivory hover:cursor-pointer hover:bg-zinc-800 rounded-[10rem] bg-slate w-min h-min p-[3px] mx-[0.5rem] mt-[-1.5rem] text-center justify-center align-center self-center" onClick={returnState}>{string}</h2>
+      <Main>
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="border-b-[1px] border-ivory rounded">SzndChef</h1>
             <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/">https://szndchef.netlify.app/</Link></h2>
@@ -35,8 +33,7 @@ const SzndChef = ({returnState}) => {
             <li className="ml-[1rem]">Tool_Two</li>
             <p>Repository_Link</p>
           </section>
-        </div>
-      </main>
+      </Main>
     </div>
   )
 }
