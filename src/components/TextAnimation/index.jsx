@@ -25,7 +25,7 @@ const TextAnimation = ({ onComplete }) => {
     
 
   return (
-    <span className="text-lightemerald">
+    <span className="text-lightemerald text-center p-[1rem]">
         <motion.span>
             {displayText}
         </motion.span>

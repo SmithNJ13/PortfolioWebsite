@@ -4,6 +4,7 @@ import img2 from "../assets/ProjectOne/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
 import { G1, D1, O1} from '../yapfile.js'
 import Main from '../components/Main/index.jsx'
+import { imgBorder } from '../slayfile.js'
 
 const SzndChef = () => {
   return (
@@ -20,12 +21,12 @@ const SzndChef = () => {
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Development:</h2>
             <p className="mx-[1rem]">{D1}</p>
-            <img src={img1} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
+            <img src={img1} className={imgBorder}></img>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Outcome:</h2>
             <p>{O1}</p>
-            <img src={img2} className="w-[70%] self-center border-stalelime border-[1px] rounded-[1rem] m-[1rem]"></img>
+            <img src={img2} className={imgBorder}></img>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>

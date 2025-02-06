@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import img1 from "../assets/catvdog.jpg"
 import img2 from "../assets/catvdog.jpg"
 import Main from '../components/Main'
+import { imgBorder } from '../slayfile.js'
 
 const DA = () => {
   return (
