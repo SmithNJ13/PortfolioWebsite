@@ -6,7 +6,7 @@ const FYP = () => {
   return (
     <div>
       <Main>
-        <h1 className="text-center text-4xl p-[1rem]">NOT YET IMPLEMENTED! COME BACK LATER!</h1>
+        <h1 className="text-center text-4xl p-[1rem]">NOT YET IMPLEMENTED. COME BACK LATER!</h1>
       </Main>
     </div>
   )

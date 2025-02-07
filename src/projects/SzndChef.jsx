@@ -25,14 +25,30 @@ const SzndChef = () => {
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Outcome:</h2>
-            <p>{O1}</p>
+            <p className="mx-[1rem]">{O1}</p>
             <img src={img2} className={imgBorder}></img>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>
-            <li className="ml-[1rem]">Tool_One</li>
-            <li className="ml-[1rem]">Tool_Two</li>
-            <p>Repository_Link</p>
+            <li className="ml-[1rem]">React</li>
+            <li className="ml-[1rem]">JavaScript</li>
+            <li className="ml-[1rem]">Python</li>
+            <li className="ml-[1rem]">Waitress & Uvicorn</li>
+            <li className="ml-[1rem]">Flask</li>
+            <li className="ml-[1rem]">Bootstrap</li>
+            <li className="ml-[1rem]">Axios</li>
+            <li className="ml-[1rem]">Canvas</li>
+            <li className="ml-[1rem]">React-dom</li>
+            <li className="ml-[1rem]">Redux</li>
+            <li className="ml-[1rem]">React-router</li>
+            <li className="ml-[1rem]">Framer-motion</li>
+            <li className="ml-[1rem]">Jest & jsdom</li>
+            <li className="ml-[1rem]">Tailwindcss</li>
+            <li className="ml-[1rem]">Cors</li>
+            <li className="ml-[1rem]">bcrypt</li>
+            <li className="ml-[1rem]">JWT</li>
+            <Link to="https://github.com/SmithNJ13/yao42_frontend" className="font-bold text-center">GitHub repository (Frontend)</Link>
+            <Link to="https://github.com/ollie-byrne99/Lap_4_Server" className="font-bold text-center">GitHub repository (Backend)</Link>
           </section>
       </Main>
     </div>

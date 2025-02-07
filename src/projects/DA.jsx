@@ -9,9 +9,8 @@ const DA = () => {
   return (
     <div>
       <Main>
-          <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
-            <h1 className="border-b-[1px] border-ivory rounded">Data Analysis</h1>
-            <h1 className="text-2xl text-center"></h1>
+          <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
+            <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Data Analysis</h1>
             <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="">link_to_notebook</Link></h2>
           </section>
           <section className="flex flex-col m-[1rem]">
@@ -28,21 +27,21 @@ const DA = () => {
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Data Sourcing:</h2>
-            <p>Description of data source</p>
+            <p className="mx-[1rem]">Description of data source</p>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Data Cleaning:</h2>
-            <p>Description of cleaning</p>
+            <p className="mx-[1rem]">Description of cleaning</p>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Visualisation:</h2>
             <img src={img1} className="w-[65%] self-start border-stalelime border-[1px] rounded-[1rem] m-[1rem] ml-[3rem]"></img>
             <img src={img2} className="w-[65%] self-end border-stalelime border-[1px] rounded-[1rem] m-[1rem] mr-[3rem]"></img>
-            <p>explanation of graphs, cats are cool</p>
+            <p className="mx-[1rem]">explanation of graphs, cats are cool</p>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Conclusion:</h2>
-            <p>In summary this is a conclusion Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum debitis laboriosam quia, impedit, placeat expedita sit doloribus obcaecati quo enim accusantium eveniet ab laudantium unde possimus. Quaerat numquam consectetur atque.</p>
+            <p className="mx-[1rem]">In summary this is a conclusion Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum debitis laboriosam quia, impedit, placeat expedita sit doloribus obcaecati quo enim accusantium eveniet ab laudantium unde possimus. Quaerat numquam consectetur atque.</p>
           </section>
       </Main>
     </div>
