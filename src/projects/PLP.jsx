@@ -23,6 +23,7 @@ import { G2, D2, D2_1, O2} from '../yapfile.js'
 import StickyNote from '../components/StickyNote/index.jsx'
 import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
+import ScrollTo from '../components/ScrollToTop/index.jsx'
 
 const PLP = () => {
   const string2 = "[ P.L.P ]"
@@ -167,6 +168,7 @@ const PLP = () => {
           <li className="ml-[1rem]">bcrypt</li>
           <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold text-center">GitHub repository</Link>
         </section>
+        <ScrollTo />
       </Main>
     </div>
   )

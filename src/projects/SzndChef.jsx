@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { G1, D1, O1} from '../yapfile.js'
 import Main from '../components/Main/index.jsx'
 import { imgBorder } from '../slayfile.js'
+import ScrollTo from '../components/ScrollToTop/index.jsx'
 
 const SzndChef = () => {
   return (
@@ -50,6 +51,7 @@ const SzndChef = () => {
             <Link to="https://github.com/SmithNJ13/yao42_frontend" className="font-bold text-center">GitHub repository (Frontend)</Link>
             <Link to="https://github.com/ollie-byrne99/Lap_4_Server" className="font-bold text-center">GitHub repository (Backend)</Link>
           </section>
+          <ScrollTo />
       </Main>
     </div>
   )

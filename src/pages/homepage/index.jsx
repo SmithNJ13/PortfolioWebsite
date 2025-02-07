@@ -12,7 +12,7 @@ const HomePage = () => {
             </section>
 
             <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
-            <h1 className="relative sm:text-4xl text-2xl text-center w-[16rem]">◆ TECHNICAL SKILLS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
+            <h1 className="relative sm:text-4xl text-2xl text-center sm:w-[24rem] w-[16rem]">◆ TECHNICAL SKILLS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
             <div className="mt-[2rem] sm:text-center flex sm:flex-row sm:gap-[6rem] gap-[1rem] sm:flex-nowrap flex-wrap mx-[1rem] sm:justify-evenly">
               <div className="sm:w-[12rem] w-[8rem] text-center">
                 <div className="flex flex-col sm:text-xl text-base items-center my-[1rem]">

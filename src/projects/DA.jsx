@@ -4,6 +4,7 @@ import img1 from "../assets/catvdog.jpg"
 import img2 from "../assets/catvdog.jpg"
 import Main from '../components/Main'
 import { imgBorder } from '../slayfile.js'
+import ScrollTo from '../components/ScrollToTop/index.jsx'
 
 const DA = () => {
   return (
@@ -43,6 +44,7 @@ const DA = () => {
             <h2 className="font-bold underline text-2xl">Conclusion:</h2>
             <p className="mx-[1rem]">In summary this is a conclusion Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum debitis laboriosam quia, impedit, placeat expedita sit doloribus obcaecati quo enim accusantium eveniet ab laudantium unde possimus. Quaerat numquam consectetur atque.</p>
           </section>
+          <ScrollTo />
       </Main>
     </div>
   )
