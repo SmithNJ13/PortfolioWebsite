@@ -31,10 +31,9 @@ const PLP = () => {
  return (
     <div>
       <Main>
-        <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
-          <h1 className="">Premier League Predictions</h1>
-          <h1 className="text-2xl border-b-[1px] border-ivory rounded w-[30rem] text-center">{string2}</h1>
-          <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/">protocol_linkto_</Link></h2>
+        <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
+          <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Premier League Predictions {string2}</h1>
+          <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
         </section>
         <section className="flex flex-col m-[1rem]">
           <h2 className="font-bold underline text-2xl">Goal:</h2>
@@ -44,7 +43,7 @@ const PLP = () => {
           <h2 className="font-bold underline text-2xl">Development:</h2>
           <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory underline font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
           {implementation == 0 && (
-            <div id="notes" className="flex flex-wrap my-[4rem] mx-[4rem] gap-[8rem] justify-evenly">
+            <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[8rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 
               bulletOne={"card functionality"} rotation="10deg" posY="7rem"
               bulletTwo={"rudimentary routes (home/profile/login)"} 
@@ -64,18 +63,18 @@ const PLP = () => {
               onClick={() => setImplementation(3)}/>
 
               <StickyNote title={"Current Implementation"} 
-              bulletOne={"changed NavBar layout"} rotation="-10deg" posX="-4rem"
+              bulletOne={"changed NavBar layout"} rotation="-10deg"
               bulletTwo={"revamped the colour scheme of the website and added 'teams' page"}
               bulletThree={"added login and signup functionality"}
               onClick={() => setImplementation(4)}/>
             </div>
           )}
           {implementation == 1 && (
-            <><div className="mx-[2rem] my-[2rem]">
+            <><div className="sm:mx-[2rem] sm:my-[2rem] m-[1rem]">
               <p>{D2} <br />Here is an image of what the first implementation of the cards looked like:</p>
             </div>
-            <div className="flex flex-row mx-[4rem] gap-[2rem]">
-              <img src={card} className={imgBorder}></img>
+            <div className="flex sm:flex-row sm:mx-[4rem] sm:gap-[2rem] flex-wrap">
+              <img src={card} className={`${imgBorder}`}></img>
               <p className="m-[1rem]">While setting up a very basic design and layout for the cards, I also mapped basic routing for both a 'profile' page and a 'login' page.
                 <br />I then spent more time on further developing the card, adding the following features:
                 <div className="mx-[1rem]">
@@ -96,19 +95,19 @@ const PLP = () => {
             <>
             <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
             <div className="flex flex-col items-center">
-              <p className="mx-[2rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
+              <p className="sm:mx-[2rem] mx-[1rem] mb-[1rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
               <img src={img4} className={imgBorder}></img>
-              <p className="mx-[7rem] my-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
+              <p className="sm:mx-[7rem] my-[1rem] mx-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
                 'net xG' rating, which is a metric one can use to assess how accurate their predictions are.
               </p>
               <img src={img5} className={imgBorder}></img>
             </div>
             <h2 className="m-[1rem] text-2xl font-bold">Backend:</h2>
-            <div className="flex flex-row gap-[1rem] justify-around m-[1rem]">
+            <div className="flex sm:flex-row gap-[1rem] justify-around m-[1rem] flex-col">
               <img src={be1} className={imgBorder}></img>
               <img src={be2} className={imgBorder}></img>
             </div>
-            <p className="text-center mx-[6rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
+            <p className="text-center sm:mx-[6rem] mx-[1rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
               up the prediction class for when the user makes a prediction.
             </p>
             </>
@@ -117,25 +116,25 @@ const PLP = () => {
             <>
             <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
             <div className="flex flex-col items-center">
-              <p className="mx-[2rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
+              <p className="sm:mx-[2rem] mx-[1rem] mb-[1rem]">Here I overhauled the layout and colour scheme of the website as well as allowed the live matches to display games beyond just Arsenal matches.</p>
               <img src={img6} className={imgBorder}></img>
-              <p className="mx-[7rem] my-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
+              <p className="sm:mx-[7rem] my-[1rem] mx-[1rem]">Additionally, I added a 'profile' page which displays a prediction table showcasing a history of the users most recent predictions, as well a
                 'net xG' rating, which is a metric one can use to assess how accurate their predictions are.
               </p>
               <img src={img7} className={imgBorder}></img>
             </div>
             <h2 className="m-[1rem] text-2xl font-bold">Backend:</h2>
-            <div className="flex flex-row gap-[1rem] justify-around m-[1rem]">
+            <div className="flex sm:flex-row gap-[1rem] justify-around m-[1rem] flex-col">
               <img src={be3} className={imgBorder}></img>
               <img src={be4} className={imgBorder}></img>
             </div>
-            <p className="text-center mx-[6rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
+            <p className="text-center sm:mx-[6rem] mx-[1rem]">I also set up the backend data structures and endpoints, so that the matches could be displayed with their relevant data as well as setting
               up the prediction class for when the user makes a prediction.
             </p>
             </>
           )}
           {implementation == 4 && (
-            <><div>
+            <><div className="my-[1rem] flex flex-col gap-[1rem]">
               <img src={img8} className={imgBorder}></img>
               <img src={img9} className={imgBorder}></img>
               <img src={cardZoom} className={imgBorder}></img>
@@ -153,9 +152,20 @@ const PLP = () => {
         </section>
         <section className="flex flex-col m-[1rem]">
           <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>
-          <li className="ml-[1rem]">Tool_One</li>
-          <li className="ml-[1rem]">Tool_Two</li>
-          <p>Repository_Link</p>
+          <li className="ml-[1rem]">React</li>
+          <li className="ml-[1rem]">JavaScript</li>
+          <li className="ml-[1rem]">Axios</li>
+          <li className="ml-[1rem]">React-router</li>
+          <li className="ml-[1rem]">Framer-motion</li>
+          <li className="ml-[1rem]">Git</li>
+          <li className="ml-[1rem]">Tailwindcss</li>
+          <li className="ml-[1rem]">Vite</li>
+          <li className="ml-[1rem]">Cheerio</li>
+          <li className="ml-[1rem]">Mongodb</li>
+          <li className="ml-[1rem]">Cors</li>
+          <li className="ml-[1rem]">Express</li>
+          <li className="ml-[1rem]">bcrypt</li>
+          <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold text-center">GitHub repository</Link>
         </section>
       </Main>
     </div>

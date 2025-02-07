@@ -19,7 +19,7 @@ const G2 = `The objective of this website was to create a platform which would p
 const D2 = `Given that the 'cards' are a core concept of the web application, I decided to create a component for them first and ensure it was functional,
             I gave the card a very basic UI design just for the purposes of testing.`
 const D2_1 = ``
-const O2 = `Outcome of some kind`
+const O2 = `Outcome to be added upon completion of project.`
 
 /* Project: Data Analysis, data exploration, cleaning and visualisation project
     relevant string information is found below */

@@ -13,44 +13,44 @@ const HomePage = () => {
 
             <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
             <h1 className="relative sm:text-4xl text-2xl text-center w-[16rem]">◆ TECHNICAL SKILLS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
-            <div className="mt-[2rem] sm:text-center flex sm:flex-row sm:gap-[8rem] gap-[2rem] sm:flex-nowrap flex-wrap mx-[1rem] sm:justify-evenly">
-              <div>
+            <div className="mt-[2rem] sm:text-center flex sm:flex-row sm:gap-[6rem] gap-[1rem] sm:flex-nowrap flex-wrap mx-[1rem] sm:justify-evenly">
+              <div className="sm:w-[12rem] w-[8rem] text-center">
                 <ul className="sm:text-3xl text-xl">Languages</ul>
-                <div className="flex flex-col text-start sm:text-xl text-base text-ivory my-[1rem]">
-                  <li>JavaScript</li>
-                  <li>Python</li>
-                  <li>CSS</li>
-                  <li>HTML</li>
-                  <li>C#</li>
+                <div className="flex flex-col text-start sm:text-xl text-base items-center text-ivory my-[1rem]">
+                  <li className="w-[3rem]">JavaScript</li>
+                  <li className="w-[3rem]">Python</li>
+                  <li className="w-[3rem]">CSS</li>
+                  <li className="w-[3rem]">HTML</li>
+                  <li className="w-[3rem]">C#</li>
                 </div>
               </div>
-              <div>
+              <div className="sm:w-[12rem] w-[8rem] text-center">
                 <ul className="sm:text-3xl text-xl">Libraries</ul>
-                <div className="flex flex-col text-start sm:text-xl text-base text-ivory my-[1rem]">
-                  <li>React</li>
-                  <li>Redux</li>
-                  <li>matplotlib</li>
-                  <li>seaborn</li>
-                  <li>numpy</li>
-                  <li>pandas</li>
+                <div className="flex flex-col text-start sm:text-xl text-base items-center text-ivory my-[1rem]">
+                  <li className="w-[3rem]">React</li>
+                  <li className="w-[3rem]">Redux</li>
+                  <li className="w-[3rem]">matplotlib</li>
+                  <li className="w-[3rem]">seaborn</li>
+                  <li className="w-[3rem]">numpy</li>
+                  <li className="w-[3rem]">pandas</li>
                 </div>
               </div>
-              <div>
+              <div className="sm:w-[12rem] w-[8rem] text-center">
                 <ul className="sm:text-3xl text-xl">Frameworks</ul>
-                <div className="flex flex-col text-start sm:text-xl text-base text-ivory my-[1rem]">
-                  <li>Vite</li>
-                  <li>Docker</li>
-                  <li>Tailwindcss</li>
-                  <li>Bootstrap</li>
+                <div className="flex flex-col text-start sm:text-xl text-base items-center text-ivory my-[1rem]">
+                  <li className="w-[3rem]">Vite</li>
+                  <li className="w-[3rem]">Docker</li>
+                  <li className="w-[3rem]">Tailwindcss</li>
+                  <li className="w-[3rem]">Bootstrap</li>
                 </div>
               </div>
-              <div>
+              <div className="sm:w-[12rem] w-[8rem] text-center">
                 <ul className="sm:text-3xl text-xl">Software</ul>
-                <div className="flex flex-col text-start sm:text-xl text-base text-ivory my-[1rem]">
-                  <li>Photoshop</li>
-                  <li>Unity Engine</li>
-                  <li>DaVinci Resolve</li>
-                  <li>Capcut</li>
+                <div className="flex flex-col text-start sm:text-xl text-base items-center text-ivory my-[1rem]">
+                  <li className="w-[3rem]">Photoshop</li>
+                  <li className="w-[3rem]">Unity Engine</li>
+                  <li className="w-[3rem]">DaVinci Resolve</li>
+                  <li className="w-[3rem]">Capcut</li>
                 </div>
               </div>
             </div>
