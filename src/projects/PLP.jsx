@@ -48,25 +48,25 @@ const PLP = () => {
               <StickyNote title={"Implementation #1"} 
               bulletOne={"card functionality"} rotation="10deg" posY="7rem"
               bulletTwo={"rudimentary routes (home/profile/login)"} 
-              bulletThree={"basic graphical design"}
+              bulletThree={"basic graphical design and NavBar implementation"}
               onClick={() => setImplementation(1)}/>
 
               <StickyNote title={"Implementation #2"} 
-              bulletOne={"basic card UI elements"} rotation="-10deg" posY="1rem"
+              bulletOne={"graphical overhaul"} rotation="-10deg" posY="1rem"
               bulletTwo={"backend functionality with cards"}
-              bulletThree={"minor webpage layout changes & addition of NavBar"}
+              bulletThree={"card layout changes, display other premier league matches"}
               onClick={() => setImplementation(2)}/>
 
               <StickyNote title={"Implementation #3"} 
               bulletOne={"overhaul of colour scheme and layout"} rotation="10deg" posY="5rem"
-              bulletTwo={"expanded matches to include more teams"}
-              bulletThree={"added a table to the profile page"}
+              bulletTwo={"allow user to make more types of predictions"}
+              bulletThree={"added temporary icon, news feed and new 'teams' page"}
               onClick={() => setImplementation(3)}/>
 
               <StickyNote title={"Current Implementation"} 
-              bulletOne={"changed NavBar layout"} rotation="-10deg"
-              bulletTwo={"revamped the colour scheme of the website and added 'teams' page"}
-              bulletThree={"added login and signup functionality"}
+              bulletOne={"gave the login and register pages actual forms"} rotation="-10deg"
+              bulletTwo={"revamped the colour scheme of the website and logo"}
+              bulletThree={"added elements to the 'teams' page"}
               onClick={() => setImplementation(4)}/>
             </div>
           )}
