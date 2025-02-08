@@ -173,13 +173,38 @@ const PLP = () => {
             </>
           )}
           {implementation == 4 && (
-            <><div className="my-[1rem] flex flex-col gap-[1rem]">
+            <>
+            <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
+            <p className="sm:mx-[2rem] mx-[1rem] mb-[1rem]">The current implementation of the web application has undergone the most significant changes, after getting
+              most of the backend functionality and data structures sorted and designed in a way that makes more logical sense and allows for easier programming of functions, retrieval
+              of information and more readable data I decided to tackle the presentation and layout of the website once and for all, accepting that design is not a talent of mine, I relied
+              on external tools like <Link to="https://coolors.co/" className="text-ivory underline font-bold">coolors.co</Link> to provide me a colour palette that could still utilise the colour
+              green, but be more visually appealing than what I had previously chosen.
+              <br className="mb-[1rem]"></br>I utilised <Link to="https://www.canva.com/" className="text-ivory underline font-bold">canva.com</Link> to design a logo for the website that looked cleaner and more 'professional' that is displayed
+              in the top-left corner, on the NavBar. The logo also additionally features as a 'return' button to navigate the user back to the home page.
+            </p>
+            <div className="flex flex-col items-center gap-[1rem]">
               <img src={img8} className={imgBorder}></img>
               <img src={img9} className={imgBorder}></img>
-              <img src={cardZoom} className={imgBorder}></img>
+              <div className="flex sm:flex-row flex-col justify-evenly w-full">
+                <img src={cardZoom} className={imgBorder}></img>
+                <p className="text-start w-full sm:my-[2rem] p-[1rem]">The layout of the cards, as a result of <span onClick={() => setImplementation(3)} className="text-ivory font-bold underline hover:cursor-pointer">implementation#3</span>
+                <br/>had to change to accommodate the new predictions the user can make.
+                Displaying of the match time has also become a thing, so users can see when the specific match they're placing predictions on will actually take place.
+                <p className="sm:mt-[10rem]">Following on from this, I also added content to the dormant 'teams' page, which allows the user to view a list of the teams
+                  playing in the current season of the premier league. This is shown on the image below. Eventually the user will be able to click on each team and be
+                  taken to the relevant page to display information about their chosen team.</p></p>
+              </div>
               <img src={img10} className={imgBorder}></img>
+              <p className="mx-[1rem]">Previous implementations had the login and register functionality, but the forms for them were incredibly basic and rudimentary, in this update I decided to design proper login and register
+                forms that are easily readable and far more presentable. The following two images are of both the login and register form respectively.
+              </p>
               <img src={img11} className={imgBorder}></img>
               <img src={img12} className={imgBorder}></img>
+              <p className="mx-[1rem]">In summary this update provided a massive overhaul to the UI and layout of the web application to make it more friendly and readable to users, as well as improving the 
+                navigation and feel of the webpage. It gives the website a cleaner, more professional feel to it. As well as the implementation of some additional functions, like the mapping
+                of each team within the current premier league season on the 'teams' page.
+              </p>
             </div>
             </>
           )}
