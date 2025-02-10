@@ -1,12 +1,12 @@
 import "./App.css"
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route,} from "react-router-dom"
 import { LandingPage, HomePage } from "./pages/export"
 import { SzndChef, PLP, DA, FYP } from "./projects/exports"
 import Moon from "./components/Moon/index"
 import Star from "./components/Star/index"
 import WavesAnimation from "./components/WavesAnimation"
 import AnimationButton from "./components/AnimationButton"
-import { useState, useEffect } from "react"
+import { useState, useEffect, } from "react"
 
 function App() {
   const [animations, setAnimations] = useState(() => {
