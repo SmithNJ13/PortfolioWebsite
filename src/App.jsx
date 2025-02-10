@@ -5,11 +5,13 @@ import { SzndChef, PLP, DA, FYP } from "./projects/exports"
 import Moon from "./components/Moon/index"
 import Star from "./components/Star/index"
 import WavesAnimation from "./components/WavesAnimation"
+import AnimationButton from "./components/AnimationButton"
 
 function App() {
 
   return (
     <>
+      <AnimationButton/>
       <Moon />
       <div id="Star1" className="absolute top-[3vh] left-[2vw] rotate-[10deg] hidden xl:block"><Star /></div>
       <div id="Star2" className="absolute top-[37vh] left-[4vw] rotate-[2deg] hidden xl:block"><Star /></div>

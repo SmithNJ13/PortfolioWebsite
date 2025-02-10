@@ -35,14 +35,6 @@ li {
     font-style: normal;
     font-weight: 400;
 }
-
-#linkedIn, #projects, #website, #cv {
-    color: ivory;
-    text-decoration: underline;
-}
-#linkedIn:hover, #projects:hover, #website:hover, #cv:hover {
-    cursor: pointer;
-}
 ::-webkit-scrollbar {
     width: 0.01rem;
     display: none;

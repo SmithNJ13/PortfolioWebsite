@@ -8,7 +8,7 @@ const HomePage = () => {
         <Main>
             <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
             <h1 className="relative sm:text-4xl text-2xl text-center">◆ ABOUT ME ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
-              <p className="mt-[1rem] sm:text-xl text-base">Hello and welcome! Thanks for stopping by, my name is Nathan. Ever since I was young, gaming has been a passion of mine. That passion led me to pursue <span className="text-ivory underline">Computer Science</span> at University. Despite the challenges post-graduation, I stayed dedicated, working on various <span className="text-ivory underline">projects</span> – including this <span className="text-ivory underline"><Link to="https://github.com/SmithNJ13/PortfolioWebsite">website</Link></span>. Feel free to explore and check out what I've accomplished!</p>
+              <p className="mt-[1rem] sm:text-xl text-base">Hello and welcome! Thanks for stopping by, my name is Nathan. Ever since I was young, gaming has been a passion of mine. That passion led me to pursue Computer Science at University. Despite the challenges post-graduation, I stayed dedicated, working on various <span className="text-ivory underline">projects</span> – including this <span className="text-ivory underline"><Link to="https://github.com/SmithNJ13/PortfolioWebsite">website</Link></span>. Feel free to explore and check out what I've accomplished!</p>
             </section>
 
             <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
@@ -68,7 +68,7 @@ const HomePage = () => {
             </div>
             </section>
 
-            <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
+            <section id="projects" className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
             <h1 className="relative sm:text-4xl text-2xl text-center">◆ PROJECTS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
             <div className="flex flex-col self-start items-start">
               <Link to={"da"}><ul className="hover:text-white hover:cursor-pointer sm:text-2xl text-xl underline mt-[1rem]">Data Analysis</ul></Link>

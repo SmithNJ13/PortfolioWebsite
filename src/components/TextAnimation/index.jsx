@@ -8,12 +8,12 @@ const TextAnimation = ({ onComplete }) => {
     const rounded = useTransform(count, (latest) => Math.round(latest))
     const displayText = useTransform(rounded, (latest) =>
     baseText.slice(0, latest))
-    const [complete, setComplete] = useState(false)
+    const [_, setComplete] = useState(false)
     
     useEffect(() => {
         const controls = animate(count, baseText.length, {
             type: "tween",
-            duration: 3.5,
+            duration: 2.0,
             ease: "easeInOut",
             onComplete: () => {
                 setComplete(true)
