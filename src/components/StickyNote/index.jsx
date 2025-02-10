@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
-const StickyNote = ({title, bulletOne = "", bulletTwo = "", bulletThree = "", rotation, posY, posX, onClick}) => {
+const StickyNote = ({title, bulletOne = "", bulletTwo = "", bulletThree = "", scale, rotation, posY, posX, onClick}) => {
     const [isHovered, setIsHovered] = useState(false);
   return (
     <div className={`relative w-[16em] h-[16em] p-[5px] m-[1rem] bg-yellow-200 text-black shadow-lg shadow-black rounded-md transition-all duration-300 transform ${
             isHovered ? `z-10 shadow-4xl shadow-black hover:cursor-pointer` : ""}`}
-            style={{scale: isHovered ? "115%" : "", transform: isHovered ? `rotate(${rotation})` : "rotate(0deg)", top: posY, left: posX}}
+            style={{scale: isHovered ? `${scale}` : "", transform: isHovered ? `rotate(${rotation})` : "rotate(0deg)", top: posY, left: posX}}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={onClick}>

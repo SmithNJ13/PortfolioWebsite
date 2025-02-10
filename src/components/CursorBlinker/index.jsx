@@ -18,7 +18,7 @@ const CursorBlinker = () => {
     <motion.div 
     variants={cursorVariants}
     animate="blinking"
-    className="inline-block h-8 w-[4px] translate-y-1 bg-ivory"
+    className="inline-block h-6 w-[3px] translate-y-1 bg-ivory ml-[1px]"
     />
   )
 }

@@ -25,9 +25,19 @@ import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
 import ScrollTo from '../components/ScrollToTop/index.jsx'
 
-const PLP = () => {
+const PLP = ({animations}) => {
   const string2 = "[ P.L.P ]"
   const [implementation, setImplementation] = useState(0)
+  let scale, rotationR, rotationL
+  if(animations === true) {
+    scale = "115%",
+    rotationR = "10deg",
+    rotationL = "-10deg"
+  } else {
+    scale = "100%",
+    rotationR = "0deg",
+    rotationL = "0deg"
+  }
 
  return (
     <div>
@@ -46,25 +56,25 @@ const PLP = () => {
           {implementation == 0 && (
             <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[8rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 
-              bulletOne={"card functionality"} rotation="10deg" posY="7rem"
+              bulletOne={"card functionality"} scale={scale} rotation={rotationR} posY="7rem"
               bulletTwo={"rudimentary routes (home/profile/login)"} 
               bulletThree={"basic graphical design and NavBar implementation"}
               onClick={() => setImplementation(1)}/>
 
               <StickyNote title={"Implementation #2"} 
-              bulletOne={"graphical overhaul"} rotation="-10deg" posY="1rem"
+              bulletOne={"graphical overhaul"} scale={scale} rotation={rotationL} posY="1rem"
               bulletTwo={"backend functionality with cards"}
               bulletThree={"card layout changes, display other premier league matches"}
               onClick={() => setImplementation(2)}/>
 
               <StickyNote title={"Implementation #3"} 
-              bulletOne={"overhaul of colour scheme and layout"} rotation="10deg" posY="5rem"
+              bulletOne={"overhaul of colour scheme and layout"} scale={scale} rotation={rotationR} posY="5rem"
               bulletTwo={"allow user to make more types of predictions"}
               bulletThree={"added temporary icon, news feed and new 'teams' page"}
               onClick={() => setImplementation(3)}/>
 
               <StickyNote title={"Current Implementation"} 
-              bulletOne={"gave the login and register pages actual forms"} rotation="-10deg"
+              bulletOne={"gave the login and register pages actual forms"} scale={scale} rotation={rotationL}
               bulletTwo={"revamped the colour scheme of the website and logo"}
               bulletThree={"added elements to the 'teams' page"}
               onClick={() => setImplementation(4)}/>
