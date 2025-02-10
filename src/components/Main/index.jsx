@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import arrow from "../../assets/arrow.png"
 
 const  Main = ({children}) => {
-    const string = "◀◀"
+    const string = "<<<"
     const [home, setHome] = useState(false)
     const loc = useLocation()
 
@@ -19,7 +20,7 @@ const  Main = ({children}) => {
         <div id="content" className="overflow-y-scroll bg-sherwood rounded-2xl border-[1px] border-stalelime sm:w-[65vw] w-[90vw] my-[1rem] pt-[2rem] z-[99]">
           { !home && (
             <>
-              <Link to={"/home"} style={{display: "contents"}}><h2 className="text-2xl text-stalelime text-start hover:text-ivory hover:cursor-pointer hover:bg-zinc-800 rounded-[10rem] bg-slate w-[3.4rem] h-min p-[3px] mx-[0.5rem] mt-[-1.5rem] text-center justify-center align-center self-center">{string}</h2></Link>
+              <Link to={"/home"} style={{display: "contents"}}><img src={arrow} className="flex object:contain hover:cursor-pointer hover:bg-zinc-800 border-stalelime border-[1px] rounded-[1rem] bg-slate w-[3.4rem] h-min p-[5px] mx-[0.5rem] mt-[-1.5rem] text-center justify-center align-center self-center"></img></Link>
             </>
           )}
           {children}

@@ -47,28 +47,34 @@ const SzndChef = () => {
             <img src={img1} className={`${imgBorder} my-[1rem]`}></img>
             <img src={img2} className={`${imgBorder} my-[1rem]`}></img>
           </section>
-          <section className="flex flex-col m-[1rem]">
-            <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>
-            <li className="ml-[1rem]">React</li>
-            <li className="ml-[1rem]">JavaScript</li>
-            <li className="ml-[1rem]">Python</li>
-            <li className="ml-[1rem]">Waitress & Uvicorn</li>
-            <li className="ml-[1rem]">Flask</li>
-            <li className="ml-[1rem]">Bootstrap</li>
-            <li className="ml-[1rem]">Axios</li>
-            <li className="ml-[1rem]">Canvas</li>
-            <li className="ml-[1rem]">React-dom</li>
-            <li className="ml-[1rem]">Redux</li>
-            <li className="ml-[1rem]">React-router</li>
-            <li className="ml-[1rem]">Framer-motion</li>
-            <li className="ml-[1rem]">Jest & jsdom</li>
-            <li className="ml-[1rem]">Tailwindcss</li>
-            <li className="ml-[1rem]">Cors</li>
-            <li className="ml-[1rem]">bcrypt</li>
-            <li className="ml-[1rem]">JWT</li>
+          <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
+          <section className="flex flex-row m-[1rem] gap-[2rem] justify-evenly">
+            <div>
+              <li className="ml-[1rem] text-xl">React</li>
+              <li className="ml-[1rem] text-xl">JavaScript</li>
+              <li className="ml-[1rem] text-xl">Python</li>
+              <li className="ml-[1rem] text-xl">Waitress & Uvicorn</li>
+              <li className="ml-[1rem] text-xl">Flask</li>
+              <li className="ml-[1rem] text-xl">Bootstrap</li>
+              <li className="ml-[1rem] text-xl">Axios</li>
+              <li className="ml-[1rem] text-xl">Canvas</li>
+              <li className="ml-[1rem] text-xl">React-dom</li>
+            </div>
+            <div>
+              <li className="ml-[1rem] text-xl">Redux</li>
+              <li className="ml-[1rem] text-xl">React-router</li>
+              <li className="ml-[1rem] text-xl">Framer-motion</li>
+              <li className="ml-[1rem] text-xl">Jest & jsdom</li>
+              <li className="ml-[1rem] text-xl">Tailwindcss</li>
+              <li className="ml-[1rem] text-xl">Cors</li>
+              <li className="ml-[1rem] text-xl">bcrypt</li>
+              <li className="ml-[1rem] text-xl">JWT</li>
+            </div>
+          </section>
+          <div className="flex flex-col justify-center">
             <Link to="https://github.com/SmithNJ13/yao42_frontend" className="font-bold text-center">GitHub repository (Frontend)</Link>
             <Link to="https://github.com/ollie-byrne99/Lap_4_Server" className="font-bold text-center">GitHub repository (Backend)</Link>
-          </section>
+          </div>
           <ScrollTo />
       </Main>
     </div>

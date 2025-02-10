@@ -224,24 +224,30 @@ const PLP = ({animations}) => {
           <h2 className="font-bold underline text-2xl">Outcome:</h2>
           <p>{O2}</p>
         </section>
-        <section className="flex flex-col m-[1rem] ml-[1rem]">
-          <h2 className="font-bold underline text-2xl">Tools & Repo:</h2>
-          <li className="ml-[1rem] text-xl">React</li>
-          <li className="ml-[1rem] text-xl">JavaScript</li>
-          <li className="ml-[1rem] text-xl">Axios</li>
-          <li className="ml-[1rem] text-xl">React-router</li>
-          <li className="ml-[1rem] text-xl">Framer-motion</li>
-          <li className="ml-[1rem] text-xl">git</li>
-          <li className="ml-[1rem] text-xl">Tailwindcss</li>
-          <li className="ml-[1rem] text-xl">Vite</li>
-          <li className="ml-[1rem] text-xl">Cheerio</li>
-          <li className="ml-[1rem] text-xl">Mongodb</li>
-          <li className="ml-[1rem] text-xl">Cors</li>
-          <li className="ml-[1rem] text-xl">Express</li>
-          <li className="ml-[1rem] text-xl">bcrypt</li>
-          <li className="ml-[1rem] text-xl">Inkscape</li>
-          <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold text-center">GitHub repository</Link>
+        <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
+        <section className="flex flex-row m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
+          <div>
+            <li className="ml-[1rem] text-xl">React</li>
+            <li className="ml-[1rem] text-xl">JavaScript</li>
+            <li className="ml-[1rem] text-xl">Axios</li>
+            <li className="ml-[1rem] text-xl">React-router</li>
+            <li className="ml-[1rem] text-xl">Framer-motion</li>
+            <li className="ml-[1rem] text-xl">git</li>
+            <li className="ml-[1rem] text-xl">Tailwindcss</li>
+          </div>
+          <div>
+            <li className="ml-[1rem] text-xl">Vite</li>
+            <li className="ml-[1rem] text-xl">Cheerio</li>
+            <li className="ml-[1rem] text-xl">Mongodb</li>
+            <li className="ml-[1rem] text-xl">Cors</li>
+            <li className="ml-[1rem] text-xl">Express</li>
+            <li className="ml-[1rem] text-xl">bcrypt</li>
+            <li className="ml-[1rem] text-xl">Inkscape</li>
+          </div>
         </section>
+        <div className="flex w-full justify-center">
+          <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold">GitHub repository</Link>
+        </div>
         <ScrollTo />
       </Main>
     </div>
