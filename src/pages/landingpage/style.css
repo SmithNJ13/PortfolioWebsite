@@ -35,6 +35,10 @@ li {
     font-style: normal;
     font-weight: 400;
 }
+pre code {
+    display: inline-block;
+    overflow-x: auto;
+  }
 ::-webkit-scrollbar {
     width: 0.01rem;
     display: none;

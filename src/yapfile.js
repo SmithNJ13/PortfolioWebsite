@@ -32,4 +32,37 @@ const G3 = `Goal of some kind`
 const D3 = `Development of some kind`
 const O3 = `Outcome of some kind`
 
-export {G1, D1, O1, G2, D2, D2_1, O2, G3, D3, O3}
+
+
+
+
+
+
+// Code stuff below:
+const code1 = `
+const TeamBanner = ({ team, icon, name, colour }) => {
+  const [pxG, setpxG] = useState(0.0)
+  
+  const handleClick = () => {
+    console.log("xG value", pxG)
+  }
+  return (
+    <>
+      <div id="teamBannerWrapper">
+          <h1 id="teamName">{name}</h1>
+          <p>xG:</p>
+          <div id="inputArea">
+            <input id="xG" type="value" placeholder="0.0"></input>
+            <button id="button">✔️</button>
+            <input id="xG" type="number" placeholder="0.0" value={pxG} onChange={(e) => setpxG(parseFloat(e.target.value))}/>
+            <button id="button" onClick={handleClick}>✔️</button>
+          </div>
+        </div>
+        <div className="shape">
+            <Triangle width={369} height={100} fill={{color: colour}}/>
+        </div>
+      </div>
+    </>
+  );
+};`
+export {G1, D1, O1, G2, D2, D2_1, O2, G3, D3, O3, code1}

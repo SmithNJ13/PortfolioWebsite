@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, } from 'react'
 import card from "../assets/ProjectTwo/Image1.png"
 import img2 from "../assets/ProjectTwo/Image2.png"
 import img3 from "../assets/ProjectTwo/Image3.png"
@@ -19,11 +19,12 @@ import cardZoom from "../assets/ProjectTwo/CardZoom.png"
 import { imgBorder } from '../slayfile.js'
 
 import { Link } from 'react-router-dom'
-import { G2, D2, D2_1, O2} from '../yapfile.js'
+import { G2, D2, D2_1, O2, code1} from '../yapfile.js'
 import StickyNote from '../components/StickyNote/index.jsx'
 import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
 import ScrollTo from '../components/ScrollToTop/index.jsx'
+import CodeBlock from '../components/CodeBlock/index.jsx'
 
 const PLP = ({animations}) => {
   const string2 = "[ P.L.P ]"
@@ -96,6 +97,7 @@ const PLP = ({animations}) => {
               </p>
             </div>
             <div className="flex flex-col m-[1rem]">
+              <CodeBlock code={code1}/>
               <p className="self-center mb-[1rem]">Finally, I decided to add a NavBar and do some minor styling to the overall webpage, I was trying to express some creativity with an 'edgy' design</p>
               <img src={img3} className={imgBorder}></img>
               <i className="text-sm text-center">*I retroactively took this screenshot so the premier league team that usually renders in is not included in the current dataset</i>
