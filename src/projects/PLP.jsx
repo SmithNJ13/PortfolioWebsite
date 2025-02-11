@@ -53,7 +53,7 @@ const PLP = ({animations}) => {
         </section>
         <section className="flex flex-col m-[2rem] my-[4rem]">
           <h2 className="font-bold underline text-2xl">Development Process:</h2>
-          <p className="mx-[1rem] text-ivory">Development came in many stages, you can click on one of the <span className="text-ivory italic font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
+          <p className="mx-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
           {implementation == 0 && (
             <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[4rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 

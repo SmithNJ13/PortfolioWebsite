@@ -33,6 +33,7 @@ const SzndChef = () => {
               theme of the page to change with each season. In this case I made summer yellow, and when switching to spring, autumn or winter the theme would change to green,
               orange or blue. I also implemented a carousel that featured placeholder images of fruit to test functionality.
             </p>
+            <p className="mx-[1rem] mt-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
             <div className="flex flex-wrap gap-[4rem] justify-evenly m-[1rem]">
               <StickyNote title={"Planning & Approach"}>
               </StickyNote>
