@@ -2,7 +2,7 @@ import React from 'react'
 import img1 from "../assets/ProjectOne/SzndChefL.jpg"
 import img2 from "../assets/ProjectOne/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
-import { G1, D1, O1, providerCode, actionCode, reducerCode, bgCode} from '../yapfile.js'
+import { G1, D1, O1, actionCode, reducerCode, bgCode, reducerDescription, actionDescription, backgroundDescription, carouselCode, carouselDescription} from '../yapfile.js'
 import Main from '../components/Main/index.jsx'
 import { imgBorder } from '../slayfile.js'
 import ScrollTo from '../components/ScrollToTop/index.jsx'
@@ -11,6 +11,7 @@ import SeasonalImage from "../assets/ProjectOne/SeasonalPage.png"
 import UpdatedLoading from "../assets/ProjectOne/UpdatedLoading.png"
 import StickyNote from '../components/StickyNote/index.jsx'
 import CodeBlock from '../components/CodeBlock/index.jsx'
+import { languages } from 'prismjs'
 
 const SzndChef = () => {
   return (
@@ -50,12 +51,12 @@ const SzndChef = () => {
             <h2 className="font-bold text-2xl">Code Snippets:</h2>
             <p className="mx-[1rem] text-ivory">Below are some code snippets that I am most proud of:
             </p>
-            <div className="grid grid-cols-2 gap-[2rem] m-[1rem]">
-              <CodeBlock language={"jsx"} code={providerCode} description={"Hello"}/>
-              <CodeBlock language={"javascript"} code={reducerCode} description={"Hello"}/>
-              <CodeBlock language={"javascript"} code={actionCode} description={"Hello"}/>
-              <CodeBlock language={"javascript"} code={bgCode} description={"Hello"}/>
-            </div>
+            <CodeBlock tabs={[
+              {name: "ACTION CODE", language: "javascript", code: actionCode, description:actionDescription},
+              {name: "REDUCER CODE", language: "javascript", code: reducerCode, description:reducerDescription},
+              {name: "BACKGROUND CODE", language: "javascript", code: bgCode, description:backgroundDescription},
+              {name: "CAROUSEL CODE", language: "javascript", code: carouselCode, description:carouselDescription},
+            ]}/>
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Project Outcome:</h2>

@@ -1,66 +1,54 @@
-import React, {useState, useEffect} from 'react'
-import Prism from "prismjs"
-import "prismjs/themes/prism-tomorrow.css"; // Choose any Prism theme you like
-import "prismjs/components/prism-javascript"; // Import the language you need
+import React, { useState, useEffect } from "react";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/components/prism-javascript";
 
-const CodeBlock = ({language, code, description}) => {
-    const [show, setShow] = useState()
-    let lang
-    switch(language) {
-        case "javascript": {
-            lang = "language-javascript"
-        }
-        case "jsx": {
-            lang = "language-jsx"
-        }
-        case "css": {
-            lang = "language-css"
-        }
-        case "html": {
-            lang = "language-html"
-        }
-        case "python": {
-            lang = "language-python"
-        }
-        case "c#": {
-            lang = "language-csharp"
-        }
-        default:
-            lang = "language-javascript"
-    }
-
-    function handleClick() {
-        if(show === true) {
-            setShow(false)
-        } else {
-            setShow(true)
-        }
-    }
+const CodeBlock = ({ tabs }) => {
+    const [activeTab, setActiveTab] = useState(tabs[0].name);
 
     useEffect(() => {
-    Prism.highlightAll();
-    }, [show]);
+        Prism.highlightAll();
+    }, [activeTab]);
 
-  return (
-    <div>
-        <button className="bg-slate px-[4px] py-[8px] rounded w-max ml-[2rem] translate-y-[1rem] z-[3] underline hover:text-azure hover:bg-zinc-800 hover:bg-opacity-90" onClick={handleClick}>Show Code</button>
-        <div className="sm:text-[14px] text-[10px] w-[30rem]">
-            {show && (
-                <pre className="relative bg-slate p-[5px] rounded-[1rem] z-[5] overflow-auto border-stalelime border-[1px]">
-                    <code className={lang}>
-                        {code}
-                    </code>
-                </pre>
-            )}
-            {!show && (
-                <div className="relative bg-slate w-[10rem] p-[5px] rounded-[1rem] z-[5] mt-[8px] overflow-auto border-stalelime border-[1px]" />
-            )}
+    return (
+        <div className="relative self-center w-full bg-slate text-white rounded-lg shadow-lg mt-[1rem]">
+            <div className="border-b border-gray-700 mb-4">
+                <ul className="flex flex-wrap text-sm font-medium justify-start">
+                    {tabs.map((tab) => (
+                        <li key={tab.name}>
+                            <button
+                                className={`px-4 py-2 rounded-t-lg transition-all ${
+                                    activeTab === tab.name
+                                        ? "text-lightemerald border-b-2 border-lightemerald bg-lightemerald bg-opacity-[8%]"
+                                        : "text-ivory hover:text-stalelime border-b-2 border-transparent"
+                                }`}
+                                onClick={() => setActiveTab(tab.name)}
+                            >
+                                {tab.name}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="overflow-auto px-[1rem] sm:text-base text-xs">
+                {tabs.map((tab) => (
+                    <pre
+                        key={tab.name}
+                        className={`rounded-lg p-4 ${activeTab === tab.name ? "block" : "hidden"}`}
+                    >
+                        <code className={`language-${tab.language}`}>{tab.code}</code>
+                    </pre>
+                ))}
+            </div>
+            <div className="mx-[1rem] py-4 text-gray-300">
+                {tabs.map((tab) => (
+                    <p key={tab.name} className={activeTab === tab.name ? "block" : "hidden"}>
+                        {tab.description}
+                    </p>
+                ))}
+            </div>
         </div>
-        <div>
-            <p className="mx-[1rem] mt-[1rem] w-[28rem]">{description}</p>
-        </div>
-    </div>
-  )
-}
+    );
+};
 
-export default CodeBlock
+export default CodeBlock;

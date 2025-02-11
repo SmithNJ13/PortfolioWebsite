@@ -39,16 +39,6 @@ const O3 = `Outcome of some kind`
 
 
 // Code stuff below:
-const providerCode = `
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  </React.StrictMode>
-  `
-
 const reducerCode = `import { legacy_createStore as createStore } from "redux"
 
 const initialState = {
@@ -304,11 +294,22 @@ async function postPrediction (e) {
 }
 `
 
+const reducerDescription = `Because needing to change the background was a function required by multiple different pages and components (seasonalPage, loadingPage, navBar) to prevent prop drilling it made sense
+to create a global state via Redux. In this code I create a reducer to manage the state and allow it to dynamically change based on the incoming action.
+For the ease of readability I have combined the store and reducer, however, in an actual project I would keep these seperate.`
+const actionDescription = `Creating the action behind changing the background colour, this is used in the reducer. It takes in a colour parameter, 
+which is the new colour I want to assign as the background colour. This data is then passed on to the store.`
+const backgroundDescription = `In this code 'BGColour' is the state that is global and dynamically changes. I have a simple switch/case statement which checks the current season
+it will then call the handleBG() function and pass in a colour parameter based on the season. This function then utilises the action I have created by delivering the colour as a
+payload, this data is then fed into the store - which handles the state change and updates it.`
+const carouselDescription = `This line of code is using bootstrap and its innate components, like the carousel. The component takes in two props of 'ingredients' and 'season'
+it then filters through each ingredient and checks their 'season' tag - this data structure has been set up on the backend. If the ingredients season tag matches that of the 'season' prop
+then we use mapping to create an item on the carousel for each one that matches. For each item created, it also lists the ingredients associated image, name and description.`
 
 
 
 export {G1, D1, O1, G2, D2, D2_1,
-     O2, G3, D3, O3, providerCode, actionCode, bgCode,
+     O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
-     dynamicPostPatchCode
+     dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription
     }
