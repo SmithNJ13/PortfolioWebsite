@@ -144,7 +144,7 @@ axios(url)
     })
     .catch(error => {
         console.error('Error fetching data:', error);
-    });
+});
     `
 
 const seedMatchesCode = `
@@ -178,7 +178,7 @@ const seedDB = async (matchesArray) => {
         } catch (error) {
             console.error('Error connecting to the database:', error);
         }
-    };
+};
     `
     const dynamicPostPatchCode = `
 async function postPrediction (e) {

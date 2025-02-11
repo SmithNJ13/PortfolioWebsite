@@ -19,7 +19,7 @@ import cardZoom from "../assets/ProjectTwo/CardZoom.png"
 import { imgBorder } from '../slayfile.js'
 
 import { Link } from 'react-router-dom'
-import { G2, D2, D2_1, O2, dynamicPostPatchCode} from '../yapfile.js'
+import { G2, D2, D2_1, O2, webscrapeCode, seedMatchesCode, dynamicPostPatchCode} from '../yapfile.js'
 import StickyNote from '../components/StickyNote/index.jsx'
 import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
@@ -47,13 +47,13 @@ const PLP = ({animations}) => {
           <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Premier League Predictions {string2}</h1>
           <h2 className="text-sm text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
         </section>
-        <section className="flex flex-col m-[1rem]">
-          <h2 className="font-bold underline text-2xl">Goal:</h2>
-          <p className="mx-[1rem]">{G2}</p>
+        <section className="flex flex-col m-[2rem]">
+          <h2 className="font-bold underline text-2xl">Project Summary:</h2>
+          <p className="mx-[1rem] text-ivory">{G2}</p>
         </section>
-        <section className="flex flex-col m-[1rem] my-[4rem]">
-          <h2 className="font-bold underline text-2xl">Development:</h2>
-          <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory italic font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
+        <section className="flex flex-col m-[2rem] my-[4rem]">
+          <h2 className="font-bold underline text-2xl">Development Process:</h2>
+          <p className="mx-[1rem] text-ivory">Development came in many stages, you can click on one of the <span className="text-ivory italic font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
           {implementation == 0 && (
             <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[4rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 
@@ -103,7 +103,6 @@ const PLP = ({animations}) => {
               </p>
             </div>
             <div className="flex flex-col m-[1rem]">
-              <CodeBlock code={dynamicPostPatchCode}/>
               <p className="self-center mb-[1rem]">Finally, I decided to add a NavBar and do some minor styling to the overall webpage, I was trying to express some creativity with an 'edgy' design</p>
               <img src={img3} className={imgBorder}></img>
               <i className="text-sm text-center">*I retroactively took this screenshot so the premier league team that usually renders in is not included in the current dataset</i>
@@ -228,9 +227,19 @@ const PLP = ({animations}) => {
           )}
           <Test onClick={() => setImplementation(0)}/>
         </section>
-        <section className="flex flex-col m-[1rem]">
+        <section className="flex flex-col mx-[2rem]">
+            <h2 className="font-bold text-2xl">Code Snippets:</h2>
+            <p className="mx-[1rem] text-ivory">Below are some code snippets that I am most proud of:
+            </p>
+            <CodeBlock tabs={[
+              {name: "WEBSCRAPE CODE", language: "javascript", code: webscrapeCode, description:""},
+              {name: "MATCH SEEDING CODE", language: "javascript", code: seedMatchesCode, description:""},
+              {name: "POST/PATCH CODE", language: "javascript", code: dynamicPostPatchCode, description:""},
+            ]}/>
+        </section>
+        <section className="flex flex-col m-[2rem]">
           <h2 className="font-bold underline text-2xl">Outcome:</h2>
-          <p>{O2}</p>
+          <p className="mx-[1rem] text-ivory">{O2}</p>
         </section>
         <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
         <section className="flex flex-row flex-wrap m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
