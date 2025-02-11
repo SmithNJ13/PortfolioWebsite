@@ -13,11 +13,11 @@ const HomePage = () => {
 
             <section className="h-auto w-auto font-bold sm:px-[5rem] sm:py-[1rem] flex flex-col items-center sm:mt-[2rem] p-[1rem]">
             <h1 className="relative sm:text-4xl text-2xl text-center sm:w-[24rem] w-[16rem]">◆ TECHNICAL SKILLS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
-            <div className="mt-[2rem] sm:text-center flex sm:flex-row sm:gap-[6rem] gap-[1rem] sm:flex-nowrap flex-wrap mx-[1rem] sm:justify-evenly">
-              <div className="sm:w-[12rem] w-[8rem] text-center">
+            <div className="mt-[2rem] sm:text-center flex sm:flex-row sm:gap-[6rem] gap-[1px] sm:flex-nowrap flex-wrap mx-[1rem] sm:justify-evenly justify-evenly">
+              <div className="sm:w-[12rem] w-[8rem]">
                 <div className="flex flex-col sm:text-xl text-base items-center my-[1rem]">
-                <ul className="sm:text-3xl text-xl text-stalelime list-disc">Languages
-                  <div className="mt-[1rem] ml-[1rem]">
+                <ul className="sm:text-3xl text-xl text-stalelime list-disc text-center">Languages
+                  <div className="mt-[1rem] ml-[1.1rem] text-start">
                     <li className="w-auto sm:text-xl text-base text-ivory">JavaScript</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">Python</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">CSS</li>
@@ -27,10 +27,10 @@ const HomePage = () => {
                 </ul>
                 </div>
               </div>
-              <div className="sm:w-[12rem] w-[8rem] text-center">
+              <div className="sm:w-[12rem] w-[8rem]">
                 <div className="flex flex-col sm:text-xl text-base items-center my-[1rem]">
-                  <ul className="sm:text-3xl text-xl text-stalelime list-disc">Libraries
-                    <div className="mt-[1rem] ml-[1rem]">
+                  <ul className="sm:text-3xl text-xl text-stalelime list-disc text-center">Libraries
+                    <div className="mt-[1rem] ml-[1.1rem] text-start">
                       <li className="w-auto sm:text-xl text-base text-ivory">React</li>
                       <li className="w-auto sm:text-xl text-base text-ivory">Redux</li>
                       <li className="w-auto sm:text-xl text-base text-ivory">matplotlib</li>
@@ -41,10 +41,10 @@ const HomePage = () => {
                   </ul>
                 </div>
               </div>
-              <div className="sm:w-[12rem] w-[8rem] text-center">
+              <div className="sm:w-[12rem] w-[8rem]">
                 <div className="flex flex-col sm:text-xl text-base items-center my-[1rem]">
-                <ul className="sm:text-3xl text-xl text-stalelime list-disc">Software
-                  <div className="mt-[1rem] ml-[1rem]">
+                <ul className="sm:text-3xl text-xl text-stalelime list-disc text-center">Software
+                  <div className="mt-[1rem] ml-[1.1rem] text-start">
                     <li className="w-auto sm:text-xl text-base text-ivory">Photoshop</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">Unity Engine</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">DaVinci Resolve</li>
@@ -53,10 +53,10 @@ const HomePage = () => {
                 </ul>
                 </div>
               </div>
-              <div className="sm:w-[12rem] w-[8rem] text-center">
+              <div className="sm:w-[12rem] w-[8rem]">
                 <div className="flex flex-col sm:text-xl text-base items-center my-[1rem]">
-                <ul className="sm:text-3xl text-xl text-stalelime list-disc">Frameworks
-                  <div className="mt-[1rem] ml-[1rem]">
+                <ul className="sm:text-3xl text-xl text-stalelime list-disc text-center">Frameworks
+                  <div className="mt-[1rem] ml-[1.1rem] text-start">
                     <li className="w-auto sm:text-xl text-base text-ivory">Vite</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">Docker</li>
                     <li className="w-auto sm:text-xl text-base text-ivory">Tailwindcss</li>

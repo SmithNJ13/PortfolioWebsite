@@ -48,27 +48,46 @@ const SzndChef = () => {
             <img src={img2} className={`${imgBorder} my-[1rem]`}></img>
           </section>
           <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
-          <section className="flex flex-row m-[1rem] gap-[2rem] justify-evenly">
-            <div>
-              <li className="ml-[1rem] text-xl">React</li>
-              <li className="ml-[1rem] text-xl">JavaScript</li>
-              <li className="ml-[1rem] text-xl">Python</li>
-              <li className="ml-[1rem] text-xl">Waitress & Uvicorn</li>
-              <li className="ml-[1rem] text-xl">Flask</li>
-              <li className="ml-[1rem] text-xl">Bootstrap</li>
-              <li className="ml-[1rem] text-xl">Axios</li>
-              <li className="ml-[1rem] text-xl">Canvas</li>
-              <li className="ml-[1rem] text-xl">React-dom</li>
+          <section className="flex flex-row flex-wrap m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
+            <div id="frontend">
+              <h2 className="text-xl">Frontend
+                <li className="ml-[1rem] text-lg text-ivory">Vite</li>
+                <li className="ml-[1rem] text-lg text-ivory">React</li>
+                <li className="ml-[1rem] text-lg text-ivory">React-router</li>
+                <li className="ml-[1rem] text-lg text-ivory">Framer-motion</li>
+                <li className="ml-[1rem] text-lg text-ivory">Tailwindcss</li>
+                <li className="ml-[1rem] text-lg text-ivory">Redux</li>
+                <li className="ml-[1rem] text-lg text-ivory">Canvas</li>
+                <li className="ml-[1rem] text-lg text-ivory">Axios</li>
+              </h2>
             </div>
-            <div>
-              <li className="ml-[1rem] text-xl">Redux</li>
-              <li className="ml-[1rem] text-xl">React-router</li>
-              <li className="ml-[1rem] text-xl">Framer-motion</li>
-              <li className="ml-[1rem] text-xl">Jest & jsdom</li>
-              <li className="ml-[1rem] text-xl">Tailwindcss</li>
-              <li className="ml-[1rem] text-xl">Cors</li>
-              <li className="ml-[1rem] text-xl">bcrypt</li>
-              <li className="ml-[1rem] text-xl">JWT</li>
+            <div id="backend">
+              <h2 className="text-xl">Backend & Database
+                <li className="ml-[1rem] text-lg text-ivory">Flask</li>
+                <li className="ml-[1rem] text-lg text-ivory">Waitress</li>
+                <li className="ml-[1rem] text-lg text-ivory">Uvicorn</li>
+                <li className="ml-[1rem] text-lg text-ivory">Axios</li>
+                <li className="ml-[1rem] text-lg text-ivory">JWT</li>
+                <li className="ml-[1rem] text-lg text-ivory">Cors</li>
+                <li className="ml-[1rem] text-lg text-ivory">Bcrypt</li>
+              </h2>
+            </div>
+            <div id="development">
+              <h2 className="text-xl">Development
+                <li className="ml-[1rem] text-lg text-ivory">Jest</li>
+                <li className="ml-[1rem] text-lg text-ivory">JSDOM</li>
+                <li className="ml-[1rem] text-lg text-ivory">Git</li>
+                <li className="ml-[1rem] text-lg text-ivory">Trello</li>
+                <li className="ml-[1rem] text-lg text-ivory">Canva</li>
+              </h2>
+            </div>
+            <div id="languages">
+              <h2 className="text-xl">Languages
+                <li className="ml-[1rem] text-lg text-ivory">JavaScript</li>
+                <li className="ml-[1rem] text-lg text-ivory">Python</li>
+                <li className="ml-[1rem] text-lg text-ivory">CSS</li>
+                <li className="ml-[1rem] text-lg text-ivory">HTML</li>
+              </h2>
             </div>
           </section>
           <div className="flex flex-col justify-center">

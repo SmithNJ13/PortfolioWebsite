@@ -55,24 +55,30 @@ const PLP = ({animations}) => {
           <h2 className="font-bold underline text-2xl">Development:</h2>
           <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory underline font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
           {implementation == 0 && (
-            <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[8rem] justify-evenly">
+            <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[4rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 
-              bulletOne={"card functionality"} scale={scale} rotation={rotationR} posY="7rem"
+              bulletOne={"card functionality"} scale={scale} rotation={rotationR}
               bulletTwo={"rudimentary routes (home/profile/login)"} 
               bulletThree={"basic graphical design and NavBar implementation"}
               onClick={() => setImplementation(1)}/>
 
               <StickyNote title={"Implementation #2"} 
-              bulletOne={"graphical overhaul"} scale={scale} rotation={rotationL} posY="1rem"
+              bulletOne={"graphical overhaul"} scale={scale} rotation={rotationL}
               bulletTwo={"backend functionality with cards"}
               bulletThree={"card layout changes, display other premier league matches"}
               onClick={() => setImplementation(2)}/>
 
               <StickyNote title={"Implementation #3"} 
-              bulletOne={"overhaul of colour scheme and layout"} scale={scale} rotation={rotationR} posY="5rem"
+              bulletOne={"overhaul of colour scheme and layout"} scale={scale} rotation={rotationR}
               bulletTwo={"allow user to make more types of predictions"}
               bulletThree={"added temporary icon, news feed and new 'teams' page"}
               onClick={() => setImplementation(3)}/>
+
+              <StickyNote title={"Current Implementation"} 
+              bulletOne={"gave the login and register pages actual forms"} scale={scale} rotation={rotationL}
+              bulletTwo={"revamped the colour scheme of the website and logo"}
+              bulletThree={"added elements to the 'teams' page"}
+              onClick={() => setImplementation(4)}/>
 
               <StickyNote title={"Current Implementation"} 
               bulletOne={"gave the login and register pages actual forms"} scale={scale} rotation={rotationL}
@@ -227,24 +233,39 @@ const PLP = ({animations}) => {
           <p>{O2}</p>
         </section>
         <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
-        <section className="flex flex-row m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
-          <div>
-            <li className="ml-[1rem] text-xl">React</li>
-            <li className="ml-[1rem] text-xl">JavaScript</li>
-            <li className="ml-[1rem] text-xl">Axios</li>
-            <li className="ml-[1rem] text-xl">React-router</li>
-            <li className="ml-[1rem] text-xl">Framer-motion</li>
-            <li className="ml-[1rem] text-xl">git</li>
-            <li className="ml-[1rem] text-xl">Tailwindcss</li>
+        <section className="flex flex-row flex-wrap m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
+          <div id="frontend">
+            <h2 className="text-xl">Frontend
+              <li className="ml-[1rem] text-lg text-ivory">React</li>
+              <li className="ml-[1rem] text-lg text-ivory">React-DOM</li>
+              <li className="ml-[1rem] text-lg text-ivory">React-router</li>
+              <li className="ml-[1rem] text-lg text-ivory">Framer-motion</li>
+              <li className="ml-[1rem] text-lg text-ivory">Tailwindcss</li>
+
+            </h2>
           </div>
-          <div>
-            <li className="ml-[1rem] text-xl">Vite</li>
-            <li className="ml-[1rem] text-xl">Cheerio</li>
-            <li className="ml-[1rem] text-xl">Mongodb</li>
-            <li className="ml-[1rem] text-xl">Cors</li>
-            <li className="ml-[1rem] text-xl">Express</li>
-            <li className="ml-[1rem] text-xl">bcrypt</li>
-            <li className="ml-[1rem] text-xl">Inkscape</li>
+          <div id="backend">
+            <h2 className="text-xl">Backend & Database
+              <li className="ml-[1rem] text-lg text-ivory">Axios</li>
+              <li className="ml-[1rem] text-lg text-ivory">Cheerio</li>
+              <li className="ml-[1rem] text-lg text-ivory">Mongodb</li>
+              <li className="ml-[1rem] text-lg text-ivory">Cors</li>
+              <li className="ml-[1rem] text-lg text-ivory">Express</li>
+              <li className="ml-[1rem] text-lg text-ivory">Bcrypt</li>
+            </h2>
+          </div>
+          <div id="development">
+            <h2 className="text-xl">Development
+              <li className="ml-[1rem] text-lg text-ivory">Inkscape</li>
+              <li className="ml-[1rem] text-lg text-ivory">Git</li>
+            </h2>
+          </div>
+          <div id="languages">
+            <h2 className="text-xl">Languages
+              <li className="ml-[1rem] text-lg text-ivory">JavaScript</li>
+              <li className="ml-[1rem] text-lg text-ivory">HTML</li>
+              <li className="ml-[1rem] text-lg text-ivory">CSS</li>
+            </h2>
           </div>
         </section>
         <div className="flex w-full justify-center">
