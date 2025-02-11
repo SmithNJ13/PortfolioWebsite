@@ -19,7 +19,7 @@ import cardZoom from "../assets/ProjectTwo/CardZoom.png"
 import { imgBorder } from '../slayfile.js'
 
 import { Link } from 'react-router-dom'
-import { G2, D2, D2_1, O2, code1} from '../yapfile.js'
+import { G2, D2, D2_1, O2, dynamicPostPatchCode} from '../yapfile.js'
 import StickyNote from '../components/StickyNote/index.jsx'
 import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
@@ -45,7 +45,7 @@ const PLP = ({animations}) => {
       <Main>
         <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
           <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Premier League Predictions {string2}</h1>
-          <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
+          <h2 className="text-sm text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
         </section>
         <section className="flex flex-col m-[1rem]">
           <h2 className="font-bold underline text-2xl">Goal:</h2>
@@ -53,7 +53,7 @@ const PLP = ({animations}) => {
         </section>
         <section className="flex flex-col m-[1rem] my-[4rem]">
           <h2 className="font-bold underline text-2xl">Development:</h2>
-          <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory underline font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
+          <p className="mx-[1rem]">Development came in many stages, you can click on one of the <span className="text-ivory italic font-bold">sticky notes</span> below to choose which implementation you would like details on:</p>
           {implementation == 0 && (
             <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[4rem] justify-evenly">
               <StickyNote title={"Implementation #1"} 
@@ -103,7 +103,7 @@ const PLP = ({animations}) => {
               </p>
             </div>
             <div className="flex flex-col m-[1rem]">
-              <CodeBlock code={code1}/>
+              <CodeBlock code={dynamicPostPatchCode}/>
               <p className="self-center mb-[1rem]">Finally, I decided to add a NavBar and do some minor styling to the overall webpage, I was trying to express some creativity with an 'edgy' design</p>
               <img src={img3} className={imgBorder}></img>
               <i className="text-sm text-center">*I retroactively took this screenshot so the premier league team that usually renders in is not included in the current dataset</i>
@@ -249,9 +249,7 @@ const PLP = ({animations}) => {
               <li className="ml-[1rem] text-lg text-ivory">Axios</li>
               <li className="ml-[1rem] text-lg text-ivory">Cheerio</li>
               <li className="ml-[1rem] text-lg text-ivory">Mongodb</li>
-              <li className="ml-[1rem] text-lg text-ivory">Cors</li>
               <li className="ml-[1rem] text-lg text-ivory">Express</li>
-              <li className="ml-[1rem] text-lg text-ivory">Bcrypt</li>
             </h2>
           </div>
           <div id="development">
@@ -269,7 +267,7 @@ const PLP = ({animations}) => {
           </div>
         </section>
         <div className="flex w-full justify-center">
-          <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold">GitHub repository</Link>
+          <Link to="https://github.com/SmithNJ13/PredictionSite" className="font-bold hover:text-azure underline">GitHub repository</Link>
         </div>
         <ScrollTo />
       </Main>

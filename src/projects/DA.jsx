@@ -12,7 +12,7 @@ const DA = () => {
       <Main>
           <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Data Analysis</h1>
-            <h2 className="text-sm text-ivory hover:underline hover:cursor-pointer"><Link to="">link_to_notebook</Link></h2>
+            <h2 className="text-sm text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">link_to_notebook</Link></h2>
           </section>
           <section className="flex flex-col m-[1rem]">
             <h2 className="font-bold underline text-2xl">Background:</h2>

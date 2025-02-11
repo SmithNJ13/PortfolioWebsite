@@ -39,29 +39,276 @@ const O3 = `Outcome of some kind`
 
 
 // Code stuff below:
-const code1 = `
-const TeamBanner = ({ team, icon, name, colour }) => {
-  const [pxG, setpxG] = useState(0.0)
-  
-  const handleClick = () => {
-    console.log("xG value", pxG)
-  }
+const providerCode = `
+  <React.StrictMode>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </React.StrictMode>
+  `
+
+const reducerCode = `import { legacy_createStore as createStore } from "redux"
+
+const initialState = {
+    BGColour: "white",
+}
+
+function BGReducer(state = initialState, action) {
+    switch(action.type) {
+        case "SET_BG_COLOUR":
+            return {...state, BGColour: action.payload}
+            default:
+                return state
+            }
+        }
+
+const store = createStore(BGReducer)
+        
+export { BGReducer, store }`
+
+const actionCode = `export const changeBGColour = (colour) => ({
+    type: "SET_BG_COLOUR",
+    payload: colour
+})
+`
+
+const bgCode = `
+const BGStyle = {
+    backgroundColor: BGColour,
+};
+
+const handleBG = (colour) => {
+    dispatch(changeBGColour(colour));
+};
+
+if (!recipes || !ingredients) {
+    switch (season) {
+      case "spring":
+        handleBG("#fafcf8");
+        break;
+      case "summer":
+        handleBG("#fffefa");
+        break;
+      case "autumn":
+        handleBG("#fffcf8");
+        break;
+      case "winter":
+        handleBG("#f9fcff");
+        break;
+}
+        `
+
+const carouselCode = `
+const CarouselComponent = ({ingredients, season}) => {
   return (
     <>
-    <div id="teamBannerWrapper">
-        <h1 id="teamName">{name}</h1>
-        <p>xG:</p>
-        <div id="inputArea">
-            <input id="xG" type="value" placeholder="0.0"></input>
-            <button id="button">✔️</button>
-            <input id="xG" type="number" placeholder="0.0" value={pxG} onChange={(e) => setpxG(parseFloat(e.target.value))}/>
-            <button id="button" onClick={handleClick}>✔️</button>
-        </div>
-    </div>
-    <div className="shape">
-        <Triangle width={369} height={100} fill={{color: colour}}/>
-    </div>
+    <Carousel> {
+      ingredients.filter((i) => i.season.toLowerCase().includes(season))
+      .map((ingredient, index) => (
+        <CarouselItem key={index}>
+          <img src={ingredient.image} className='ingredient-image' alt={ingredient.name}/>
+          <CarouselCaption>
+            <h3>{ingredient.name}</h3>
+            <p>{ingredient.description}</p>
+          </CarouselCaption>
+        </CarouselItem>
+      ))
+      }
+    </Carousel>
     </>
-    )
+  )
 }`
-export {G1, D1, O1, G2, D2, D2_1, O2, G3, D3, O3, code1}
+
+const webscrapeCode = `
+axios(url)
+.then(response => {
+        const HTML = response.data;
+        const $ = cheerio.load(HTML);
+
+        $("td.left[data-stat='date']").each((index, element) => {
+            const date = $(element).find("a").text().trim()
+            if(date) {
+                const matchTime = $(element).closest("tr").find("td.right[data-stat='start_time']").text().trim()
+                const homeTeam = $(element).closest("tr").find("td.right[data-stat='home_team'] a").text().trim()
+                const homeXGS = $(element).closest("tr").find("td.right[data-stat='home_xg']").text().trim()
+                const awayXGS = $(element).closest("tr").find("td.right[data-stat='away_xg']").text().trim()
+                const awayTeam = $(element).closest("tr").find("td.left[data-stat='away_team'] a").text().trim()
+
+                const homeXG = parseFloat(homeXGS)
+                const awayXG = parseFloat(awayXGS)
+
+                const matchInfo = {
+                    date: date,
+                    time: matchTime,
+                    home: homeTeam,
+                    homeXG: homeXG,
+                    away: awayTeam,
+                    awayXG: awayXG
+                }
+                premierLeagueMatches.push(matchInfo)
+            }
+        })
+        // console.log(premierLeagueMatches)
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+    `
+
+const seedMatchesCode = `
+const seedDB = async (matchesArray) => {
+        try {
+            await client.connect();
+            await client.db("database").collection("matches").drop();
+
+            let ID = 1;
+            for (const match of matchesArray) {
+                try {
+                    await client.db("database").collection("matches").insertOne({
+                        _id: ID,
+                        date: match.date,
+                        time: match.time,
+                        home: match.home,
+                        homeXG: match.homeXG,
+                        away: match.away,
+                        awayXG: match.awayXG
+                    });
+                    ID++;
+                } catch (insertError) {
+                    if (insertError.code !== 11000) {
+                        console.error('Error inserting match:', insertError);
+                    } else {
+                    }
+                }
+            }
+            console.log("MATCHES SEEDED!")
+            await client.close();
+        } catch (error) {
+            console.error('Error connecting to the database:', error);
+        }
+    };
+    `
+    const dynamicPostPatchCode = `
+async function postPrediction (e) {
+  const userID = 1
+  e.preventDefault()
+  const Form = new FormData(e.target)
+  const xG = parseFloat(Form.get("xG"))
+  const corners = parseInt(Form.get("corners"))
+  const playerToScore = Form.get("playerToScore")
+  const cleanSheet = Form.get("cleanSheet") === "on"
+  console.log(side, xG, corners, playerToScore, cleanSheet)
+
+  
+  try {
+    /* Fetch specific matches that are associated with a given userID and matchID, if none exist - we use POST method to create a new prediction, if one exists we update with PUT
+    TODO: Change to PATCH instead for specific data*/
+    const userPredictions = await fetch('$\{baseURL}/predictions/$\{userID}/$\{matchID}')
+    const body = await userPredictions.json()
+    if(body.length > 0) {
+      if(side == "home") {
+        const update = await fetch('$\{baseURL}/', {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: 1,
+            matchID: matchID,
+            side: {
+              home: {
+                predicted_xG: xG,
+                corners: corners,
+                playerToScore: playerToScore,
+                cleanSheet: cleanSheet
+              }
+            }
+          })
+        })
+        if(!update.ok) {
+          console.log("Failed to update prediction", update.status)
+        } else {
+          console.log("Prediction updated successfully")
+        }
+      } else {
+        const update = await fetch('$\{baseURL}/', {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: 1,
+            matchID: matchID,
+            side: {
+              away: {
+                predicted_xG: xG,
+                corners: corners,
+                playerToScore: playerToScore,
+                cleanSheet: cleanSheet
+              }
+            }
+          })
+        })
+        if(!update.ok) {
+          console.log("Failed to update prediction", update.status)
+        } else {
+          console.log("Prediction updated successfully")
+        }
+      }
+    } else {
+      const response = await fetch('$\{baseURL}/', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: 1,
+          matchID: matchID,
+          side: {
+            home: side === "home" ? {
+              predicted_xG: xG,
+              corners: corners,
+              playerToScore: playerToScore,
+              cleanSheet: cleanSheet
+            } : {
+              predicted_xG: null,
+              corners: null,
+              playerToScore: null,
+              cleanSheet: null
+            },
+            away: side === "away" ? {
+              predicted_xG: xG,
+              corners: corners,
+              playerToScore: playerToScore,
+              cleanSheet: cleanSheet
+            } : {
+              predicted_xG: null,
+              corners: null,
+              playerToScore: null,
+              cleanSheet: null
+            }
+          }
+        })
+      })
+      if(!response.ok) {
+        console.log("Failed to create prediction", response.status)
+      } else {
+        console.log("Prediction created successfully")
+      }
+    }
+  } catch (error) {
+    console.log("Error making API call: ", error)
+  }
+}
+`
+
+
+
+
+export {G1, D1, O1, G2, D2, D2_1,
+     O2, G3, D3, O3, providerCode, actionCode, bgCode,
+     reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
+     dynamicPostPatchCode
+    }

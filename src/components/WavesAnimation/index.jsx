@@ -4,7 +4,7 @@ const WaveAnimation = ({animations}) => {
   return (
     <>
     { animations && (
-    <div className="fixed sm:bottom-[0rem] sm:scale-[100%] bottom-[-6.75rem] scale-[1400%] w-full overflow-x-hidden z-[-1]">
+    <div className="fixed sm:bottom-[0rem] sm:scale-[100%] bottom-[-6.75rem] scale-[1400%] w-screen overflow-x-hidden z-[-1]">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className="mx-auto block" style={{ background: 'transparent', zIndex: 1 }} width="100%" height="267" viewBox="0 0 1920 267">
         <g transform="translate(960,133.5) scale(1,-1) translate(-960,-133.5)">
           <linearGradient id="lg-0.5267772274449511" x1="0" x2="1" y1="0" y2="0">
