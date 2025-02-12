@@ -28,7 +28,7 @@ import CodeBlock from '../components/CodeBlock/index.jsx'
 
 const PLP = ({animations}) => {
   const string2 = "[ P.L.P ]"
-  const [implementation, setImplementation] = useState(0)
+  const [section, setSection] = useState(0)
   let scale, rotationR, rotationL
   if(animations === true) {
     scale = "115%",
@@ -48,46 +48,36 @@ const PLP = ({animations}) => {
           <h2 className="text-sm text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
         </section>
         <section className="flex flex-col m-[2rem]">
-          <h2 className="font-bold underline text-2xl">Project Summary:</h2>
+          <h2 className="font-bold text-2xl">Project Summary:</h2>
           <p className="mx-[1rem] text-ivory">{G2}</p>
         </section>
         <section className="flex flex-col m-[2rem] my-[4rem]">
-          <h2 className="font-bold underline text-2xl">Development Process:</h2>
+          <h2 className="font-bold text-2xl">Development Process:</h2>
           <p className="mx-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
-          {implementation == 0 && (
-            <div id="notes" className="flex flex-wrap sm:my-[4rem] sm:mx-[4rem] gap-[4rem] justify-evenly">
-              <StickyNote title={"Implementation #1"} 
-              bulletOne={"card functionality"} scale={scale} rotation={rotationR}
-              bulletTwo={"rudimentary routes (home/profile/login)"} 
-              bulletThree={"basic graphical design and NavBar implementation"}
-              onClick={() => setImplementation(1)}/>
+          {section == 0 && (
+            <div id="notes" className="flex flex-wrap gap-[4rem] justify-center">
+              <StickyNote title={"Planning & Approach"} scale={scale} rotation={rotationR}
+              onClick={() => setSection(1)}>
+              </StickyNote>
 
-              <StickyNote title={"Implementation #2"} 
-              bulletOne={"graphical overhaul"} scale={scale} rotation={rotationL}
-              bulletTwo={"backend functionality with cards"}
-              bulletThree={"card layout changes, display other premier league matches"}
-              onClick={() => setImplementation(2)}/>
+              <StickyNote title={"Core Features & Implementation"} scale={scale} rotation={rotationR}
+              onClick={() => setSection(2)}>
+              </StickyNote>
 
-              <StickyNote title={"Implementation #3"} 
-              bulletOne={"overhaul of colour scheme and layout"} scale={scale} rotation={rotationR}
-              bulletTwo={"allow user to make more types of predictions"}
-              bulletThree={"added temporary icon, news feed and new 'teams' page"}
-              onClick={() => setImplementation(3)}/>
+              <StickyNote title={"Challenges & Solutions"} scale={scale} rotation={rotationR}
+              onClick={() => setSection(3)}>
+              </StickyNote>
 
-              <StickyNote title={"Current Implementation"} 
-              bulletOne={"gave the login and register pages actual forms"} scale={scale} rotation={rotationL}
-              bulletTwo={"revamped the colour scheme of the website and logo"}
-              bulletThree={"added elements to the 'teams' page"}
-              onClick={() => setImplementation(4)}/>
+              <StickyNote title={"Learning Outcomes"} scale={scale} rotation={rotationR}
+              onClick={() => setSection(4)}>
+              </StickyNote>
 
-              <StickyNote title={"Current Implementation"} 
-              bulletOne={"gave the login and register pages actual forms"} scale={scale} rotation={rotationL}
-              bulletTwo={"revamped the colour scheme of the website and logo"}
-              bulletThree={"added elements to the 'teams' page"}
-              onClick={() => setImplementation(4)}/>
+              <StickyNote title={"Current Implementation"} scale={scale} rotation={rotationR}
+              onClick={() => setSection(5)}>
+              </StickyNote>
             </div>
           )}
-          {implementation == 1 && (
+          {section == 1 && (
             <><div className="sm:mx-[2rem] sm:my-[2rem] m-[1rem]">
               <p>{D2} <br />Here is an image of what the first implementation of the cards looked like:</p>
             </div>
@@ -109,7 +99,7 @@ const PLP = ({animations}) => {
             </div>
             </>
           )}
-          {implementation == 2 && (
+          {section == 2 && (
             <>
             <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
             <div className="flex flex-col items-center">
@@ -147,7 +137,7 @@ const PLP = ({animations}) => {
             </p>
             </>
           )}
-          {implementation == 3 && (
+          {section == 3 && (
             <>
             <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
             <div className="flex flex-col items-center">
@@ -189,7 +179,7 @@ const PLP = ({animations}) => {
             </p>
             </>
           )}
-          {implementation == 4 && (
+          {section == 4 && (
             <>
             <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
             <p className="sm:mx-[2rem] mx-[1rem] mb-[1rem]">The current implementation of the web application has undergone the most significant changes, after getting
@@ -238,10 +228,10 @@ const PLP = ({animations}) => {
             ]}/>
         </section>
         <section className="flex flex-col m-[2rem]">
-          <h2 className="font-bold underline text-2xl">Outcome:</h2>
+          <h2 className="font-bold text-2xl">Outcome:</h2>
           <p className="mx-[1rem] text-ivory">{O2}</p>
         </section>
-        <h2 className="font-bold underline text-2xl m-[1rem] text-center">Tools & Repo:</h2>
+        <h2 className="font-bold text-2xl m-[1rem] text-center">Tools & Repo:</h2>
         <section className="flex flex-row flex-wrap m-[1rem] ml-[1rem] gap-[2rem] justify-evenly">
           <div id="frontend">
             <h2 className="text-xl">Frontend

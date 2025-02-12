@@ -32,6 +32,10 @@ const G3 = `Goal of some kind`
 const D3 = `Development of some kind`
 const O3 = `Outcome of some kind`
 
+const dataBackground = `Given that Football is one of the most globally recognised and popular sports, it has an abundance of statistics and data points that I can use for my portfolio which will provide
+a lot of opportunity for data exploration. I also have a personal interest in the English Premier League and as such I have chosen this specific league to gather data on and explore. My focus for this analysis
+is Premier League teams from the past decade (2014 - 2024). The vastness of this dataset provides a high volume of data as well as opening the possibility of potential predictive analysis.`
+
 
 
 
@@ -294,6 +298,25 @@ async function postPrediction (e) {
 }
 `
 
+const dataMergeCode = `
+import pandas as pd
+
+pd.set_option('display.max_columns', None)
+p2425 = pd.read_csv("./Premier_League/season-2425.csv")
+p2324 = pd.read_csv("./Premier_League/season-2324.csv")
+p2223 = pd.read_csv("./Premier_League/season-2223.csv")
+p2122 = pd.read_csv("./Premier_League/season-2122.csv")
+p2021 = pd.read_csv("./Premier_League/season-2021.csv")
+p1920 = pd.read_csv("./Premier_League/season-1920.csv")
+p1819 = pd.read_csv("./Premier_League/season-1819.csv")
+p1718 = pd.read_csv("./Premier_League/season-1718.csv")
+p1617 = pd.read_csv("./Premier_League/season-1617.csv")
+p1516 = pd.read_csv("./Premier_League/season-1516.csv")
+p1415 = pd.read_csv("./Premier_League/season-1415.csv")
+
+Prem_DF = pd.concat([p2425, p2324, p2223, p2122, p2021, p1920, p1819, p1718, p1617, p1516, p1415])
+`
+
 const reducerDescription = `Because needing to change the background was a function required by multiple different pages and components (seasonalPage, loadingPage, navBar) to prevent prop drilling it made sense
 to create a global state via Redux. In this code I create a reducer to manage the state and allow it to dynamically change based on the incoming action.
 For the ease of readability I have combined the store and reducer, however, in an actual project I would keep these seperate.`
@@ -311,5 +334,6 @@ then we use mapping to create an item on the carousel for each one that matches.
 export {G1, D1, O1, G2, D2, D2_1,
      O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
-     dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription
+     dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription,
+     dataBackground, dataMergeCode
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import img1 from "../assets/ProjectOne/SzndChefL.jpg"
 import img2 from "../assets/ProjectOne/SzndChefS.jpg"
 import { Link } from 'react-router-dom'
@@ -14,6 +14,7 @@ import CodeBlock from '../components/CodeBlock/index.jsx'
 import { languages } from 'prismjs'
 
 const SzndChef = () => {
+  const [implementation, setImplementation] = useState(0)
   return (
     <div>
       <Main>
