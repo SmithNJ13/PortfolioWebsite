@@ -12,7 +12,7 @@ const StickyNote = ({title, children, scale, rotation, onClick}) => {
             onClick={onClick}>
               <div className="w-full h-full overflow-hidden">
                 <h2 className="text-xl align-center text-center font-bold w-full">{title}</h2>
-                <div className="text-lg m-[1rem]">
+                <div className="text-lg p-[1rem]">
                     {children}
                 </div>
               </div>

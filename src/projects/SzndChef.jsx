@@ -12,9 +12,10 @@ import UpdatedLoading from "../assets/ProjectOne/UpdatedLoading.png"
 import StickyNote from '../components/StickyNote/index.jsx'
 import CodeBlock from '../components/CodeBlock/index.jsx'
 import { languages } from 'prismjs'
+import Test from '../components/Test/test.jsx'
 
 const SzndChef = () => {
-  const [implementation, setImplementation] = useState(0)
+  const [section, setSection] = useState(0)
   return (
     <div>
       <Main>
@@ -35,19 +36,24 @@ const SzndChef = () => {
               orange or blue. I also implemented a carousel that featured placeholder images of fruit to test functionality.
             </p>
             <p className="mx-[1rem] mt-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
-            <div className="flex flex-wrap gap-[4rem] justify-evenly m-[1rem]">
-              <StickyNote title={"Planning & Approach"}>
-              </StickyNote>
-              <StickyNote title={"Core Features & Implementation"}>
-
-              </StickyNote>
-              <StickyNote title={"Challenges & Solutions"}>
-
-              </StickyNote>
-              <StickyNote title={"Learning Outcomes"}>
-                
-              </StickyNote>
-            </div>
+              <div className="w-full border-stalelime border-t-[4px] my-[1rem]"></div>
+              {section === 0 && (
+                <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
+                  <StickyNote title={"Planning & Approach"} onClick={() => setSection(1)}>
+                    <p>Detailed explanations of the planning process, defining my focus and tools to use.</p>
+                  </StickyNote>
+                  <StickyNote title={"Core Features & Implementation"} onClick={() => setSection(2)}>
+                    <p>Explanation of core features that are neccessary to the application and how I went about implementing them.</p>
+                  </StickyNote>
+                  <StickyNote title={"Challenges & Solutions"} onClick={() => setSection(3)}>
+                    <p>Challenges and problems I faced during the development of the application, with explanations for the solutions I used to resolve the issues.</p>
+                  </StickyNote>
+                  <StickyNote title={"Learning Outcomes"} onClick={() => setSection(4)}>
+                    <p>Things I learnt about during the development of this project and details about future improvements I would make, or different approaches I would use if I undertook a similar project.</p>
+                  </StickyNote>
+                </div>
+              )}
+            <Test onClick={() => setSection(0)}/>
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Code Snippets:</h2>

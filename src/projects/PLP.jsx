@@ -54,26 +54,32 @@ const PLP = ({animations}) => {
         <section className="flex flex-col m-[2rem] my-[4rem]">
           <h2 className="font-bold text-2xl">Development Process:</h2>
           <p className="mx-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
+          <div className="w-full border-stalelime border-t-[4px] my-[1rem]"></div>
           {section == 0 && (
-            <div id="notes" className="flex flex-wrap gap-[4rem] justify-center">
+            <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
               <StickyNote title={"Planning & Approach"} scale={scale} rotation={rotationR}
               onClick={() => setSection(1)}>
+                <p>Detailed explanations of the planning process, defining my focus and tools to use.</p>
               </StickyNote>
 
               <StickyNote title={"Core Features & Implementation"} scale={scale} rotation={rotationR}
               onClick={() => setSection(2)}>
+                <p>Explanation of core features that are neccessary to the application and how I went about implementing them.</p>
               </StickyNote>
 
               <StickyNote title={"Challenges & Solutions"} scale={scale} rotation={rotationR}
               onClick={() => setSection(3)}>
+                <p>Challenges and problems I faced during the development of the application, with explanations for the solutions I used to resolve the issues.</p>
               </StickyNote>
 
               <StickyNote title={"Learning Outcomes"} scale={scale} rotation={rotationR}
               onClick={() => setSection(4)}>
+                <p>Things I learnt about during the development of this project and details about future improvements I would make, or different approaches I would use if I undertook a similar project.</p>
               </StickyNote>
 
               <StickyNote title={"Current Implementation"} scale={scale} rotation={rotationR}
               onClick={() => setSection(5)}>
+                <p>Details on the current implementation of the project, as well as future improvements I intend to make.</p>
               </StickyNote>
             </div>
           )}
@@ -215,7 +221,7 @@ const PLP = ({animations}) => {
             </div>
             </>
           )}
-          <Test onClick={() => setImplementation(0)}/>
+          <Test onClick={() => setSection(0)}/>
         </section>
         <section className="flex flex-col mx-[2rem]">
             <h2 className="font-bold text-2xl">Code Snippets:</h2>
