@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Main from '../components/Main'
 import { imgBorder } from '../slayfile.js'
 import superDF from "../assets/ProjectThree/DataFrameSuper.png"
 import supertrimDF from "../assets/ProjectThree/DataFrameSuperTrim.png"
 import completeDF from "../assets/ProjectThree/DataFrameComplete.png"
+import barChart from "../assets/ProjectThree/barchart_totalGoals_decade.png"
 import ScrollTo from '../components/ScrollToTop/index.jsx'
 import { dataBackground, dataMergeCode, premDF, cycleteam, findTotalGoals, ftgDesc} from '../yapfile.js'
 import Prism, { languages } from "prismjs";
@@ -12,8 +13,10 @@ import "prismjs/themes/prism-tomorrow.css";
 import "prismjs/components/prism-python";
 import CodeBlock from '../components/CodeBlock/index.jsx'
 import StickyNote from '../components/StickyNote/index.jsx'
+import Test from '../components/Test/test.jsx'
 
 const DA = () => {
+  const [section, setSection] = useState(0)
 
   useEffect(() => {
       Prism.highlightAll();
@@ -34,7 +37,7 @@ const DA = () => {
             <h2 className="font-bold text-2xl">The Questions:</h2>
             <li className="ml-[2rem] text-ivory">Which team has scored the most goals in the past decade?</li>
             <li className="ml-[2rem] text-ivory">Which team(s) in the past decade, win most of their games at home and which team(s) win most of their games away?</li>
-            <li className="ml-[2rem] text-ivory"> Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</li>
+            <li className="ml-[2rem] text-ivory">Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</li>
             {/* <li className="ml-[2rem] text-ivory">Has fouling become more frequent over the years and what can one conclude from this?</li>
             <li className="ml-[2rem] text-ivory">What factors impact a teams ability to win the most?</li> */}
           </section>
@@ -73,17 +76,30 @@ const DA = () => {
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Visualisation & Findings:</h2>
             <p className="mx-[1rem]">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand a question section and reveal an in-depth analysis of it:</p>
-            <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
-              <StickyNote title={"Question #1"}>
-                <p>A deep dive into Question 1.</p>
-              </StickyNote>
-              <StickyNote title={"Question #2"}>
-                <p>A deep dive into Question 1.</p>
-              </StickyNote>
-              <StickyNote title={"Question #3"}>
-                <p>A deep dive into Question 1.</p>
-              </StickyNote>
-            </div>
+              {section == 0 && (
+              <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
+                <StickyNote title={"Question #1"}
+                onClick={() => setSection(1)}>
+                  <p>Which team has scored the most goals in the past decade?</p>
+                </StickyNote>
+                <StickyNote title={"Question #2"}
+                onClick={() => setSection(2)}>
+                  <p>Which team(s) in the past decade, win most of their games at home and which team(s) win most of their games away?</p>
+                </StickyNote>
+                <StickyNote title={"Question #3"}
+                onClick={() => setSection(3)}>
+                  <p>Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</p>
+                </StickyNote>
+              </div>
+              )}
+              {section == 1 && (
+                <>
+                  <img src={barChart} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                </>
+              )}
+              {section !== 0 && (
+                <Test onClick={() => setSection(0)}/>
+              )}
           </section>
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Conclusion:</h2>
@@ -101,6 +117,9 @@ const DA = () => {
             <p className="mx-[2rem]"><span className="text-lg font-bold">1. </span>Major reflection point one</p>
             <p className="mx-[2rem]"><span className="text-lg font-bold">2. </span>Major reflection point two</p>
           </section>
+          <div className="flex w-full justify-center">
+            <Link to="https://github.com/SmithNJ13/data_analysis" className="font-bold hover:text-azure underline">GitHub repository</Link>
+          </div>
           <ScrollTo />
       </Main>
     </div>
