@@ -45,7 +45,7 @@ const PLP = ({animations}) => {
       <Main>
         <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
           <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Premier League Predictions {string2}</h1>
-          <h2 className="text-sm text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
+          <h2 className="text-base text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="">deployed_link_for_project</Link></h2>
         </section>
         <section className="flex flex-col m-[2rem]">
           <h2 className="font-bold text-2xl">Project Summary:</h2>

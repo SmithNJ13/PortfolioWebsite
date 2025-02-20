@@ -21,7 +21,7 @@ const SzndChef = () => {
       <Main>
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="border-b-[1px] border-ivory rounded">SzndChef</h1>
-            <h2 className="text-sm text-center text-nowrap text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/">https://szndchef.netlify.app/</Link></h2>
+            <h2 className="text-base text-center text-nowrap text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/">https://szndchef.netlify.app/</Link></h2>
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Project Summary:</h2>

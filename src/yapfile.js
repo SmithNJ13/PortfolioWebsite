@@ -483,6 +483,7 @@ I then create a new DataFrame which has this data stored in a readable format.
 const goalQDesc = `
 For this question I knew I would need a unique list of all the teams and the years they played, I also knew that it would be useful in the future when I am examining individual teams
 or specific years in more detail. This code can be found below in 'Teams & Years list'.
+I started out by identifying what columns in the DataFrame I would need to focus on in this question, which I decided would be 
 `
 const goalQDesc2 = `
 Once I had the list of team names and years, I could cycle through the DataFrame and could use it in my findGoalCounts() function.
@@ -550,11 +551,146 @@ for i, value in enumerate(Question_One_Top10["Total_Goals"]):
 plt.show()
 `
 
+const totalWinsCode = `
+Home_Winners = Prem_DF[Prem_DF["ftr"] == "H"]["home"]
+Away_Winners = Prem_DF[Prem_DF["ftr"] == "A"]["away"]
+
+Home_Winners.reset_index(drop=True, inplace=True)
+Away_Winners.reset_index(drop=True, inplace=True)
+
+# print(int(Home_Winners.value_counts()["Arsenal"]), int(Away_Winners.value_counts()["Arsenal"]))
+
+total_wins = []
+def totalWins():
+    for team in teams_list:
+        total_wins.append(
+            {
+                "Team": team,
+                "Home_Wins": int(Home_Winners.value_counts()[team]),
+                "Away_Wins": int(Away_Winners.value_counts()[team]),
+                "Total_Wins": int(Home_Winners.value_counts()[team] + Away_Winners.value_counts()[team])
+            }
+        )
+    return (total_wins)
+print(totalWins())
+`
+
+const totalWinsCodeImp = `
+Home_Winners = Prem_DF[Prem_DF["ftr"] == "H"]["home"]
+Draw_Games_Home = Prem_DF[Prem_DF["ftr"] == "D"]["home"]
+Draw_Games_Away = Prem_DF[Prem_DF["ftr"] == "D"]["away"]
+Away_Winners = Prem_DF[Prem_DF["ftr"] == "A"]["away"]
+
+Home_Winners.reset_index(drop=True, inplace=True)
+Away_Winners.reset_index(drop=True, inplace=True)
+
+total_wins = []
+def totalWins():
+    for team in teams_list:
+        Home_Team = Prem_DF[Prem_DF["home"] == team]["home"]
+        Away_Team = Prem_DF[Prem_DF["away"] == team]["away"]
+        total_wins.append(
+            {
+                "Team": team,
+                "Home_Wins": int(Home_Winners.value_counts()[team]),
+                "Draws": int(Draw_Games_Home.value_counts()[team] + Draw_Games_Away.value_counts()[team]),
+                "Away_Wins": int(Away_Winners.value_counts()[team]),
+                "Total_Wins": int(Home_Winners.value_counts()[team] + Away_Winners.value_counts()[team]),
+                "Total_Games": int(Home_Team.value_counts()[team] + Away_Team.value_counts()[team])
+            }
+        )
+    return (total_wins)
+
+print(totalWins())
+`
+
+const plotPieHomeAway = `
+hwr_team = Highest_HWR["Team"]
+hwr_percentages = [Highest_HWR["HomeWin%"], Highest_HWR["AwayWin%"]]
+hwr_labels = ["Home Wins", "Away Wins"]
+
+awr_team = Highest_AWR["Team"]
+awr_percentages = [Highest_AWR["HomeWin%"], Highest_AWR["AwayWin%"]]
+awr_labels = ["Home Wins", "Away Wins"]
+
+awr2_team = Highest_AWR2["Team"]
+awr2_percentages = [Highest_AWR2["HomeWin%"], Highest_AWR2["AwayWin%"]]
+awr2_labels = ["Home Wins", "Away Wins"]
+
+colours = ["dodgerblue", "firebrick"]
+
+fig, axes = plt.subplots(1, 3, figsize=(10, 6))
+
+axes[0].pie(hwr_percentages, labels=None, autopct="%1.1f%%", colors=colours, startangle=90)
+axes[0].set_title(hwr_team)
+
+axes[2].pie(awr2_percentages, labels=None, autopct="%1.1f%%", colors=colours, startangle=90)
+axes[2].set_title(awr2_team)
+
+axes[1].pie(awr_percentages, labels=None, autopct="%1.1f%%", colors=colours, startangle=90)
+axes[1].set_title(awr_team)
+
+
+fig.legend(hwr_labels, loc="upper center", ncol=2, frameon=False, title="Home Win Rate% vs. Away Win Rate%", title_fontsize=14)
+
+plt.tight_layout()
+plt.show()
+`
+
+const plotPieRates = `
+hwr_team = Highest_HWR["Team"]
+awr_team = Highest_AWR["Team"]
+awr2_team = Highest_AWR2["Team"]
+
+hwr_win_count = Highest_HWR["Total_Wins"]
+hwr_draw_count = Highest_HWR["Draws"]
+hwr_loss_count = Highest_HWR["Total_Games"] - (hwr_win_count + hwr_draw_count)
+
+awr_win_count = Highest_AWR["Total_Wins"]
+awr_draw_count = Highest_AWR["Draws"]
+awr_loss_count = Highest_AWR["Total_Games"] - (awr_win_count + awr_draw_count)
+
+awr2_win_count = Highest_AWR2["Total_Wins"]
+awr2_draw_count = Highest_AWR2["Draws"]
+awr2_loss_count = Highest_AWR2["Total_Games"] - (awr2_win_count + awr2_draw_count)
+
+hwr_counts = [hwr_win_count, hwr_draw_count, hwr_loss_count]
+awr_counts = [awr_win_count, awr_draw_count, awr_loss_count]
+awr2_counts = [awr2_win_count, awr2_draw_count, awr2_loss_count]
+
+hwr_percentages = [Highest_HWR["WinRate%"], Highest_HWR["DrawRate%"], Highest_HWR["LossRate%"]]
+awr_percentages = [Highest_AWR["WinRate%"], Highest_AWR["DrawRate%"], Highest_AWR["LossRate%"]]
+awr2_percentages = [Highest_AWR2["WinRate%"], Highest_AWR2["DrawRate%"], Highest_AWR2["LossRate%"]]
+
+colours = ["dodgerblue", "slategrey", "firebrick"]
+
+def autopct_format(pct, total_counts):
+    total = int(round(pct * sum(total_counts) / 100.0))
+    return f"{pct:.1f}%\\n ({total})"
+
+fig, axes = plt.subplots(1, 3, figsize=(10, 6))
+
+axes[0].pie(hwr_percentages, labels=None, autopct=lambda pct: autopct_format(pct, hwr_counts), colors=colours, startangle=90)
+axes[0].set_title(hwr_team)
+
+axes[1].pie(awr_percentages, labels=None, autopct=lambda pct: autopct_format(pct, awr_counts), colors=colours, startangle=90)
+axes[1].set_title(awr_team)
+
+axes[2].pie(awr2_percentages, labels=None, autopct=lambda pct: autopct_format(pct, awr2_counts), colors=colours, startangle=90)
+axes[2].set_title(awr2_team)
+
+fig.legend(["WinRate%", "DrawRate%", "LossRate%"], loc="upper center", ncol=3, frameon=False, title="Match Outcomes", title_fontsize=14)
+
+plt.tight_layout()
+plt.show()
+`
+
 export {G1, D1, O1, G2, D2, D2_1,
      O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
      dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription,
      dataBackground, dataMergeCode, devProcess, initialPlan, premDF, cycleteam, findTotalGoals, ftgDesc,
      getTeamYear, teamyearDesc, goalCounts, goalDesc, goalQDesc, reflectionOne, reflectionTwo, reflectionThree,
-     reflectionFour, reflectionFive, goalQDesc2, barChartCode
+     reflectionFour, reflectionFive, goalQDesc2, barChartCode, totalWinsCode, totalWinsCodeImp, plotPieHomeAway, plotPieRates,
+
     }
