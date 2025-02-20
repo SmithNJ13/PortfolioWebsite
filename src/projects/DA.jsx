@@ -6,8 +6,13 @@ import superDF from "../assets/ProjectThree/DataFrameSuper.png"
 import supertrimDF from "../assets/ProjectThree/DataFrameSuperTrim.png"
 import completeDF from "../assets/ProjectThree/DataFrameComplete.png"
 import barChart from "../assets/ProjectThree/barchart_totalGoals_decade.png"
+import totalYearGoals from "../assets/ProjectThree/totalyearGoalsDF.png"
+import totalDecadeGoals from "../assets/ProjectThree/totaldecadeGoals.png"
 import ScrollTo from '../components/ScrollToTop/index.jsx'
-import { dataBackground, dataMergeCode, premDF, cycleteam, findTotalGoals, ftgDesc} from '../yapfile.js'
+import { dataBackground, dataMergeCode, premDF, cycleteam, findTotalGoals, ftgDesc, getTeamYear, teamyearDesc, goalCounts, goalDesc, 
+  goalQDesc, reflectionOne, reflectionTwo, reflectionThree, reflectionFour, reflectionFive,
+  goalQDesc2,
+  barChartCode, } from '../yapfile.js'
 import Prism, { languages } from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 import "prismjs/components/prism-python";
@@ -54,7 +59,7 @@ const DA = () => {
               <CodeBlock tabs={[
                 {name: "Prem_DF", language: "python", code: premDF, description: "Merging all csv files covering season 13/14 to season 14/15 into one DataFrame"},
                 {name: "cycleTeam", language: "python", code: cycleteam, description: "A core function that is used in many other functions later, effectively searches through the DataFrame by the specified year and team name."},
-                {name: "findTotalGoals", language: "python", code: findTotalGoals, description: ftgDesc}
+                {name: "findTotalGoals", language: "python", code: findTotalGoals, description: ftgDesc},
               ]}/>
             </div>
             <img src={superDF} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
@@ -75,7 +80,19 @@ const DA = () => {
           </section>
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Visualisation & Findings:</h2>
+            <p className="mx-[1rem] mb-[1rem]">When choosing my questions, I considered my own knowledge and understanding of football as well as the data contained within the data sets.
+              <br />I wanted each question to be varying in difficulty. For <span className="text-stalelime font-bold">question 1</span>, I chose this because I was curious about which team had scored the most goals in the last decade but also
+              in part because I knew it would be a reasonably achievable target.
+              <br />
+              <br />For <span className="text-stalelime font-bold">question 2</span> I wanted a deeper analysis and I was curious if teams that had a high win rate% at home were good teams, I also wanted to explore if
+              home advantage is a real thing and if so - how much impact does it have on a game?
+              <br />
+              <br /><span className="text-stalelime font-bold">Question 3</span> was initially more ambitious but not the most ambitious question I had. I wanted to explore the correlation between the number of shots a team made
+              and their ability to score goals. However, as I was going through this question it was soon revealed to me that it could be so much more deeper than that and so I went on to explore this, looking into
+              how the total number of shots reflect a teams 'dominance' on the field, how each team stacked up against the mean of that season; which teams had better finishing and on target goal conversion rates and many more facets.
+            </p>
             <p className="mx-[1rem]">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand a question section and reveal an in-depth analysis of it:</p>
+            <div className="w-full border-stalelime border-t-[4px] my-[1rem]"></div>
               {section == 0 && (
               <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
                 <StickyNote title={"Question #1"}
@@ -94,12 +111,56 @@ const DA = () => {
               )}
               {section == 1 && (
                 <>
+                  <section>
+                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 1: <span className="text-ivory">Which team has scored the most goals in the past decade?</span></h2>
+                    <p className="mx-[1rem]">{goalQDesc}</p>
+                    <div className="m-[1rem] text-sm">
+                      <CodeBlock tabs={[
+                        {name: "Teams & Years list", language: "python", code: getTeamYear, description: teamyearDesc},
+                        {name: "goalCounts", language: "python", code: goalCounts, description: goalDesc},
+                      ]}/>
+                    </div>
+                    <p className="mx-[1rem]">{goalQDesc2}</p>
+                    <div className="flex flex-row justify-evenly">
+                      <img src={totalYearGoals} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                      <img src={totalDecadeGoals} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                    </div>
+                    <p className="mx-[1rem]">Now having the relevant data that I need stored as a DataFrame for both the year and by decade, I can plot this data on a graph using
+                      <span className="text-stalelime font-bold"> matplotlib</span>. You can find the code I used for this below.
+                    </p>
+                    <CodeBlock tabs={[
+                      {name: "Bar Chart Plot", language: "python", code: barChartCode, description: "The code used to plot and visualise a bar chart graph, displaying the total goals scored by the top 10 highest scoring teams across the past 10 years."}
+                    ]}/>
+                  </section>
+                  <img src={barChart} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <h2 className="text-2xl text-stalelime mx-[1rem] underline">Summary:</h2>
+                  <p className="mx-[2rem]">In summary from the graph above we can see that Man City has the highest amount of total goals scored from the years 2014 to 2024.
+                    With a grand total of: <strong>989</strong>. In second place is Liverpool with: <strong>876</strong> and in third place, Arsenal with: <strong>777</strong>.
+                    As goals often strongly correlate with wins in Football, one could reasonably assume Man City is a team that wins fairly often, or at least ranks highly
+                    in the Premier League table.
+                  </p>
+                </>
+              )}
+              {section == 2 && (
+                <>
+                  <section>
+                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 2: <span className="text-ivory">Which team(s) in the past decade, win most of their games at home and which team(s) win most of their games away?</span></h2>
+                  </section>
+                  <img src={barChart} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                </>
+              )}
+              {section == 3 && (
+                <>
+                  <section>
+                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 3: <span className="text-ivory">Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</span></h2>
+                  </section>
                   <img src={barChart} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                 </>
               )}
               {section !== 0 && (
                 <Test onClick={() => setSection(0)}/>
               )}
+            <div className="w-full border-stalelime border-t-[4px] my-[1rem]"></div>
           </section>
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Conclusion:</h2>
@@ -109,13 +170,13 @@ const DA = () => {
             <h2 className="font-bold text-2xl text-stalelime">Reflections:</h2>
             <p className="underline text-lg mx-[1rem]">Things I did well
             </p>
-            <p className="mx-[2rem]"><span className="text-lg font-bold">1. </span>Major reflection point one</p>
-            <p className="mx-[2rem]"><span className="text-lg font-bold">2. </span>Major reflection point two</p>
-            <p className="mx-[2rem]"><span className="text-lg font-bold">3. </span>Major reflection point three</p>
+            <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">1. </span>{reflectionOne}</p>
+            <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">2. </span>{reflectionTwo}</p>
+            <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">3. </span>{reflectionThree}</p>
             <p className="underline text-lg mx-[1rem] mt-[1rem]">Things I did not do so well
             </p>
-            <p className="mx-[2rem]"><span className="text-lg font-bold">1. </span>Major reflection point one</p>
-            <p className="mx-[2rem]"><span className="text-lg font-bold">2. </span>Major reflection point two</p>
+            <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">1. </span>{reflectionFour}</p>
+            <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">2. </span>{reflectionFive}</p>
           </section>
           <div className="flex w-full justify-center">
             <Link to="https://github.com/SmithNJ13/data_analysis" className="font-bold hover:text-azure underline">GitHub repository</Link>

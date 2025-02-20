@@ -431,7 +431,7 @@ def findTotalGoals(year, team):
     totalHomeGoals = cycleTeam(year, team)[cycleTeam(year, team)["home"] == team]["fthg"].sum()
     totalAwayGoals = cycleTeam(year, team)[cycleTeam(year, team)["away"] == team]["ftag"].sum()
     totalGoals = totalHomeGoals + totalAwayGoals
-    objectName = f"{team}{year}"
+    # objectName = f"{team}{year}"
     
     return (team, year, int(totalHomeGoals), int(totalAwayGoals), int(totalGoals))
 
@@ -444,11 +444,117 @@ while returning the sum value of all the goals where the specified team is 'home
 It then combines these two values together to get 'total goals'. An example result from this code would be this: ('Arsenal', 2014, 38, 27, 65)
 `
 
+const getTeamYear = `
+teams_list = set()
+years_list = set()
+for index, entry in Prem_DF.iterrows():
+    teams_list.add(entry["home"])
+    years_list.add(entry["year"])
+
+teams_list = sorted(teams_list)
+years_list = sorted(years_list)
+
+print(years_list)
+`
+const teamyearDesc = `
+This code allows me to fetch every team name and every year used within the DataFrame and by storing them as a set, they will be unique values.
+I can then use the teams_list and years_list to cycle through them and pass the values into my cycleTeam / findTotalGoals functions.
+I understand I could go back and better optimise this code to merge parts of it into a more coherent function, but these were designed as I 
+was working through my analysis and were made to suit my needs at that time.
+`
+
+const goalCounts = `
+Goal_Counts = []
+def findGoalCounts():
+    for year in years_list:
+        for team in teams_list:
+            Goal_Counts.append(findTotalGoals(year, team))
+    return Goal_Counts
+
+tg_by_year = pd.DataFrame(findGoalCounts())
+tg_by_year.rename(columns = {0: "Team", 1: "Year", 2: "Total_HG", 3: "Total_AG", 4: "Total_Goals"}, inplace=True)
+`
+const goalDesc = `
+This code essentially utilises the previously shown (above) cycleTeam and findTotalGoals functions, cycling through the teams and years found in teams_list and years_list.
+For each entry that matches, we append the relevant statistics (in this case, 'fthg', 'ftag' and then adding both together for total goals) to Goal_Counts and return the data.
+I then create a new DataFrame which has this data stored in a readable format.
+`
+
+const goalQDesc = `
+For this question I knew I would need a unique list of all the teams and the years they played, I also knew that it would be useful in the future when I am examining individual teams
+or specific years in more detail. This code can be found below in 'Teams & Years list'.
+`
+const goalQDesc2 = `
+Once I had the list of team names and years, I could cycle through the DataFrame and could use it in my findGoalCounts() function.
+I also created a new DataFrame which stored the information of Total_Goals for each team, for every year.
+Now having an entire DataFrame of each teams Total_Goals by year, I could apply a similar logic and just cycle through the team names in the DataFrame,
+and use the .sum() function to add up all the Total_Goals where the team name matches and then append this data to a new list that I can convert into another DataFrame
+that reflects the Total_Goals of that team across all years.
+`
+
+const reflectionOne = `
+Intuitatively came up with new metrics, combining statistics already in the DataFrame to help 
+better my analysis (OTCR%, SOT%, ASC) this allowed me to effectively combine multiple metrics 
+into 'one' so it was easier to spot correlations between things, for example, ASC vs Win Rate%.
+`
+const reflectionTwo = `
+Identified valuable metrics that could provide insightful analysis to a teams performance and 
+filtered out less valuable, or less relevant metrics meaning I kept a clear, defined scope which
+allows for more efficient and effective breakdowns.
+`
+const reflectionThree = `
+Curiosity, I allowed my curiosity to guide me in exploring my analysis which meant I could discover 
+intriguing and meaningful relationships and correlations between various different statistics. 
+However, this was a slightly double-edged sword as it meant I would investigate some
+leads that I thought could be interesting and promising only to discover there wasn't much of a 
+correlation or meaningful impact on team performance which did tell me something about the data, 
+but was disappointing to experience as I would have hoped to explore these avenues.
+
+For example, I thought perhaps teams got more accurate over the years, so I did a 
+comparative boxplot to see if teams OTCR% had increased over the decade. 
+I also explored if teams were being more proactive and aggressive taking more shots on the whole, 
+but this also followed a similar trend, interestingly however, 2020 was a standout year in this metric 
+being significantly behind all the others - this may be in part due to the pandemic happening at the time. 
+A lack of audience and crowd to spur the teams on might have, even subconciously affected their 
+willingness to be aggressive or 'put on a show'.
+`
+const reflectionFour = `
+Too trusting of the data source and naivety in the data sets ability to fully explore in-depth 
+the things I wanted to explore. For example, taking more time to gather from different sources other
+relevant statistics and information like xG, league points, goals conceded would have provided me
+with more meaningful and interesting statistics to do a deeper analysis.
+`
+const reflectionFive = `
+Formatting and preparation of the data and DataFrames, I could have fine tuned the DataFrames 
+into an additional category to include 'seasonal' performance, I had a yearly DataFrame and a decade 
+DataFrame but as I explored I noticed some teams were having their games cut off given how the EPL has its
+matches structured. Towards my final question I did categorise the DataFrame into a seasonal one,
+so each team had 38 matches to draw data from. However, I realised this would have been beneficial
+to the questions prior too.
+`
+
+const barChartCode = `
+Question_One_Top10 = Question_One.head(10)
+Top_10 = Question_One_Top10.plot(x="Team", y="Total_Goals", kind="bar", color="green", figsize=(12,6))
+
+plt.xticks(rotation=0)
+plt.yticks(range(0, Question_One_Top10["Total_Goals"].max() + 100, 100))
+plt.xlabel("Team")
+plt.ylabel("Total Goals")
+plt.title("Top 10 highest scoring teams of the last decade (2014-2024)")
+plt.grid(axis="y", linestyle="--", color="black", alpha=0.6)
+
+for i, value in enumerate(Question_One_Top10["Total_Goals"]):
+    if i < 3:
+        plt.text(i, value + 10, str(value), ha="center", fontsize=10, fontweight="bold", color="black", alpha=0.6)
+plt.show()
+`
 
 export {G1, D1, O1, G2, D2, D2_1,
      O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
      dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription,
      dataBackground, dataMergeCode, devProcess, initialPlan, premDF, cycleteam, findTotalGoals, ftgDesc,
-
+     getTeamYear, teamyearDesc, goalCounts, goalDesc, goalQDesc, reflectionOne, reflectionTwo, reflectionThree,
+     reflectionFour, reflectionFive, goalQDesc2, barChartCode
     }
