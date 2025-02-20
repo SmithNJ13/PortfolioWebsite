@@ -19,7 +19,7 @@ import cardZoom from "../assets/ProjectTwo/CardZoom.png"
 import { imgBorder } from '../slayfile.js'
 
 import { Link } from 'react-router-dom'
-import { G2, D2, D2_1, O2, webscrapeCode, seedMatchesCode, dynamicPostPatchCode} from '../yapfile.js'
+import { G2, D2, D2_1, O2, webscrapeCode, seedMatchesCode, dynamicPostPatchCode, devProcess, initialPlan} from '../yapfile.js'
 import StickyNote from '../components/StickyNote/index.jsx'
 import Test from '../components/Test/test.jsx'
 import Main from '../components/Main/index.jsx'
@@ -51,59 +51,46 @@ const PLP = ({animations}) => {
           <h2 className="font-bold text-2xl">Project Summary:</h2>
           <p className="mx-[1rem] text-ivory">{G2}</p>
         </section>
-        <section className="flex flex-col m-[2rem] my-[4rem]">
+        <section id="development" className="flex flex-col m-[2rem] my-[4rem]">
           <h2 className="font-bold text-2xl">Development Process:</h2>
+          <p className="mx-[1rem] text-ivory">{devProcess}</p>
           <p className="mx-[1rem] text-ivory">You may click on a <span className="text-stalelime italic font-bold">sticky note</span> below to expand the section and see more information:</p>
           <div className="w-full border-stalelime border-t-[4px] my-[1rem]"></div>
           {section == 0 && (
             <div id="notes" className="flex flex-wrap gap-[4rem] justify-evenly mt-[2rem]">
-              <StickyNote title={"Planning & Approach"} scale={scale} rotation={rotationR}
+              <StickyNote title={"Initial Plan & Conception"} scale={scale} rotation={rotationR}
               onClick={() => setSection(1)}>
                 <p>Detailed explanations of the planning process, defining my focus and tools to use.</p>
               </StickyNote>
 
-              <StickyNote title={"Core Features & Implementation"} scale={scale} rotation={rotationR}
+              <StickyNote title={"Expanding the Scope"} scale={scale} rotation={rotationR}
               onClick={() => setSection(2)}>
                 <p>Explanation of core features that are neccessary to the application and how I went about implementing them.</p>
               </StickyNote>
 
-              <StickyNote title={"Challenges & Solutions"} scale={scale} rotation={rotationR}
+              <StickyNote title={"Refactoring Data Structures"} scale={scale} rotation={rotationR}
               onClick={() => setSection(3)}>
                 <p>Challenges and problems I faced during the development of the application, with explanations for the solutions I used to resolve the issues.</p>
               </StickyNote>
 
-              <StickyNote title={"Learning Outcomes"} scale={scale} rotation={rotationR}
+              <StickyNote title={"Current Version"} scale={scale} rotation={rotationR}
               onClick={() => setSection(4)}>
                 <p>Things I learnt about during the development of this project and details about future improvements I would make, or different approaches I would use if I undertook a similar project.</p>
               </StickyNote>
 
-              <StickyNote title={"Current Implementation"} scale={scale} rotation={rotationR}
+              <StickyNote title={"Challenges and the Future"} scale={scale} rotation={rotationR}
               onClick={() => setSection(5)}>
                 <p>Details on the current implementation of the project, as well as future improvements I intend to make.</p>
               </StickyNote>
             </div>
           )}
           {section == 1 && (
-            <><div className="sm:mx-[2rem] sm:my-[2rem] m-[1rem]">
-              <p>{D2} <br />Here is an image of what the first implementation of the cards looked like:</p>
+            <div>
+              <section>
+                <h2 className="font-bold text-2xl my-[1rem]">Initial Plan & Conception</h2>
+                  <p className="mx-[1rem] text-ivory">{initialPlan}</p>
+              </section>
             </div>
-            <div className="flex sm:flex-row sm:mx-[4rem] sm:gap-[2rem] sm:flex-nowrap flex-wrap">
-              <img src={card} className={`${imgBorder}`}></img>
-              <p className="m-[1rem]">While setting up a very basic design and layout for the cards, I also mapped basic routing for both a 'profile' page and a 'login' page.
-              <br />I then spent more time on further developing the card, adding the following features:
-                <div className="mx-[1rem]">
-                  <li>Card colours match that of their respective team icon</li>
-                  <li className="mb-[1rem]">Cards became a part of a 'teamBanner' component</li>
-                </div>
-              <img src={img2} className={imgBorder}></img>
-              </p>
-            </div>
-            <div className="flex flex-col m-[1rem]">
-              <p className="self-center mb-[1rem]">Finally, I decided to add a NavBar and do some minor styling to the overall webpage, I was trying to express some creativity with an 'edgy' design</p>
-              <img src={img3} className={imgBorder}></img>
-              <i className="text-sm text-center">*I retroactively took this screenshot so the premier league team that usually renders in is not included in the current dataset</i>
-            </div>
-            </>
           )}
           {section == 2 && (
             <>
@@ -221,11 +208,49 @@ const PLP = ({animations}) => {
             </div>
             </>
           )}
-          <Test onClick={() => setSection(0)}/>
+          {section == 5 && (
+            <>
+            <h2 className="m-[1rem] text-2xl font-bold">Frontend:</h2>
+            <p className="sm:mx-[2rem] mx-[1rem] mb-[1rem]">The current implementation of the web application has undergone the most significant changes, after getting
+              most of the backend functionality and data structures sorted and designed in a way that makes more logical sense and allows for easier programming of functions, retrieval
+              of information and more readable data I decided to tackle the presentation and layout of the website once and for all, accepting that design is not a talent of mine, I relied
+              on external tools like <Link to="https://coolors.co/" className="text-ivory underline font-bold">coolors.co</Link> to provide me a colour palette that could still utilise the colour
+              green, but be more visually appealing than what I had previously chosen.
+              <br className="mb-[1rem]"></br>I utilised <Link to="https://www.canva.com/" className="text-ivory underline font-bold">canva.com</Link> to design a logo for the website that looked cleaner and more 'professional' that is displayed
+              in the top-left corner, on the NavBar. The logo also additionally features as a 'return' button to navigate the user back to the home page.
+            </p>
+            <div className="flex flex-col items-center gap-[1rem]">
+              <img src={img8} className={imgBorder}></img>
+              <img src={img9} className={imgBorder}></img>
+              <div className="flex sm:flex-row flex-col justify-evenly w-full">
+                <img src={cardZoom} className={imgBorder}></img>
+                <p className="text-start w-full sm:my-[2rem] p-[1rem]">The layout of the cards, as a result of <span onClick={() => setImplementation(3)} className="text-ivory font-bold underline hover:cursor-pointer">implementation#3</span>
+                <br/>had to change to accommodate the new predictions the user can make.
+                Displaying of the match time has also become a thing, so users can see when the specific match they're placing predictions on will actually take place.
+                <p className="sm:mt-[10rem]">Following on from this, I also added content to the dormant 'teams' page, which allows the user to view a list of the teams
+                  playing in the current season of the premier league. This is shown on the image below. Eventually the user will be able to click on each team and be
+                  taken to the relevant page to display information about their chosen team.</p></p>
+              </div>
+              <img src={img10} className={imgBorder}></img>
+              <p className="mx-[1rem]">Previous implementations had the login and register functionality, but the forms for them were incredibly basic and rudimentary, in this update I decided to design proper login and register
+                forms that are easily readable and far more presentable. The following two images are of both the login and register form respectively.
+              </p>
+              <img src={img11} className={imgBorder}></img>
+              <img src={img12} className={imgBorder}></img>
+              <p className="mx-[1rem]">In summary this update provided a massive overhaul to the UI and layout of the web application to make it more friendly and readable to users, as well as improving the 
+                navigation and feel of the webpage. It gives the website a cleaner, more professional feel to it. As well as the implementation of some additional functions, like the mapping
+                of each team within the current premier league season on the 'teams' page.
+              </p>
+            </div>
+            </>
+          )}
+          {section !== 0 && (
+            <Test onClick={() => setSection(0)}/>
+          )}
         </section>
         <section className="flex flex-col mx-[2rem]">
             <h2 className="font-bold text-2xl">Code Snippets:</h2>
-            <p className="mx-[1rem] text-ivory">Below are some code snippets that I am most proud of:
+            <p className="mx-[1rem] text-ivory">Below are some code snippets that are vital to the project:
             </p>
             <CodeBlock tabs={[
               {name: "WEBSCRAPE CODE", language: "javascript", code: webscrapeCode, description:""},

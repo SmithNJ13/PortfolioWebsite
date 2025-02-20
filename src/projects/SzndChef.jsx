@@ -57,7 +57,7 @@ const SzndChef = () => {
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Code Snippets:</h2>
-            <p className="mx-[1rem] text-ivory">Below are some code snippets that I am most proud of:
+            <p className="mx-[1rem] text-ivory">Below are some code snippets that are vital to the project:
             </p>
             <CodeBlock tabs={[
               {name: "ACTION CODE", language: "javascript", code: actionCode, description:actionDescription},

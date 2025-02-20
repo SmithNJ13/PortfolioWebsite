@@ -18,9 +18,8 @@ information on how to cook it, as well as save the recipe to their 'likes' and c
 
 /* Project: Premier League Predictions, full-stack prediction web application
     relevant string information is found below */
-const G2 = `The objective of this website was to create a platform which would provide users with live games of current premier league matches and allow them to make predictions
-            on the outcome of the match, the scope of this project initially started with limiting it to predicting xG (expected goals) of Arsenal matches, but I have since expanded
-            it into something more. Allowing the user to predict on more statistics, as well as expanding the pool to all premier league teams.`
+const G2 = `The objective of this website is to provide a platform for users in which they can make predictions on a variety of different statistics for each premier league team, as well as
+view relevant information about the teams playing in the current season. This is a full-stack application that involved frontend development, backend development as well creating a database.`
 const D2 = `Given that the 'cards' are a core concept of the web application, I decided to create a component for them first and ensure it was functional,
             I gave the card a very basic UI design just for the purposes of testing.`
 const D2_1 = ``
@@ -36,13 +35,82 @@ const dataBackground = `Given that Football is one of the most globally recognis
 a lot of opportunity for data exploration. I also have a personal interest in the English Premier League and as such I have chosen this specific league to gather data on and explore. My focus for this analysis
 is Premier League teams from the past decade (2014 - 2024). The vastness of this dataset provides a high volume of data as well as opening the possibility of potential predictive analysis.`
 
+const devProcess = `Initially this project was to be aimed at just being able to predict the expected goal value (xG) on exclusively Arsenal premier league matches only, 
+however throughout development I felt the need to expand the scope of the project continuously.`
 
+const initialPlan = `Given the focus of the web application I knew the first order of business was to set up the backend and get it to a functional state, this is the backbone of the project
+where a lot of the 'heavy lifting' regarding the logic and fetching of relevant information is done.`
 
 
 
 
 
 // Code stuff below:
+const initialBackendPLP = `
+const opponentArray = []
+const xg_array = []
+const xga_array = []
+
+axios(url)
+    .then(response => {
+        const HTML = response.data
+        const $ = cheerio.load(HTML)
+
+        $("td.left[data-stat='comp']:has(a:contains('Premier League'))").each((index, compElement) => {
+            const competition = $(compElement).find("a").text().trim()
+            if(competition === "Premier League") {
+                const matchDate = $(compElement).closest("tr").find("th.left[data-stat='date']").text().trim();
+                if (matchDate.includes(formattedDate)) {
+                    const opponent = $(compElement).closest("tr").find("td.left[data-stat='opponent']");
+                    const xgFor = $(compElement).closest("tr").find("td.right[data-stat='xg_for']");
+                    const xgAgainst = $(compElement).closest("tr").find("td.right[data-stat='xg_against']");
+                    
+                    opponentArray.push(opponent.text());
+                    if (xgFor.text() !== "") {
+                        xg_array.push(xgFor.text());
+                    }
+                    if (xgAgainst.text() !== "") {
+                        xga_array.push(xgAgainst.text());
+                    }
+                }
+            }
+        })
+        if(opponentArray.length < 1) {
+            console.log("No Arsenal Premier League matches today!")
+        } else {
+            opponentArray.forEach((element, index) => {
+                console.log('Today's Opponent: \${element}')
+                if(xg_array[index] !== undefined && xga_array[index] !== undefined) {
+                    console.log('xG: \${xg_array[index]}, xGA: \${xga_array[index]}')
+                }
+            })
+        }
+    })
+    .catch(error => {
+        console.log("DATA NOT FOUND: ", error)
+    })
+    `
+const initialBackendPLP2 = `
+app.get("/", (req, res) => {
+    const todayOpponent = opponentArray[0];
+    const teamMatch = teams.find(team => team.name === todayOpponent);
+    if (teamMatch) {
+        const teamInfo = {
+            opponent: todayOpponent,
+            xG: xg_array[0],
+            xGA: xga_array[0],
+            primary: teamMatch.primary,
+            secondary: teamMatch.secondary,
+            icon: teamMatch.icon
+        }
+        res.json(teamInfo)
+        return teamInfo
+    } else {
+        res.status(404).send("No team found")
+    }
+})
+`
+
 const reducerCode = `import { legacy_createStore as createStore } from "redux"
 
 const initialState = {
@@ -329,11 +397,58 @@ const carouselDescription = `This line of code is using bootstrap and its innate
 it then filters through each ingredient and checks their 'season' tag - this data structure has been set up on the backend. If the ingredients season tag matches that of the 'season' prop
 then we use mapping to create an item on the carousel for each one that matches. For each item created, it also lists the ingredients associated image, name and description.`
 
+const premDF = `
+import pandas as pd
+
+pd.set_option('display.max_columns', None)
+p2425 = pd.read_csv("./data/season-2425.csv")
+p2324 = pd.read_csv("./data/season-2324.csv")
+p2223 = pd.read_csv("./data/season-2223.csv")
+p2122 = pd.read_csv("./data/season-2122.csv")
+p2021 = pd.read_csv("./data/season-2021.csv")
+p1920 = pd.read_csv("./data/season-1920.csv")
+p1819 = pd.read_csv("./data/season-1819.csv")
+p1718 = pd.read_csv("./data/season-1718.csv")
+p1617 = pd.read_csv("./data/season-1617.csv")
+p1516 = pd.read_csv("./data/season-1516.csv")
+p1415 = pd.read_csv("./data/season-1415.csv")
+p1314 = pd.read_csv("./data/season-1314.csv")
+
+Prem_DF = pd.concat([p2425, p2324, p2223, p2122, p2021, p1920, p1819, p1718, p1617, p1516, p1415, p1314])
+Prem_DF.reset_index(inplace=True)
+`
+
+const cycleteam = `
+def cycleTeam(year, team):
+    TeamYear_DF = Prem_DF.loc[(Prem_DF["year"] == year) & (Prem_DF["home"] == team) + (Prem_DF["away"] == team)]
+    return TeamYear_DF
+
+cycleTeam(2017, "Arsenal")
+`
+
+const findTotalGoals = `
+def findTotalGoals(year, team):
+    totalHomeGoals = cycleTeam(year, team)[cycleTeam(year, team)["home"] == team]["fthg"].sum()
+    totalAwayGoals = cycleTeam(year, team)[cycleTeam(year, team)["away"] == team]["ftag"].sum()
+    totalGoals = totalHomeGoals + totalAwayGoals
+    objectName = f"{team}{year}"
+    
+    return (team, year, int(totalHomeGoals), int(totalAwayGoals), int(totalGoals))
+
+findTotalGoals(2014, "Arsenal")
+`
+
+const ftgDesc = `
+A practical use of the cycleTeam function in action to help aid another function. This function cycles through the specified year and team name, 
+while returning the sum value of all the goals where the specified team is 'home' and the same for when the specified team is 'away'. 
+It then combines these two values together to get 'total goals'. An example result from this code would be this: ('Arsenal', 2014, 38, 27, 65)
+`
 
 
 export {G1, D1, O1, G2, D2, D2_1,
      O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
      dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription,
-     dataBackground, dataMergeCode
+     dataBackground, dataMergeCode, devProcess, initialPlan, premDF, cycleteam, findTotalGoals, ftgDesc,
+
     }
