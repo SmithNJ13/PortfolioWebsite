@@ -44,8 +44,7 @@ import { dataBackground, dataMergeCode, premDF, cycleteam, findTotalGoals, ftgDe
   ascMetric,
   seasonalDF,
   lineplotASC,
-  scatterOTCR,
-  Q3_Summary, } from '../yapfile.js'
+  scatterOTCR, } from '../yapfile.js'
 import Prism, { languages } from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 import "prismjs/components/prism-python";
@@ -67,7 +66,7 @@ const DA = () => {
       <Main>
           <section className="h-auto w-auto font-bold flex flex-row sm:px-[5rem] px-[1rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="sm:text-4xl text-3xl border-b-[1px] border-ivory rounded w-auto text-center">Data Analysis</h1>
-            <h2 className="text-base text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://github.com/SmithNJ13/data_analysis/blob/main/analysis.ipynb">Data Analysis Notebook</Link></h2>
+            <h2 className="text-base text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://github.com/SmithNJ13/data_analysis/blob/main/analysis.ipynb" target="_blank" rel="noopener noreferrer">Data Analysis Notebook</Link></h2>
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Background:</h2>
@@ -288,44 +287,122 @@ const DA = () => {
                       OTCR% is the 'On Target Conversion Rate' which is the percentage of Shots On Target that resulted in Goals. SOT% is just the percentage of total shots that were on target.`},
                     {name: "Scatter Plot Code", language:"python", code: scatterPlotTSTG, description: "Desc."}
                   ]}/>
-                  <p>Words???</p>
+                  <p className="m-[1rem]">Using both the total_goals by year DataFrame and the total_shots by year DataFrame, I created a new DataFrame that covered the totals of the entire decade for
+                    both goals and shots for each team. I then created three new metrics to help show correlations between the data, these were:
+                    <li className="mx-[1rem] text-stalelime font-bold">TSCR% (Total Shot Goal Conversion Rate)</li>
+                    <li className="mx-[1rem] text-stalelime font-bold">OTCR% (On Target Goal Conversion Rate)</li>
+                    <li className="mx-[1rem] text-stalelime font-bold">SOT% (Shots on Target)</li>
+                  </p>
+                  <p className="mx-[1rem]">After doing this I wanted to explore the relationship between total shots and goals, and total shots on target and goals to see which one
+                    has a greater correlation and if so - what type of correlation.
+                  </p>
                   <img src={scatterShotsGoals} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={scatterOTGoals} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>Explain graphs</p>
+                  <p className="m-[1rem]">As we can observe from the graphs above, it appears that both total shots and total shots <strong>on target</strong> have a positive
+                  correlation with goals scored. However, total shots having a slightly more positive correlation along with a tighter confidence window could tentatively show
+                  that for teams aiming to score it is <strong>better to just take more shots</strong> than it is to try and be more precise with shots on target.</p>
                   <CodeBlock tabs={[
                     {name: "Boxplot (Total Shots)", language:"python", code: boxplotTS, description: "Desc."},
                     {name: "Boxplot (TSCR%)", language:"python", code: boxplotConversionYear, description: "Desc."}
                   ]}/>
-                  <p>Explain why you wanted to do this</p>
+                  <p className="m-[1rem]">Carrying on with my analysis, I was curious to explore if teams in recent years had become more 'aggressive' and focused on 
+                    attacking and keeping momentum - one metric I thought would be a useful indicator of this was total shots and I wanted to have a graph where I could
+                    compare each year side-by-side and see how the teams as a 'cohort' compare against each year.
+                    <br />As a fan of the game Final Fantasy XIV, I frequently look up statistics relating to the game - for optimisation purposes. I was inspired
+                    by their usage of horizontal boxplots, which you can find <a href="https://www.fflogs.com/zone/statistics/58?boss=1078" target="_blank" className="text-stalelime underline font-bold hover:text-azure">HERE</a> if you are curious.
+                    <br />With this in mind, I decided I would like to use horizontal comparative boxplots for this analysis. I also decided to check out if teams had become more 'accurate' over the years using this method too, and comparing
+                    total shot conversion rate and on target conversion rate.
+                  </p>
                   <img src={boxplot_TShots} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={boxplot_TSCR} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>No correlations, interesting observation</p>
+                  <p className="mx-[1rem]">There isn't any discernable difference or uptick in total shots by teams across the year and they all tend to fall within a general
+                    range of variability. <br/>However one important observation to note is that <span className={emphasisB}>2020 has a drastic reduction</span> in total shots,
+                    I don't have the statistics to fully interrogate why - but one possible explanation could be the COVID pandemic that was ongoing and a lack of audience as a result.
+                    <br/>Usually in matches there is an audience to spur the players on and provide motivating chants. 2020 also has a pretty significant outlier in TSCR%, this team is
+                    actually <span className={emphasisB}>Norwich City</span> with a TSCR% of <span className={emphasisB}>2.8</span>%. Meaning they had appalling shot selection.
+                    <br/>This is quite shocking. If 100 shots were taken, most teams in the last decade would get at least 10 goals as a result. <strong>Norwich would get 2.</strong>
+                    <br/>
+                    <br/>In terms of TSCR% per year, the general range tends to be relatively consistent, however the 'maximum' limit does appear to have a very small positive trend upwards.
+                    Which could serve as a modicum of evidence that the teams playing the best in the league, in recent years, have got a bit better at <span className={emphasisB}>shot selection</span>.
+                    <br/>2016 is also an interesting year in that it had two outlier teams on <strong>both</strong> ends of the spectrum for TSCR%, in addition to a very tight lower and upper whisker.
+                    This could indicate a lack of skill diversity in teams of that years ability to have quality shot selection.
+                  </p>
                   <img src={boxplot_OTCR} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>I create ASC</p>
+                  <p className="mx-[1rem]">The OTCR% comparative boxplot ended up being somewhat disappointing to investigate, there was a small part of me hoping teams had become better
+                    at finishing. The most interesting observation is that <span className={emphasisB}>2021 appears to have the largest variation</span> between its lower whisker and upper whisker.
+                    This could be because of a lot of tactical diversity during this year. However, given previous questions and my analysis of data in the DataFrame - I am lead to believe a likely cause of this
+                    variance is Manchester City putting on an absolutely insane performance for this season and creating a wide gap between them and second place.
+                    <br/>This is made even clearer when you look at the distance between the lower whisker and Q3 and then Q3 to the upper whisker. It is almost the same level of variance.
+                    <br/>
+                    <br/>You can also compare this to the year above, <strong>2022</strong>, where the <span className={emphasisB}>outlier there is Manchester City</span> with an incredibly high OTCR% of <span className={emphasisB}>69.7</span>%
+                  </p>
+                  <p className="m-[1rem]">After plotting these graphs and noticing some interesting trends, I then think of a way I can compare the total shots a team made that year against the mean shots of all teams that same year.
+                    With this in mind I created a metric called ASC which stands for 'Average Shot Coefficient'. I'm not the greatest at naming things, so perhaps there would be something better and more accurate.
+                    <br/>What ASC essentially does is measures a teams Total Shots for that year, against the mean total shots of every team in that same year. The value is then clamped and normalised through min() max() functions to a value
+                    between -1 and 1. <span className={emphasisB}>A positive value of 1</span> means that the team took more shots than the mean of that year, and was the team that took the most shots. <span className={emphasisB}>A negative value of -1</span> means that 
+                    the team took less shots than the mean of that year, and was the team that took the least shots. 
+                    <br/><br/>This means that I can just take a quick glance at this value and get a sense of a teams attacking momentum that year, as if you're taking more shots you're likely to be
+                    in a good position to do so. You can find the code for this below, as well as the resulting DataFrame:
+                  </p>
                   <CodeBlock tabs={[
                     {name: "Creation of ASC metric", language:"python", code: ascMetric, description: "Desc."},
                     {name: "Creating Seasonal_DF", languaage:"python", code: seasonalDF, description: "Desc."},
                     {name: "Line Chart (ASC)", language:"python", code: lineplotASC, description: "Desc."}
                   ]}/>
                   <img src={asc_DF} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>Some explanation of what I have done, or about to do.</p>
+                  <p className="m-[1rem]">With the explanation of ASC in mind, and how it can be used to somewhat gauge a teams attacking prowess. I go on to plot the ASC
+                    for teams who have played in every season since 2014 until 2024 to see how the most consistent teams in the last decade perform in this metric.
+                    The graphs in this order show the top 3 - middle 3 and bottom 3 teams in this metric.
+                  </p>
                   <img src={linechart_Top3} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={linechart_Mid3} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={linechart_Bot3} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>Observations</p>
+                  <li className="my-[0.5rem] mx-[2rem]">From the above graphs we can clearly see that Man City has a very consistent performance in taking shots, more often than not being the team 
+                    with the highest amount of shots taken in any given season.</li>
+                  <li className="my-[0.5rem] mx-[2rem]">After 2020 Chelsea has rapidly declined in proactivity in taking shots, which might be indicative of a more defensive shift.</li>
+                  <li className="my-[0.5rem] mx-[2rem]">From 2020 onwards Arsenal have rapidly improved their ability to constantly take shots and control the pace of the game.</li>
+                  <li className="my-[0.5rem] mx-[2rem]">Crystal Palace tends to be the lowest performing team when it comes to being proactive with taking shots.</li>
+                  <p className="mx-[1rem]">After plotting and examining the line charts and observing trends, I then go on to explore how shots on target correlate with ASC.</p>
                   <img src={scatter_SOT_ASC} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={scatter_OTCR_WR} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>Observations</p>
+                  <p className="mx-[1rem]">The strong negative correlation between shots on target and ASC is interesting, because what this shows is there is <span className={emphasisB}>a clear trade-off </span>
+                  between shot volume and precision. This is counter-intuitive because one might expect teams taking more shots to be better at shooting accurately, however, this 
+                  doesn't seem to be the case. Teams that take more shots tend to have lower accuracy. Interestingly Manchester City is the highest 'point' on the first graph,
+                  with an ASC of around 0.91 and 26.1% shots on target. But as we established earlier in Question 2, Manchester City also have an exceptionally high win rate.
+                  On the opposite end of the spectrum we have teams like Middlesbrough, who had a high SOT% but a very poor win rate of 13%.</p>
+                  <p className="mx-[1rem] mt-[1rem]">This trend would seem to indicate that teams who favour high attacking tempo and having a high shot volume actually fair much
+                    better in winning their games than teams who prefer to take it slow and try score accurate shots.
+                  </p>
+                  <p className="mx-[1rem] mt-[1rem]">We can also see a very strong positive correlation between on target goal conversion rate% and win rate%, meaning that teams 
+                    with much better finishing quality often tend to win more games. Interestingly, Manchester City is the highest point on this graph too. This shows that 
+                    while Man City has a low percentage of shots on target, the ones that are on target often translate into goals.
+                  </p>
                   <CodeBlock tabs={[
                     {name: "Scatter Plot (Consistent Teams)", language:"python", code: scatterOTCR, description: "Desc."}
                   ]}/>
-                  <p>Explain</p>
+                  <p className="m-[1rem]">After assessing the teams as an aggregate across the entire decade, combining their individual yearly performance into one statistic.
+                    I decided I would look into their yearly performances individually across the year, to see how they compare to themselves and other teams. I did this through a 
+                    scatterplot.
+                  </p>
                   <img src={scatter_OTCR_WR_Season} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <p>Explain</p>
                   <img src={scatter_Top4ASC} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={scatter_Top4OTCR} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <h2 className="text-2xl text-stalelime mx-[1rem]">Summary:</h2>
-                  <p className="mx-[2rem]">{Q3_Summary}</p>
+                  <p className="mx-[2rem]">
+                    From the statistical analysis conducted, it is evident that shot volume has a stronger correlation with goal-scoring than shot accuracy alone. 
+                    Teams that maintained a high OTCR% (On Target Conversion Rate) significantly outperformed those with lower values, with a stark contrast in win rates — <span className={emphasisB}>61.6</span>% for strong finishers 
+                    versus just <span className={emphasisB}>18.4</span>% for poor finishers. <br/>Among all teams analyzed from the 2014-2024 Premier League seasons, Manchester City stood out as the most consistent attacking team, 
+                    maintaining an impressive +<span className={emphasisB}>0.91</span> ASC (Average Shot Coefficient) across the decade. This highlights their sustained high shot volume, which reflects an aggressive attacking tempo and, ultimately, strong performance.
+                    Conversely, teams like Crystal Palace and West Ham struggled with consistency, with Palace in particular being one of the most statistically underperforming teams to have played every season in this period. 
+                    <br/>
+                    <br/>However, when considering the single worst-performing team of the last decade, the data overwhelmingly points to Middlesbrough’s 2016-17 season. Their <span className={emphasisB}>13.2</span>% win rate was the lowest recorded, and their shot metrics paint a clear picture of inefficiency. 
+                    With an OTCR% of just <span className={emphasisB}>18.5</span>% and a TSCR% of only <span className={emphasisB}>7.7</span>%, they struggled both in shot selection and finishing ability. 
+                    <br/>Additionally, their -<span className={emphasisB}>0.94</span> ASC indicates that they were one of the least proactive attacking teams, ranking near the bottom for total shots taken.
+                    Ultimately, based on performance across key offensive metrics, Middlesbrough’s 2016-17 campaign stands as the statistically worst Premier League season of the past decade, according to the data that I had
+                    available to explore with. 
+                    Their inability to generate high-quality chances, convert opportunities, or maintain a strong attacking presence directly contributed to their relegation and historically poor performance.
+                  </p>
                 </>
               )}
               {section !== 0 && (
@@ -350,7 +427,7 @@ const DA = () => {
             <p className="mx-[2rem] my-[0.75rem]"><span className="text-lg font-bold text-stalelime">2. </span>{reflectionFive}</p>
           </section>
           <div className="flex w-full justify-center">
-            <Link to="https://github.com/SmithNJ13/data_analysis" className="font-bold hover:text-azure underline">GitHub repository</Link>
+            <Link to="https://github.com/SmithNJ13/data_analysis" className="font-bold hover:text-azure underline" target="_blank" rel="noopener noreferrer">GitHub repository</Link>
           </div>
           <ScrollTo />
       </Main>

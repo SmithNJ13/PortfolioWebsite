@@ -870,8 +870,8 @@ goals_and_shots_seasonal.sort_values(by="OTCR%", ascending=False).head()
 for year in years_list:
     mean = round(goals_and_shots_seasonal[goals_and_shots_seasonal["Year"] == year]["Total_Shots"].mean())
     max_shots = goals_and_shots_seasonal[goals_and_shots_seasonal["Year"] == year]["Total_Shots"].max()
-    goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "ASC"] = \
-        round(goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "Total_Shots"].apply(lambda x: min(max((x - mean) / (max_shots - mean), -1), 1)), 2)
+    goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "ASC"] = \\
+    round(goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "Total_Shots"].apply(lambda x: min(max((x - mean) / (max_shots - mean), -1), 1)), 2)
     
 goals_and_shots_seasonal.sort_values(by="ASC", ascending=False).tail(20)
 `
@@ -941,58 +941,6 @@ fig.update_layout(height=610, width=860, legend_title="Teams")
 fig.show()
 `
 
-const Q3_Summary = `
-There is a strong correlation between shots taken and goals scored, with a slightly weaker - 
-but still strong correlation between shots on target and goals scored.
-
-In addition to this I created three new novel metrics to assist with my analysis, 
-these were the following:
-1.    TSCR% (Total Shot Conversion Rate): Goals per total shots taken
-2.    OTCR% (On Target Conversion Rate): Goals per shots on target
-3.    ASC (Average Shot Coefficient): Team's shot frequency compared to season mean
-
-Teams with high OTCR% achieved significantly better win rates (~61.6%)
-Poor finishing teams, low OTCR%, struggled to win (~18.4% win rate)
-Higher shot volumes correlate more strongly with goals than shot accuracy alone
-
-Manchester City: High-volume shooting strategy with good conversion rates
-Liverpool: Similar high-volume approach but lower conversion efficiency
-Arsenal/Chelsea: More balanced approach between shot volume and accuracy
-
-Man City had a very consistent ASC rating, averaging +0.91 across the entire decade! Meaning that
-of all the Premier League teams active throughout that time, Man City were often the team
-taking the most shots in a game - this can be indicative of a teams attacking tempo.
-
-From these statistics that I worked with, there was a strong indication that Man City
-over the last decade has been one of the most consistent and high performing teams in the League.
-Conversely, of the EPL teams that have played every season since 2014, Crystal Palace on the whole
-tends to be one of the most - arguably the most, underperforming team. There is a case to be made
-against West Ham too, however, statistically their peaks were much higher, whereas
-Crystal Palace never had amazing peaks, both in WinRate% or attacking tempo.
-
-Of all 35 teams that have played in the EPL across the last decade (2014-2024),
-Middlesbrough was categorically the worst, performing terrible in every meaningful metric and
-often being the last, or second to last in the list. The following metrics are:
-
-13.2% WinRate, 41.8% Shots on Target (Which, I have evaluated and shown has a negative 
-correlation on performance),
-
-18.5% OTCR% (On Target Conversion Rate), 7.7% TSCR% (Total Shot Conversion Rate) 
-
-and a whopping -0.94 ASC (Average Shot Coefficient)
-
-This means that Middlesbrough, had many of their shots on target, but the vast majority of them did 
-not convert to goals - indictating a poor finishing performance. A terrible, TSCR% rate means that the 
-shots they were taking that are not on target are of rather poor quality and poor shot selection, 
-and in addition to this, they weren't even shooting that often. In the one season they played, 
-they were close to being the bottom in total shots made. So of the very very few shots they decided 
-to take, they were poor choices and they had no finishing.
-
-This is reflected in their astronomically low Win Rate of 13.2%.
-
-So if anyone asks you who the worst Premier League team of the last decade has been 
-- Middlesbrough wouldn't be a terrible answer to give.
-`
 
 export {
      G1, D1, O1, G2, D2, D2_1,
@@ -1003,5 +951,5 @@ export {
      getTeamYear, teamyearDesc, goalCounts, goalDesc, goalQDesc, reflectionOne, reflectionTwo, reflectionThree,
      reflectionFour, reflectionFive, goalQDesc2, barChartCode, totalWinsCode, totalWinsCodeImp, plotPieHomeAway, plotPieRates,
      findTotalShotsCode, shotsBySeasonCode, totalShotsDecadeCode, ascMetric, shotConversionCode, scatterPlotTSTG, boxplotTS,
-     boxplotConversionYear, seasonalDF, lineplotASC, scatterOTCR, Q3_Summary
+     boxplotConversionYear, seasonalDF, lineplotASC, scatterOTCR
     }

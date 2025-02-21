@@ -21,7 +21,7 @@ const SzndChef = () => {
       <Main>
           <section className="h-auto w-auto font-bold flex flex-row text-4xl px-[5rem] py-[1rem] flex flex-col items-center mt-[2rem]">
             <h1 className="border-b-[1px] border-ivory rounded">SzndChef</h1>
-            <h2 className="text-base text-center text-nowrap text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/">https://szndchef.netlify.app/</Link></h2>
+            <h2 className="text-base text-center text-nowrap text-azure hover:text-ivory hover:underline hover:cursor-pointer"><Link to="https://szndchef.netlify.app/" target="_blank" rel="noopener noreferrer">https://szndchef.netlify.app/</Link></h2>
           </section>
           <section className="flex flex-col m-[2rem]">
             <h2 className="font-bold text-2xl">Project Summary:</h2>
@@ -113,8 +113,8 @@ const SzndChef = () => {
             </div>
           </section>
           <div className="flex flex-col justify-center">
-            <Link to="https://github.com/SmithNJ13/yao42_frontend" className="font-bold text-center hover:text-azure underline">GitHub repository (Frontend)</Link>
-            <Link to="https://github.com/ollie-byrne99/Lap_4_Server" className="font-bold text-center hover:text-azure underline">GitHub repository (Backend)</Link>
+            <Link to="https://github.com/SmithNJ13/yao42_frontend" className="font-bold text-center hover:text-azure underline" target="_blank" rel="noopener noreferrer">GitHub repository (Frontend)</Link>
+            <Link to="https://github.com/ollie-byrne99/Lap_4_Server" className="font-bold text-center hover:text-azure underline" target="_blank" rel="noopener noreferrer">GitHub repository (Backend)</Link>
           </div>
           <ScrollTo />
       </Main>
