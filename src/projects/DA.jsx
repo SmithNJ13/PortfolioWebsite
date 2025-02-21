@@ -385,7 +385,11 @@ const DA = () => {
                     scatterplot.
                   </p>
                   <img src={scatter_OTCR_WR_Season} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p>Explain</p>
+                  <p>We can see the same trend as earlier between OTCR% and WinRate% however, with more points on the scatterplot and individual team data based on year, we can 
+                    observe that Man City and Liverpool tend to be quite consistent performers with reasonably favourable win rates. There also seems to be a slightly higher than a 
+                    1 to 1 correlation between OTCR% and win rate, which interestingly indicates that finishing quality might not be the best thing for teams to fully invest in, because 
+                    a team can just minimally invest in it and get a lot of value out of it. Getting around a <span className={emphasisB}>~40.0% On-Target conversion rate roughly gives teams a ~53.0% win rate</span>.
+                  </p>
                   <img src={scatter_Top4ASC} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <img src={scatter_Top4OTCR} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   <h2 className="text-2xl text-stalelime mx-[1rem]">Summary:</h2>
@@ -412,7 +416,20 @@ const DA = () => {
           </section>
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Conclusion:</h2>
-            <p className="mx-[1rem]">In summary this is a conclusion Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum debitis laboriosam quia, impedit, placeat expedita sit doloribus obcaecati quo enim accusantium eveniet ab laudantium unde possimus. Quaerat numquam consectetur atque.</p>
+            <p className="mx-[1rem]">The findings demonstrate that while raw shot volume correlates with goal-scoring, it is not enough to guarantee success. 
+              Finishing ability is the true separator between elite teams and struggling sides. Teams that generate high attacking momentum but fail to convert 
+              their chances are doomed to mediocrity, while those that strike a balance between precision and frequency dominate the league. Man City’s sustained 
+              attacking intensity sets the benchmark for long-term success, while teams like Middlesbrough serve as cautionary tales of inefficiency and poor execution.
+              <br/><br/>
+              Beyond the statistics, this analysis underscores the evolution of football itself. The data reflects shifting team strategies, the impact of external factors such as the pandemic, 
+              and the ever-present advantage of playing at home. It also highlights the need for deeper, more nuanced performance evaluations beyond traditional metrics. 
+              Had this study relied solely on win rates or goal counts, it would have missed the intricate interplay between shot selection, conversion rates, and tactical execution.</p>
+              <p className="m-[1rem]">Going forward I intend to continue to hone my data analysis skills and practice with evermore complex data sets. Using the lessons I have learnt from this project to enhance
+                future projects and provide more critical and in-depth analysis of statistics. You can read the below <span className={emphasisB}>reflections</span> section to see areas that I felt I performed well in
+                as well as areas where I feel I could use improvement. I may update and continue to revise this data set in the future as I have found the project quite enjoyable and would like to add in more 
+                variables and data to explore the EPL teams in more detail.
+                <br/>There were also two additional questions I had at the start of the project that I was unable to answer. I would like to get around to these in the near future.
+              </p>
           </section>
           <section className="flex flex-col m-[2rem] text-ivory">
             <h2 className="font-bold text-2xl text-stalelime">Reflections:</h2>

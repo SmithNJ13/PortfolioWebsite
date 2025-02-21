@@ -72,7 +72,7 @@ const HomePage = () => {
             <h1 className="relative sm:text-4xl text-2xl text-center">◆ PROJECTS ◆<span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-ivory rounded"></span></h1>
             <div className="flex flex-col self-start items-start">
               <Link to={"da"}><ul className="hover:text-azure hover:cursor-pointer sm:text-2xl text-xl underline mt-[1rem]">Data Analysis</ul></Link>
-              <li className="sm:text-xl text-basetext-xl text-ivory sm:w-[44rem] ml-[1rem]">[Deadline, 21st Feb]: Analysis of Premier League matches between 2014 - 2024.</li>
+              <li className="sm:text-xl text-basetext-xl text-ivory sm:w-[44rem] ml-[1rem]">Analysis of Premier League matches between 2014 - 2024.</li>
               <Link to={"plp"}><ul className="hover:text-azure hover:cursor-pointer sm:text-2xl text-xl underline mt-[1rem]">Premier League Predictions - PLP</ul></Link>
               <li className="sm:text-xl text-basetext-xl text-ivory sm:w-[44rem] ml-[1rem]">A full-stack prediction application, where users can sign up, login and create predictions on various football matches, view their prediction history as well as relevant team information</li>
               <Link to={"szndchef"}><ul className="hover:text-azure hover:cursor-pointer sm:text-2xl text-xl underline mt-[1rem]">SzndChef</ul></Link>
