@@ -685,12 +685,323 @@ plt.tight_layout()
 plt.show()
 `
 
-export {G1, D1, O1, G2, D2, D2_1,
+const findTotalShotsCode = `
+def findTotalShots(year, team):
+    totalHomeShots = cycleTeam(year, team)[cycleTeam(year, team)["home"] == team]["hs"].sum()
+    totalAwayShots = cycleTeam(year, team)[cycleTeam(year, team)["away"] == team]["as"].sum()
+    totalHomeTShots = cycleTeam(year, team)[cycleTeam(year, team)["away"] == team]["hst"].sum()
+    totalAwayTShots = cycleTeam(year, team)[cycleTeam(year, team)["away"] == team]["ast"].sum()
+    totalShots = totalHomeShots + totalAwayShots
+    totalTShots = totalHomeTShots + totalAwayTShots
+
+    return (team, year, int(totalHomeShots), int(totalAwayShots), int(totalHomeTShots), int(totalAwayTShots), int(totalShots), int(totalTShots))
+
+findTotalShots(2016, "Arsenal")
+`
+const shotsBySeasonCode = `
+shots_by_season = []
+def findShotCounts():
+    for year in years_list:
+        for team in teams_list:
+            shots_by_season.append(findTotalShots(year, team))
+    return shots_by_season
+
+ts_by_year = pd.DataFrame(findShotCounts())
+ts_by_year.rename(columns = {0: "Team", 1: "Year", 2: "Total_HS", 3: "Total_AS", 4: "Total_HST", 5: "Total_AST", 6: "Total_Shots", 7: "Total_Shots_onTarget"}, inplace=True)
+`
+const totalShotsDecadeCode = `
+ts_tg_by_decade = []
+for team in teams_list:
+    ts_tg_by_decade.append({
+        "Team": team,
+        "Total_HG": int(tg_by_year[tg_by_year["Team"] == team]["Total_HG"].sum()),
+        "Total_AG": int(tg_by_year[tg_by_year["Team"] == team]["Total_AG"].sum()),
+        "Total_Goals": int(tg_by_year[tg_by_year["Team"] == team]["Total_Goals"].sum()),
+        "Total_HS": int(ts_by_year[ts_by_year["Team"] == team]["Total_HS"].sum()),
+        "Total_AS": int(ts_by_year[ts_by_year["Team"] == team]["Total_AS"].sum()),
+        "Total_HST": int(ts_by_year[ts_by_year["Team"] == team]["Total_HST"].sum()),
+        "Total_AST": int(ts_by_year[ts_by_year["Team"] == team]["Total_AST"].sum()),
+        "Total_Shots": int(ts_by_year[ts_by_year["Team"] == team]["Total_Shots"].sum()),
+        "Total_Shots_onTarget": int(ts_by_year[ts_by_year["Team"] == team]["Total_Shots_onTarget"].sum())
+        })
+
+goals_and_shots_decade = pd.DataFrame(ts_tg_by_decade)
+goals_and_shots_decade.head()
+`
+
+const shotConversionCode = `
+goals_and_shots_decade.loc[:, "TSCR%"] = (
+    round(goals_and_shots_decade["Total_Goals"] / goals_and_shots_decade["Total_Shots"], 3) * 100
+)
+goals_and_shots_decade.loc[:, "OTCR%"] = (
+    round(goals_and_shots_decade["Total_Goals"] / goals_and_shots_decade["Total_Shots_onTarget"], 3) * 100
+)
+goals_and_shots_decade.loc[:, "SOT%"] = ( round(goals_and_shots_decade["Total_Shots_onTarget"] / goals_and_shots_decade["Total_Shots"], 3) * 100 )
+goals_and_shots_decade.head()
+`
+
+const scatterPlotTSTG = `
+plt.figure(figsize=(10, 6))
+sea.regplot(x="Total_Shots", y="Total_Goals", data=goals_and_shots_decade, scatter_kws={"color": "green", "alpha": 0.7}, line_kws={"color": "skyblue"})
+
+plt.xlabel("Total Shots")
+plt.ylabel("Total Goals")
+plt.title("Total Shots v. Total Goals by Team (Decade)")
+
+plt.show()
+
+plt.figure(figsize=(10, 6))
+sea.regplot(x="Total_Shots_onTarget", y="Total_Goals", data=goals_and_shots_decade, scatter_kws={"color": "green", "alpha": 0.7}, line_kws={"color": "skyblue"})
+
+plt.xlabel("Total Shots on Target")
+plt.ylabel("Total Goals")
+plt.title("Total Shots on Target v. Total Goals by Team (Decade)")
+
+plt.show()
+`
+
+const boxplotTS = `
+plt.figure(figsize=(10, 6))
+
+sea.boxplot(
+    data=ts_by_year,
+    y="Year",
+    x="Total_Shots",
+    hue="Year",
+    palette="Paired",
+    orient='h',
+    width=0.75,
+    fliersize=1,
+    linewidth=1,
+    linecolor="black",
+    legend=False
+)
+
+plt.xticks(range(100, 900, 100))
+plt.grid(False)
+
+plt.xlabel('Total Shots', fontsize=10)
+plt.ylabel('Year', fontsize=10)
+plt.title('Total Shots per Year', fontsize=14)
+
+plt.gca().invert_yaxis()
+
+plt.tight_layout()
+plt.show()
+`
+
+const boxplotConversionYear = `
+outlier_teams = {}
+for year in goals_and_shots_seasonal['Year'].unique():
+    year_data = goals_and_shots_seasonal[goals_and_shots_seasonal['Year'] == year]
+    
+    Q3 = year_data['TSCR%'].quantile(0.75)
+    Q1 = year_data['TSCR%'].quantile(0.25)
+    IQR = Q3 - Q1
+    upper_fence = Q3 + 1.5 * IQR
+    lower_fence = Q1 - 1.5 * IQR
+    
+    outliers = year_data[(year_data['TSCR%'] > upper_fence) | (year_data['TSCR%'] < lower_fence)]
+    if not outliers.empty:
+        outlier_teams[year] = outliers['Team'].tolist()
+    else:
+        outlier_teams[year] = []
+
+fig = px.box(goals_and_shots_seasonal, y="Year", x="TSCR%",
+             color="Year",
+             boxmode="group",
+             title="TSCR% of Teams by Year",
+             subtitle="plotly express",
+             labels={
+                 "TSCR%": "TSCR%: Total Shots (Goal)Conversation Rate"
+             })
+
+for i, year in enumerate(sorted(goals_and_shots_seasonal['Year'].unique())):
+    year_data = goals_and_shots_seasonal[goals_and_shots_seasonal['Year'] == year]
+    Q3 = year_data['TSCR%'].quantile(0.75)
+    Q1 = year_data['TSCR%'].quantile(0.25)
+    IQR = Q3 - Q1
+    upper_fence = Q3 + 1.5 * IQR
+    lower_fence = Q1 - 1.5 * IQR
+    
+    customdata = []
+    for tscr in year_data['TSCR%']:
+        if tscr > upper_fence or tscr < lower_fence:
+            team = year_data[year_data['TSCR%'] == tscr]['Team'].iloc[0]
+            customdata.append(team)
+        else:
+            customdata.append('')
+            
+    fig.data[i].customdata = customdata
+    fig.data[i].update(
+        boxpoints="outliers",
+        quartilemethod="linear",
+        jitter=0,
+        orientation='h',
+        width=0.75,
+        hovertemplate="<b>Team:</b> %{customdata}<br>" +
+                     "<b>TSCR%:</b> %{x:.1f}%"
+    )
+
+fig.update_layout(
+    height=580,
+    width=980,
+    xaxis=dict(
+        tickmode="array",
+        tickvals=[0, 2, 4, 6, 8, 10, 12, 14, 16, 18],
+        ticktext=["0%", "2%", "4%", "6%", "8%", "10%", "12%", "14%", "16%", "18%"],
+    ),
+    yaxis=dict(
+        tickmode="array",
+        tickvals=sorted(goals_and_shots_seasonal['Year'].unique()),
+        ticktext=[str(year) for year in sorted(goals_and_shots_seasonal['Year'].unique())],
+    ),
+    showlegend=False,
+)
+fig.show()
+`
+
+const ascMetric = `
+goals_and_shots_seasonal.sort_values(by="OTCR%", ascending=False).head(40)
+goals_and_shots_seasonal.loc[:, "SOT%"] = ( round(goals_and_shots_seasonal["Total_Shots_onTarget"] / goals_and_shots_seasonal["Total_Shots"], 3) * 100 )
+goals_and_shots_seasonal.sort_values(by="SOT%", ascending=False).head()
+goals_and_shots_seasonal.sort_values(by="OTCR%", ascending=False).head()
+
+for year in years_list:
+    mean = round(goals_and_shots_seasonal[goals_and_shots_seasonal["Year"] == year]["Total_Shots"].mean())
+    max_shots = goals_and_shots_seasonal[goals_and_shots_seasonal["Year"] == year]["Total_Shots"].max()
+    goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "ASC"] = \
+        round(goals_and_shots_seasonal.loc[goals_and_shots_seasonal["Year"] == year, "Total_Shots"].apply(lambda x: min(max((x - mean) / (max_shots - mean), -1), 1)), 2)
+    
+goals_and_shots_seasonal.sort_values(by="ASC", ascending=False).tail(20)
+`
+
+const seasonalDF = `
+exclude = ["Leicester", "Burnley", "Southampton", "Newcastle"]
+teams_counts = goals_and_shots_seasonal.groupby('Team')['Year'].nunique()
+played_every_season1424 = teams_counts[teams_counts == len(years_list)].index
+played_every_season1424 = [team for team in played_every_season1424 if team not in exclude]
+every_season_DF = goals_and_shots_seasonal[goals_and_shots_seasonal['Team'].isin(played_every_season1424)]
+
+every_season_DF.reset_index(drop=True, inplace=True)
+every_season_DF
+
+new_data = []
+for _, row in every_season_DF.iterrows():
+    new_data.append({
+        "Team": row["Team"],
+        "Year": row["Year"],
+        "ASC": row["ASC"]
+    })
+
+every_season_DF = pd.DataFrame(new_data)
+every_season_DF.head()
+`
+
+const lineplotASC = `
+fig = px.line(
+  every_season_DF, 
+  x="Year", 
+  y="ASC", 
+  color="Team",
+  markers=False, 
+  title="ASC (Average Shot Coefficent) Performance of Teams Over the Years"
+)
+
+fig.update_layout(
+  height=620,
+  width=1000,
+  xaxis_title="Year",
+  yaxis_title="ASC",
+  yaxis=dict(zeroline=True, zerolinewidth=1, zerolinecolor="black"),
+  legend_title="Teams",
+  template="plotly_white",
+)
+
+fig.show()
+`
+
+const scatterOTCR = `
+Team_Colours = {
+    "Arsenal": "#ff0500",
+    "Chelsea": "#cdb100",
+    "Crystal Palace": "#FF00E3",
+    "Everton": "#040300",
+    "Liverpool": "#0eff1f",
+    "Man City": "#00FAFF",
+    "Man United": "#6100c4",
+    "Tottenham": "#0d00ff",
+    "West Ham": "#3a713c"
+}
+
+fig = px.scatter(EverySeason_Yearly_1424_DF, x="WinRate%", y="OTCR%", color="Team", title="", opacity=0.75, hover_data=["Year"], color_discrete_map=Team_Colours)
+fig.update_traces(textposition="top center", marker=dict(size=11, line=dict(width=1, color="DarkSlateGrey")))
+fig.update_layout(height=610, width=860, legend_title="Teams")
+
+fig.show()
+`
+
+const Q3_Summary = `
+There is a strong correlation between shots taken and goals scored, with a slightly weaker - 
+but still strong correlation between shots on target and goals scored.
+
+In addition to this I created three new novel metrics to assist with my analysis, 
+these were the following:
+1.    TSCR% (Total Shot Conversion Rate): Goals per total shots taken
+2.    OTCR% (On Target Conversion Rate): Goals per shots on target
+3.    ASC (Average Shot Coefficient): Team's shot frequency compared to season mean
+
+Teams with high OTCR% achieved significantly better win rates (~61.6%)
+Poor finishing teams, low OTCR%, struggled to win (~18.4% win rate)
+Higher shot volumes correlate more strongly with goals than shot accuracy alone
+
+Manchester City: High-volume shooting strategy with good conversion rates
+Liverpool: Similar high-volume approach but lower conversion efficiency
+Arsenal/Chelsea: More balanced approach between shot volume and accuracy
+
+Man City had a very consistent ASC rating, averaging +0.91 across the entire decade! Meaning that
+of all the Premier League teams active throughout that time, Man City were often the team
+taking the most shots in a game - this can be indicative of a teams attacking tempo.
+
+From these statistics that I worked with, there was a strong indication that Man City
+over the last decade has been one of the most consistent and high performing teams in the League.
+Conversely, of the EPL teams that have played every season since 2014, Crystal Palace on the whole
+tends to be one of the most - arguably the most, underperforming team. There is a case to be made
+against West Ham too, however, statistically their peaks were much higher, whereas
+Crystal Palace never had amazing peaks, both in WinRate% or attacking tempo.
+
+Of all 35 teams that have played in the EPL across the last decade (2014-2024),
+Middlesbrough was categorically the worst, performing terrible in every meaningful metric and
+often being the last, or second to last in the list. The following metrics are:
+
+13.2% WinRate, 41.8% Shots on Target (Which, I have evaluated and shown has a negative 
+correlation on performance),
+
+18.5% OTCR% (On Target Conversion Rate), 7.7% TSCR% (Total Shot Conversion Rate) 
+
+and a whopping -0.94 ASC (Average Shot Coefficient)
+
+This means that Middlesbrough, had many of their shots on target, but the vast majority of them did 
+not convert to goals - indictating a poor finishing performance. A terrible, TSCR% rate means that the 
+shots they were taking that are not on target are of rather poor quality and poor shot selection, 
+and in addition to this, they weren't even shooting that often. In the one season they played, 
+they were close to being the bottom in total shots made. So of the very very few shots they decided 
+to take, they were poor choices and they had no finishing.
+
+This is reflected in their astronomically low Win Rate of 13.2%.
+
+So if anyone asks you who the worst Premier League team of the last decade has been 
+- Middlesbrough wouldn't be a terrible answer to give.
+`
+
+export {
+     G1, D1, O1, G2, D2, D2_1,
      O2, G3, D3, O3, actionCode, bgCode,
      reducerCode, carouselCode, webscrapeCode, seedMatchesCode,
      dynamicPostPatchCode, reducerDescription, actionDescription, backgroundDescription, carouselDescription,
      dataBackground, dataMergeCode, devProcess, initialPlan, premDF, cycleteam, findTotalGoals, ftgDesc,
      getTeamYear, teamyearDesc, goalCounts, goalDesc, goalQDesc, reflectionOne, reflectionTwo, reflectionThree,
      reflectionFour, reflectionFive, goalQDesc2, barChartCode, totalWinsCode, totalWinsCodeImp, plotPieHomeAway, plotPieRates,
-
+     findTotalShotsCode, shotsBySeasonCode, totalShotsDecadeCode, ascMetric, shotConversionCode, scatterPlotTSTG, boxplotTS,
+     boxplotConversionYear, seasonalDF, lineplotASC, scatterOTCR, Q3_Summary
     }

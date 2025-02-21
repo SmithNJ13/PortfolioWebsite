@@ -13,12 +13,39 @@ import middlesbrough from "../assets/ProjectThree/middlesbroughWR.png"
 import pieHomeAway from "../assets/ProjectThree/piechart_home_vs_away.png"
 import pieRates from "../assets/ProjectThree/piechart_matchoutcomes.png"
 import pieManCity from "../assets/ProjectThree/piechart_manCity.png"
+import goalsandshotsDF from "../assets/ProjectThree/goalsandshotsDF.png"
+import scatterShotsGoals from "../assets/ProjectThree/scatter_shots_vs_goals_decade.png"
+import scatterOTGoals from "../assets/ProjectThree/scatter_shots_onTarget_decade.png"
+import boxplot_TShots from "../assets/ProjectThree/barplot_totalshots.png"
+import boxplot_TSCR from "../assets/ProjectThree/barplot_TSCR.png"
+import boxplot_OTCR from "../assets/ProjectThree/barplot_OTCR.png"
+import linechart_Top3 from "../assets/ProjectThree/linechart_top3_asc.png"
+import linechart_Mid3 from "../assets/ProjectThree/linechart_middle3_asc.png"
+import linechart_Bot3 from "../assets/ProjectThree/linechart_bot3_asc.png"
+import scatter_SOT_ASC from "../assets/ProjectThree/scatter_ASC_v_SOT.png"
+import scatter_OTCR_WR from "../assets/ProjectThree/scatter_OTCR_v_WinRate.png"
+import scatter_OTCR_WR_Season from "../assets/ProjectThree/scatter_OTCRvWR_seasonal.png"
+import scatter_Top4ASC from "../assets/ProjectThree/scatter_top4_WR_ASC.png"
+import scatter_Top4OTCR from "../assets/ProjectThree/scatter_top4_WR_OTCR.png"
+import asc_DF from "../assets/ProjectThree/ASC_DF.png"
 import ScrollTo from '../components/ScrollToTop/index.jsx'
 import { dataBackground, dataMergeCode, premDF, cycleteam, findTotalGoals, ftgDesc, getTeamYear, teamyearDesc, goalCounts, goalDesc, 
   goalQDesc, reflectionOne, reflectionTwo, reflectionThree, reflectionFour, reflectionFive, goalQDesc2, barChartCode,
   totalWinsCode, totalWinsCodeImp,
   plotPieHomeAway,
-  plotPieRates, } from '../yapfile.js'
+  plotPieRates,
+  findTotalShotsCode,
+  shotsBySeasonCode,
+  totalShotsDecadeCode,
+  shotConversionCode,
+  scatterPlotTSTG,
+  boxplotTS,
+  boxplotConversionYear,
+  ascMetric,
+  seasonalDF,
+  lineplotASC,
+  scatterOTCR,
+  Q3_Summary, } from '../yapfile.js'
 import Prism, { languages } from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 import "prismjs/components/prism-python";
@@ -120,7 +147,7 @@ const DA = () => {
               {section == 1 && (
                 <>
                   <section>
-                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 1: <span className="text-ivory">Which team has scored the most goals in the past decade?</span></h2>
+                    <h2 className="sm:text-2xl text-lg text-center text-stalelime mt-[2rem] mb-[1rem] sm:px-[12rem] px-[1rem]">Question 1: <span className="text-ivory">Which team has scored the most goals in the past decade?</span></h2>
                     <p className="mx-[1rem]">{goalQDesc} '<strong>team</strong>', '<strong>year</strong>', '<strong>fthg</strong>' and '<strong>ftag</strong>'.
                     <br />I then thought about which graphs I will likely be using for this and settled on displaying the information as a bar chart.</p>
                     <div className="m-[1rem] text-sm">
@@ -153,7 +180,7 @@ const DA = () => {
               {section == 2 && (
                 <>
                   <section>
-                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 2: <span className="text-ivory">Which team(s) in the past decade, win most of their games at home and which team(s) win most of their games away?</span></h2>
+                    <h2 className="sm:text-2xl text-lg text-center text-stalelime mt-[2rem] mb-[1rem] sm:px-[12rem] px-[1rem]">Question 2: <span className="text-ivory">Which team(s) in the past decade, win most of their games at home and which team(s) win most of their games away?</span></h2>
                     <p className="mx-[1rem]">This question I wanted to have a more in-depth exploration and a deeper analysis, now that I was becoming more comfortable with the data.
                       Before diving into the data, I first broke down the key components of the question: 
                       <li className="mx-[1rem]">Focus on the past decade (2014 to 2024)</li>
@@ -166,9 +193,9 @@ const DA = () => {
                       <li className="mx-[1rem]">"ftr" (full-time result)</li>
                     </p>
                     <br />
-                    <p className="mx-[1rem]">After doing this I created a <span className={emphasis}>totalWins()</span> function, which you can see in the code <span className="text-stalelime font-bold italic">below</span> this code simply took count of all the times 'H'
-                    appeared in the full-time result column when the 'home' column matched the team name and vice versa for 'away' matching 'A' in full-time result. Adding these two counts together gave me the total value of 'wins' a team had achieved.
+                    <p className="mx-[1rem]">I went on to then create a <span className={emphasis}>totalWins()</span> function to count home and away wins based on the 'ftr' (full-time result) column, then calculated each team's win rates.
                     <br/>
+                    The code for this can be seen <span className={emphasis}>below</span>:
                     </p>
                     <CodeBlock tabs={[
                       {name: "totalWins()", language: "python", code: totalWinsCode, description: "Desc."},
@@ -188,8 +215,7 @@ const DA = () => {
                     <img src={totalWinsOnly} className="w-[100%] h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
                   </div>
                   <p className="mx-[1rem] mt-[1rem]">As you can see from the image below, that after including those changes to the <span className={emphasis}>totalWins()</span> function, Middlesbrough [20] does not seem nearly as impressive.
-                  Even with the 80% home win rate included. The columns in order are: 
-                  <br/> <span className="text-stalelime font-bold italic">index, team, home_wins, draws, away_wins, total_wins, total_games, homeWin%, awayWin% and overall winRate%</span>.
+                  The columns in order are: <span className="text-stalelime font-bold italic">index, team, home_wins, draws, away_wins, total_wins, total_games, homeWin%, awayWin% and overall winRate%</span>.
                   <br />From this we can see Middlesbrough have <strong>5</strong> <span className={emphasis}>total wins</span>, <strong>38</strong> <span className={emphasis}>total games</span> and only a <strong>13.2%</strong> <span className={emphasis}>win rate</span>.
                   This contrasts massively with their <strong>80%</strong><span className={emphasis}> home win rate</span>.</p>
                   <img src={middlesbrough} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
@@ -205,8 +231,7 @@ const DA = () => {
                   <p className="mx-[1rem] my-[1rem] text-center">In the graph above, we can see that <strong>Stoke</strong> has the highest Home Win Rate%. One might infer from this that stoke are a dominating team at Home.
                   <br />However, if I examine the data more concisely and I pull up these teams win rates and match outcomes, we can see below that this is <strong>not</strong> the case.</p>
                   <img src={pieRates} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
-                  <p className="mx-[1rem] my-[1rem] text-center">The reality is that Stoke underperform in securing wins for their team, it just so happens that when they <strong>do</strong> win it is in most cases only at Home.
-                  Conversely, if we look at a team with an exceptionally high overall win rate - <strong>Man City</strong> we can see that their home win rate% and their away win rate% is much
+                  <p className="mx-[1rem] my-[1rem] text-center">In contrast, if we look at a team with an exceptionally high overall win rate - <strong>Man City</strong> we can see that their home win rate% and their away win rate% is much
                   more balanced and closer to a 50-50 split. This trend is also similiar with Chelsea, though not quite as strong. This would indicate that teams with high overall win rates
                   tend to perform well at home and away. The below image shows the relevant information exclusively for Man City.</p>
                   <img src={pieManCity} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
@@ -230,9 +255,77 @@ const DA = () => {
               {section == 3 && (
                 <>
                   <section>
-                    <h2 className="text-2xl text-center text-stalelime mt-[2rem] mb-[1rem] px-[12rem]">Question 3: <span className="text-ivory">Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</span></h2>
+                    <h2 className="sm:text-2xl text-lg text-center text-stalelime mt-[2rem] mb-[1rem] sm:px-[12rem] px-[1rem]">Question 3: <span className="text-ivory">Is there a correlation between the number of shots taken by a team and the number of goals they score, additionally, what deeper findings can you extrapolate from these statistics?</span></h2>
+                    <p className="mx-[1rem]">For this question, I knew it was going to be pretty in-depth and cover a variety of different graphs but there were two specific
+                      graph types I had in mind that I really wanted to use - which were scatterplots and boxplots.
+                      As usual, I identified the columns to focus on for this question, the ones I decided on were:
+                      <li className="mx-[1rem]">"year"</li>
+                      <li className="mx-[1rem]">"home"</li>
+                      <li className="mx-[1rem]">"away"</li>
+                      <li className="mx-[1rem]">"team" (using DataFrames where it is already defined)</li>
+                      <li className="mx-[1rem]">"fthg" (full-time home goals)</li>
+                      <li className="mx-[1rem]">"ftag" (full-time away goals)</li>
+                      <li className="mx-[1rem]">"hs" (home shots)</li>
+                      <li className="mx-[1rem]">"as" (away shots)</li>
+                      <li className="mx-[1rem]">"hst" (home shots, on target)</li>
+                      <li className="mx-[1rem]">"ast" (away shots, on target)</li>
+                    </p>
+                    <br /><p className="mx-[1rem]">After doing this, I then went on to create a function for finding the total shots for each team, in every year. The code for this is displayed below:</p>
+                    <CodeBlock tabs={[
+                      {name: "findTotalShots()", language:"python", code: findTotalShotsCode, description: "Desc."},
+                      {name: "Shots by Year", language:"python", code: shotsBySeasonCode, description: "Desc."}
+                    ]}/>
+                    <p className="m-[1rem]">Once I had created the DataFrame containing the relevant information. I then used <span className={emphasisB}>pd.merge( )</span> to combine
+                    my new ts_by_year DataFrame and my previous tg_by_year DataFrame from question 2 together. I then used <span className={emphasisB}>df.loc[ ]</span> to filter out
+                    rows which had 0 values across the board as they were not helpful to this analysis.
+                    <span className={emphasisB}><br />goals_and_shots_seasonal = combined_df.loc[~(combined_df.iloc[:, 2:].sum(axis=1) == 0)]</span>
+                    <br/>Below is the resulting DataFrame, ready and primed for analysis.</p>
                   </section>
-                  <img src={barChart} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={goalsandshotsDF} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <CodeBlock tabs={[
+                    {name: "Goals and Shots by Decade", language:"python", code: totalShotsDecadeCode, description: "Desc."},
+                    {name: "Creating new metrics (TSCR%, OTCR%, SOT%)", language:"python", code: shotConversionCode, description: `TSCR% is the 'Total Shot Conversion Rate' which is the percentage of Shots that resulted in Goals.
+                      OTCR% is the 'On Target Conversion Rate' which is the percentage of Shots On Target that resulted in Goals. SOT% is just the percentage of total shots that were on target.`},
+                    {name: "Scatter Plot Code", language:"python", code: scatterPlotTSTG, description: "Desc."}
+                  ]}/>
+                  <p>Words???</p>
+                  <img src={scatterShotsGoals} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={scatterOTGoals} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>Explain graphs</p>
+                  <CodeBlock tabs={[
+                    {name: "Boxplot (Total Shots)", language:"python", code: boxplotTS, description: "Desc."},
+                    {name: "Boxplot (TSCR%)", language:"python", code: boxplotConversionYear, description: "Desc."}
+                  ]}/>
+                  <p>Explain why you wanted to do this</p>
+                  <img src={boxplot_TShots} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={boxplot_TSCR} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>No correlations, interesting observation</p>
+                  <img src={boxplot_OTCR} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>I create ASC</p>
+                  <CodeBlock tabs={[
+                    {name: "Creation of ASC metric", language:"python", code: ascMetric, description: "Desc."},
+                    {name: "Creating Seasonal_DF", languaage:"python", code: seasonalDF, description: "Desc."},
+                    {name: "Line Chart (ASC)", language:"python", code: lineplotASC, description: "Desc."}
+                  ]}/>
+                  <img src={asc_DF} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>Some explanation of what I have done, or about to do.</p>
+                  <img src={linechart_Top3} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={linechart_Mid3} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={linechart_Bot3} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>Observations</p>
+                  <img src={scatter_SOT_ASC} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={scatter_OTCR_WR} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>Observations</p>
+                  <CodeBlock tabs={[
+                    {name: "Scatter Plot (Consistent Teams)", language:"python", code: scatterOTCR, description: "Desc."}
+                  ]}/>
+                  <p>Explain</p>
+                  <img src={scatter_OTCR_WR_Season} className="w-auto h-auto self-center border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <p>Explain</p>
+                  <img src={scatter_Top4ASC} className="w-auto h-auto self-end border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <img src={scatter_Top4OTCR} className="w-auto h-auto self-start border-stalelime border-[2px] rounded-[1rem] sm:m-[1rem]"></img>
+                  <h2 className="text-2xl text-stalelime mx-[1rem]">Summary:</h2>
+                  <p className="mx-[2rem]">{Q3_Summary}</p>
                 </>
               )}
               {section !== 0 && (
